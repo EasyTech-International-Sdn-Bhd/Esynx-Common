@@ -1,3 +1,3 @@
-module github.com/EasyTech-International-Sdn-Bhd/esynx-common
+module github.com/easytech-international-sdn-bhd/esynx-common
 
 go 1.22
