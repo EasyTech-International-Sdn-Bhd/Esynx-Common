@@ -6,18 +6,18 @@ import (
 )
 
 type IAppOneWayService interface {
-	RetrieveUptoFuture() error
 	ActOnEvents() error
-	RetrieveOnlyUpdated() error
-	RetrieveSpecific(data interface{}) error
+	RetrieveUptoFuture() ([]*asynq.TaskInfo, error)
+	RetrieveOnlyUpdated() ([]*asynq.TaskInfo, error)
+	RetrieveSpecific(data interface{}) ([]*asynq.TaskInfo, error)
 	GetHandlers() map[string]func(context.Context, *asynq.Task) error
 }
 
 type IAppBidirectionalService interface {
-	RetrieveUptoFuture() error
 	ActOnEvents() error
-	RetrieveOnlyUpdated() error
-	RetrieveSpecific(data interface{}) error
+	RetrieveUptoFuture() ([]*asynq.TaskInfo, error)
+	RetrieveOnlyUpdated() ([]*asynq.TaskInfo, error)
+	RetrieveSpecific(data interface{}) ([]*asynq.TaskInfo, error)
 	GetHandlers() map[string]func(context.Context, *asynq.Task) error
-	Sync() error
+	Sync() ([]*asynq.TaskInfo, error)
 }
