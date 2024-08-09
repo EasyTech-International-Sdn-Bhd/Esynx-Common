@@ -11,12 +11,14 @@ type CmsDebitnoteSales struct {
 	DnDate            time.Time `xorm:"TIMESTAMP" json:"dnDate,omitempty" xml:"dnDate"`
 	DnAmount          float64   `xorm:"DOUBLE" json:"dnAmount,omitempty" xml:"dnAmount"`
 	OutstandingAmount float64   `xorm:"DOUBLE" json:"outstandingAmount,omitempty" xml:"outstandingAmount"`
+	SalespersonId     int       `xorm:"INT" json:"salespersonId,omitempty" xml:"salespersonId"`
 	Cancelled         string    `xorm:"CHAR(1)" json:"cancelled,omitempty" xml:"cancelled"`
 	Approved          int       `xorm:"default 0 INT" json:"approved,omitempty" xml:"approved"`
 	Approver          string    `xorm:"VARCHAR(200)" json:"approver,omitempty" xml:"approver"`
 	ApprovedAt        time.Time `xorm:"DATETIME" json:"approvedAt,omitempty" xml:"approvedAt"`
 	UpdatedAt         time.Time `xorm:"not null default CURRENT_TIMESTAMP TIMESTAMP" json:"updatedAt,omitempty" xml:"updatedAt"`
 	RefNo             string    `xorm:"VARCHAR(80)" json:"refNo,omitempty" xml:"refNo"`
+	DnUdf             string    `xorm:"JSON" json:"dnUdf,omitempty" xml:"dnUdf"`
 }
 
 func (m *CmsDebitnoteSales) TableName() string {
