@@ -19,7 +19,7 @@ type CmsCreditnote struct {
 	Approver         string    `xorm:"VARCHAR(200)" json:"approver,omitempty" xml:"approver"`
 	ApprovedAt       time.Time `xorm:"DATETIME" json:"approvedAt,omitempty" xml:"approvedAt"`
 	FromDoc          string    `xorm:"default 'SL' ENUM('AR','SL')" json:"fromDoc,omitempty" xml:"fromDoc"`
-	RefNo            string    `xorm:"VARCHAR(20)" json:"refNo,omitempty" xml:"refNo"`
+	RefNo            string    `xorm:"VARCHAR(80)" json:"refNo,omitempty" xml:"refNo"`
 }
 
 func (m *CmsCreditnote) TableName() string {

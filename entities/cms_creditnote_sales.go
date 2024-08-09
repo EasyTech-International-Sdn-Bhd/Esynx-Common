@@ -18,6 +18,7 @@ type CmsCreditnoteSales struct {
 	Approved         int       `xorm:"default 0 INT" json:"approved,omitempty" xml:"approved"`
 	Approver         string    `xorm:"VARCHAR(200)" json:"approver,omitempty" xml:"approver"`
 	ApprovedAt       time.Time `xorm:"DATETIME" json:"approvedAt,omitempty" xml:"approvedAt"`
+	RefNo            string    `xorm:"VARCHAR(80)" json:"refNo,omitempty" xml:"refNo"`
 }
 
 func (m *CmsCreditnoteSales) TableName() string {

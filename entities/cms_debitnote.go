@@ -17,6 +17,7 @@ type CmsDebitnote struct {
 	Approver          string    `xorm:"VARCHAR(200)" json:"approver,omitempty" xml:"approver"`
 	ApprovedAt        time.Time `xorm:"DATETIME" json:"approvedAt,omitempty" xml:"approvedAt"`
 	UpdatedAt         time.Time `xorm:"not null default CURRENT_TIMESTAMP TIMESTAMP" json:"updatedAt,omitempty" xml:"updatedAt"`
+	RefNo             string    `xorm:"VARCHAR(80)" json:"refNo,omitempty" xml:"refNo"`
 }
 
 func (m *CmsDebitnote) TableName() string {
