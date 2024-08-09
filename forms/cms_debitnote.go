@@ -16,6 +16,7 @@ type CmsDebitNoteForm struct {
 	FromDoc           string    `xorm:"default 'SL' ENUM('AR','SL')" json:"fromDoc,omitempty" xml:"fromDoc"`
 	UpdatedAt         time.Time `xorm:"not null default CURRENT_TIMESTAMP TIMESTAMP" json:"updatedAt,omitempty" xml:"updatedAt"`
 	RefNo             string    `xorm:"VARCHAR(80)" json:"refNo,omitempty" xml:"refNo"`
+	DnUdf             string    `json:"dnUdf,omitempty" xml:"invUdf"`
 }
 
 type CmsDebitNoteDetailsForm struct {
@@ -29,4 +30,5 @@ type CmsDebitNoteDetailsForm struct {
 	Discount     string `xorm:"comment('0%+10+50%') VARCHAR(100)" json:"discount,omitempty" xml:"discount"`
 	ActiveStatus int    `xorm:"default 1 comment('0=inactive, 1=active') INT" json:"activeStatus,omitempty" xml:"activeStatus"`
 	RefNo        string `xorm:"unique VARCHAR(200)" json:"refNo,omitempty" xml:"refNo"`
+	DnDtlUdf     string `xorm:"JSON" json:"dnDtlUdf,omitempty" xml:"dnDtlUdf"`
 }

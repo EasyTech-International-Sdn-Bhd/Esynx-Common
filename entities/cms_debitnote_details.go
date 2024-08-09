@@ -15,6 +15,7 @@ type CmsDebitnoteDetails struct {
 	ActiveStatus int       `xorm:"default 1 comment('0=inactive, 1=active') INT" json:"activeStatus,omitempty" xml:"activeStatus"`
 	UpdatedAt    time.Time `xorm:"not null default CURRENT_TIMESTAMP TIMESTAMP" json:"updatedAt,omitempty" xml:"updatedAt"`
 	RefNo        string    `xorm:"unique VARCHAR(200)" json:"refNo,omitempty" xml:"refNo"`
+	DnDtlUdf     string    `xorm:"JSON" json:"dnDtlUdf,omitempty" xml:"dnDtlUdf"`
 }
 
 func (m *CmsDebitnoteDetails) TableName() string {
