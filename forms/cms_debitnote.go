@@ -8,7 +8,7 @@ type CmsDebitNoteForm struct {
 	DnDate            time.Time `xorm:"TIMESTAMP" json:"dnDate,omitempty" xml:"dnDate"`
 	DnAmount          float64   `xorm:"DOUBLE" json:"dnAmount,omitempty" xml:"dnAmount"`
 	OutstandingAmount float64   `xorm:"DOUBLE" json:"outstandingAmount,omitempty" xml:"outstandingAmount"`
-	Agent             int       `xorm:"INT" json:"agent,omitempty" xml:"agent"`
+	Agent             string    `xorm:"VARCHAR(50)" json:"agent,omitempty" xml:"agent"`
 	Cancelled         string    `xorm:"CHAR(1)" json:"cancelled,omitempty" xml:"cancelled"`
 	Approved          int       `xorm:"default 0 INT" json:"approved,omitempty" xml:"approved"`
 	Approver          string    `xorm:"VARCHAR(200)" json:"approver,omitempty" xml:"approver"`
