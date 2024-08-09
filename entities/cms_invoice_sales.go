@@ -19,8 +19,7 @@ type CmsInvoiceSales struct {
 	InvUdf            string    `xorm:"not null JSON" json:"invUdf,omitempty" xml:"invUdf"`
 	Cancelled         string    `xorm:"CHAR(1)" json:"cancelled,omitempty" xml:"cancelled"`
 	UpdatedAt         time.Time `xorm:"not null default CURRENT_TIMESTAMP TIMESTAMP" json:"updatedAt,omitempty" xml:"updatedAt"`
-	CreatedBy         string    `xorm:"VARCHAR(20)" json:"createdBy,omitempty" xml:"createdBy"`
-	RefNo             int       `xorm:"INT" json:"refNo,omitempty" xml:"refNo"`
+	RefNo             string    `xorm:"INT" json:"refNo,omitempty" xml:"refNo"`
 	Termcode          string    `xorm:"VARCHAR(20)" json:"termcode,omitempty" xml:"termcode"`
 }
 
