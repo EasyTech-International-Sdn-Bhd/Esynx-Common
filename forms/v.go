@@ -5,9 +5,17 @@ import (
 	"github.com/go-playground/validator/v10"
 )
 
-var validate *validator.Validate
+var FormValidator *validator.Validate
 
 func init() {
-	validate = validator.New()
-	validate.RegisterValidation("trim", utils.TrimWhitespace)
+	FormValidator = validator.New()
+	FormValidator.RegisterValidation("trim", utils.TrimWhitespace)
+}
+
+func ValidateForm(i interface{}) error {
+	err := FormValidator.Struct(&i)
+	if err != nil {
+		return err
+	}
+	return nil
 }
