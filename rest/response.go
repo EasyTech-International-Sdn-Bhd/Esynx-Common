@@ -2,6 +2,12 @@ package rest
 
 import "github.com/easytech-international-sdn-bhd/esynx-common/entities"
 
+type ReferenceBasedResponse struct {
+	Data    []string `json:"data"`
+	Status  bool     `json:"status"`
+	Message string   `json:"message"`
+}
+
 type InvoiceResponse struct {
 	Data    []entities.CmsInvoice `json:"data"`
 	Status  bool                  `json:"status"`
