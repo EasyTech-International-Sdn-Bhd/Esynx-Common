@@ -3,6 +3,9 @@ package rest
 const (
 	Root                      = "/"
 	Ping                      = "/ping"
+	Agent                     = "/agent"
+	AgentBulk                 = "/agent/bulk"
+	AgentQuery                = "/agent/query"
 	Invoice                   = "/invoice"
 	InvoiceBulk               = "/invoice/bulk"
 	InvoiceQuery              = "/invoice/query"

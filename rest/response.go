@@ -61,3 +61,15 @@ type CreditNoteDetailsResponse struct {
 	Status  bool                            `json:"status"`
 	Message string                          `json:"message"`
 }
+
+type AgentListResponse struct {
+	Data    []entities.CmsLogin `json:"data"`
+	Status  bool                `json:"status"`
+	Message string              `json:"message"`
+}
+
+type AgentResponse struct {
+	Data    entities.CmsLogin `json:"data"`
+	Status  bool              `json:"status"`
+	Message string            `json:"message"`
+}
