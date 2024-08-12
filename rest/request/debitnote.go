@@ -48,7 +48,7 @@ type DebitNoteDetailsBulkUpdateForm struct {
 }
 
 type DebitNoteDetailsDeleteForm struct {
-	Id string `json:"id" binding:"required,min=3,max=100"`
+	Reference string `json:"id" binding:"required,min=3,max=100"`
 }
 
 type DebitNoteDetailsBulkDeleteForm struct {

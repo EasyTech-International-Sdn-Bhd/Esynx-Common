@@ -50,7 +50,7 @@ type InvoiceDetailsBulkUpdateForm struct {
 }
 
 type InvoiceDetailsDeleteForm struct {
-	Id string `json:"id" binding:"required,min=3,max=100"`
+	Reference string `json:"id" binding:"required,min=3,max=100"`
 }
 
 type InvoiceDetailsBulkDeleteForm struct {
