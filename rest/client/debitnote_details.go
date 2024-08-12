@@ -55,7 +55,7 @@ func (i *ApiClient) GetDebitNoteDetails(dnCode string) (*DebitNoteDetailsRespons
 	resp, err := i.Reqwest.R().
 		SetPathParam("dnCode", dnCode).
 		SetResult(&response).
-		Get(EndPointDebitNoteDetails)
+		Get(fmt.Sprintf("%s/{dnCode}", EndPointDebitNoteDetails))
 
 	if err != nil {
 		return nil, fmt.Errorf("request error: %v", err)
@@ -71,7 +71,7 @@ func (i *ApiClient) GetBulkDebitNoteDetails(dnCodes string) (*DebitNoteDetailsRe
 	resp, err := i.Reqwest.R().
 		SetPathParam("dnCode", dnCodes).
 		SetResult(&response).
-		Get(EndPointDebitNoteDetailsBulk)
+		Get(fmt.Sprintf("%s/{dnCode}", EndPointDebitNoteDetailsBulk))
 
 	if err != nil {
 		return nil, fmt.Errorf("request error: %v", err)

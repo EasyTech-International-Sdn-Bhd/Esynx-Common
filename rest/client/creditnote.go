@@ -55,7 +55,7 @@ func (i *ApiClient) GetCreditNote(creditNoteCode string) (*CreditNoteResponse, e
 	resp, err := i.Reqwest.R().
 		SetPathParam("cnCode", creditNoteCode).
 		SetResult(&response).
-		Get(EndPointCreditNote)
+		Get(fmt.Sprintf("%s/{cnCode}", EndPointCreditNote))
 
 	if err != nil {
 		return nil, fmt.Errorf("request error: %v", err)
@@ -71,7 +71,7 @@ func (i *ApiClient) GetBulkCreditNote(creditNoteCodes string) (*CreditNoteRespon
 	resp, err := i.Reqwest.R().
 		SetPathParam("cnCode", creditNoteCodes).
 		SetResult(&response).
-		Get(EndPointCreditNoteBulk)
+		Get(fmt.Sprintf("%s/{cnCode}", EndPointCreditNoteBulk))
 
 	if err != nil {
 		return nil, fmt.Errorf("request error: %v", err)

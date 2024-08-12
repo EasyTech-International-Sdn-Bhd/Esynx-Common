@@ -55,7 +55,7 @@ func (i *ApiClient) GetInvoice(invoiceCode string) (*InvoiceResponse, error) {
 	resp, err := i.Reqwest.R().
 		SetPathParam("invoiceCode", invoiceCode).
 		SetResult(&response).
-		Get(EndPointInvoice)
+		Get(fmt.Sprintf("%s/{invoiceCode}", EndPointInvoice))
 
 	if err != nil {
 		return nil, fmt.Errorf("request error: %v", err)
@@ -71,7 +71,7 @@ func (i *ApiClient) GetBulkInvoice(invoiceCodes string) (*InvoiceResponse, error
 	resp, err := i.Reqwest.R().
 		SetPathParam("invoiceCode", invoiceCodes).
 		SetResult(&response).
-		Get(EndPointInvoiceBulk)
+		Get(fmt.Sprintf("%s/{invoiceCode}", EndPointInvoiceBulk))
 
 	if err != nil {
 		return nil, fmt.Errorf("request error: %v", err)

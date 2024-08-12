@@ -61,7 +61,7 @@ func (i *ApiClient) GetAgent(agentCode string) (*AgentResponse, error) {
 	resp, err := i.Reqwest.R().
 		SetPathParam("agentCode", agentCode).
 		SetResult(&response).
-		Get(EndPointAgent)
+		Get(fmt.Sprintf("%s/{agentCode}", EndPointAgent))
 
 	if err != nil {
 		return nil, fmt.Errorf("request error: %v", err)
