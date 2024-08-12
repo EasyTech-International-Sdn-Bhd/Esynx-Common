@@ -53,7 +53,7 @@ func (i *ApiClient) PostBulkInvoice(form request.InvoiceBulkCreateForm) (*Refere
 func (i *ApiClient) GetInvoice(invoiceCode string) (*InvoiceResponse, error) {
 	var response InvoiceResponse
 	resp, err := i.Reqwest.R().
-		SetQueryParam("invoiceCode", invoiceCode).
+		SetPathParam("invoiceCode", invoiceCode).
 		SetResult(&response).
 		Get(EndPointInvoice)
 
@@ -69,7 +69,7 @@ func (i *ApiClient) GetInvoice(invoiceCode string) (*InvoiceResponse, error) {
 func (i *ApiClient) GetBulkInvoice(invoiceCodes string) (*InvoiceResponse, error) {
 	var response InvoiceResponse
 	resp, err := i.Reqwest.R().
-		SetQueryParam("invoiceCode", invoiceCodes).
+		SetPathParam("invoiceCode", invoiceCodes).
 		SetResult(&response).
 		Get(EndPointInvoiceBulk)
 

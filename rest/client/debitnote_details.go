@@ -53,7 +53,7 @@ func (i *ApiClient) PostBulkDebitNoteDetails(form request.DebitNoteDetailsBulkCr
 func (i *ApiClient) GetDebitNoteDetails(dnCode string) (*DebitNoteDetailsResponse, error) {
 	var response DebitNoteDetailsResponse
 	resp, err := i.Reqwest.R().
-		SetQueryParam("dnCode", dnCode).
+		SetPathParam("dnCode", dnCode).
 		SetResult(&response).
 		Get(EndPointDebitNoteDetails)
 
@@ -69,7 +69,7 @@ func (i *ApiClient) GetDebitNoteDetails(dnCode string) (*DebitNoteDetailsRespons
 func (i *ApiClient) GetBulkDebitNoteDetails(dnCodes string) (*DebitNoteDetailsResponse, error) {
 	var response DebitNoteDetailsResponse
 	resp, err := i.Reqwest.R().
-		SetQueryParam("dnCode", dnCodes).
+		SetPathParam("dnCode", dnCodes).
 		SetResult(&response).
 		Get(EndPointDebitNoteDetailsBulk)
 

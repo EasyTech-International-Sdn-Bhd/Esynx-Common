@@ -53,7 +53,7 @@ func (i *ApiClient) PostBulkCreditNoteDetails(form request.CreditNoteDetailsBulk
 func (i *ApiClient) GetCreditNoteDetails(creditNoteCode string) (*CreditNoteDetailsResponse, error) {
 	var response CreditNoteDetailsResponse
 	resp, err := i.Reqwest.R().
-		SetQueryParam("cnCode", creditNoteCode).
+		SetPathParam("cnCode", creditNoteCode).
 		SetResult(&response).
 		Get(EndPointCreditNoteDetails)
 
@@ -69,7 +69,7 @@ func (i *ApiClient) GetCreditNoteDetails(creditNoteCode string) (*CreditNoteDeta
 func (i *ApiClient) GetBulkCreditNoteDetails(creditNoteCodes string) (*CreditNoteDetailsResponse, error) {
 	var response CreditNoteDetailsResponse
 	resp, err := i.Reqwest.R().
-		SetQueryParam("cnCode", creditNoteCodes).
+		SetPathParam("cnCode", creditNoteCodes).
 		SetResult(&response).
 		Get(EndPointCreditNoteDetailsBulk)
 

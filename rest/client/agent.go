@@ -59,7 +59,7 @@ func (i *ApiClient) PostBulkAgent(form request.AgentBulkCreateForm) (*ReferenceB
 func (i *ApiClient) GetAgent(agentCode string) (*AgentResponse, error) {
 	var response AgentResponse
 	resp, err := i.Reqwest.R().
-		SetQueryParam("agentCode", agentCode).
+		SetPathParam("agentCode", agentCode).
 		SetResult(&response).
 		Get(EndPointAgent)
 
