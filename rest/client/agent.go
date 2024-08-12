@@ -72,10 +72,9 @@ func (i *ApiClient) GetAgent(agentCode string) (*AgentResponse, error) {
 	return &response, nil
 }
 
-func (i *ApiClient) GetBulkAgent(agentCodes string) (*AgentListResponse, error) {
+func (i *ApiClient) GetBulkAgent() (*AgentListResponse, error) {
 	var response AgentListResponse
 	resp, err := i.Reqwest.R().
-		SetQueryParam("agentCode", agentCodes).
 		SetResult(&response).
 		Get(EndPointAgentBulk)
 
