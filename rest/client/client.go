@@ -51,7 +51,7 @@ type ApiClient struct {
 }
 
 // NewApiClient creates a new API client
-func NewApiClient(params *RestClientParams) (*ApiClient, error) {
+func NewApiClient(params *RestClientParams, debug ...bool) (*ApiClient, error) {
 	const (
 		authHeaderName    = "X-App-Name"
 		acceptHeader      = "Accept"
@@ -60,7 +60,7 @@ func NewApiClient(params *RestClientParams) (*ApiClient, error) {
 	)
 	client := resty.New().
 		SetBaseURL(params.URL).
-		SetDebug(true).
+		SetDebug(len(debug) > 0).
 		SetRetryCount(1).
 		SetHeader(authHeaderName, params.AppName).
 		SetHeader(acceptHeader, acceptHeaderValue).
