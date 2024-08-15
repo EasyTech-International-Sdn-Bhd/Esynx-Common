@@ -24,6 +24,8 @@ const (
 	AuthLogin                 = "/auth/login"
 	AuthRegistration          = "/auth/registration"
 	AuthRefreshToken          = "/auth/refresh"
+	AuthCheckAccessToken      = "/auth/check/accessToken"
+	AuthCheckRefreshToken     = "/auth/check/refreshToken"
 	DefineXOjanaRoute         = "/x-ojana-route/define"
 	InvoiceDetailsQuery       = "/invoice/details/query"
 	InvoiceDetailsBulkQuery   = "/invoice/details/bulk/query"
