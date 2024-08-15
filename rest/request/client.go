@@ -22,3 +22,7 @@ type ClientLoginForm struct {
 type ClientRefreshTokenForm struct {
 	RefreshToken string `form:"refreshToken" json:"refreshToken" binding:"required"`
 }
+
+type ClientAccessTokenForm struct {
+	AccessToken string `form:"accessToken" json:"accessToken" binding:"required"`
+}
