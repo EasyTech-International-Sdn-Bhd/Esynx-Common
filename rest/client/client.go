@@ -7,44 +7,62 @@ import (
 	"github.com/go-resty/resty/v2"
 	"log"
 	"net/http"
+	"strings"
 )
 
+// TokenData holds the token details
 type TokenData struct {
-	AccessToken  string   `mapstructure:"AccessToken"`
-	RefreshToken string   `mapstructure:"RefreshToken"`
-	Roles        []string `mapstructure:"Roles"`
-	Permissions  []string `mapstructure:"Permissions"`
+	AccessToken  string   `json:"accessToken"`
+	RefreshToken string   `json:"refreshToken"`
+	Roles        []string `json:"roles"`
+	Permissions  []string `json:"permissions"`
 }
 
+// RefreshTokenData holds the refresh token details
+type RefreshTokenData struct {
+	AccessToken string `json:"accessToken"`
+}
+
+// RefreshTokenResponse holds the response structure for refresh token
+type RefreshTokenResponse struct {
+	Data    RefreshTokenData `json:"Data"`
+	Message string           `json:"Message"`
+	Status  bool             `json:"Status"`
+}
+
+// LoginResponse holds the response structure for login
 type LoginResponse struct {
 	Data    TokenData `json:"Data"`
 	Message string    `json:"Message"`
 	Status  bool      `json:"Status"`
 }
 
+// RestClientParams holds the parameters for the REST client
 type RestClientParams struct {
-	Url      string
+	URL      string
 	AppName  string
 	Username string
 	Password string
 }
 
+// ApiClient holds the REST client
 type ApiClient struct {
 	Reqwest *resty.Client
 }
 
-func NewApiClient(param *RestClientParams) (*ApiClient, error) {
-	const authHeaderName = "X-App-Name"
-	const acceptHeader = "Accept"
-	const acceptHeaderValue = "application/json"
-	const authSchema = "Bearer"
-
-	client := resty.New()
-	client.
-		SetBaseURL(param.Url).
-		SetDebug(false).
+// NewApiClient creates a new API client
+func NewApiClient(params *RestClientParams) (*ApiClient, error) {
+	const (
+		authHeaderName    = "X-App-Name"
+		acceptHeader      = "Accept"
+		acceptHeaderValue = "application/json"
+		authSchema        = "Bearer"
+	)
+	client := resty.New().
+		SetBaseURL(params.URL).
+		SetDebug(true).
 		SetRetryCount(1).
-		SetHeader(authHeaderName, param.AppName).
+		SetHeader(authHeaderName, params.AppName).
 		SetHeader(acceptHeader, acceptHeaderValue).
 		SetContentLength(true).
 		EnableTrace().
@@ -52,52 +70,76 @@ func NewApiClient(param *RestClientParams) (*ApiClient, error) {
 			log.Println(err)
 		})
 
-	response, err := loginUser(client, param)
+	loginResponse, err := loginUser(client, params)
 	if err != nil {
 		return nil, err
 	}
 
-	client.
-		SetAuthScheme(authSchema).
-		SetAuthToken(response.Data.AccessToken).
-		OnBeforeRequest(handleAuth(param, response)).
-		AddRetryCondition(func(r *resty.Response, err error) bool {
-			return err != nil || r.StatusCode() == http.StatusUnauthorized
+	client.SetAuthScheme(authSchema).
+		SetAuthToken(loginResponse.Data.AccessToken).
+		OnBeforeRequest(func(clx *resty.Client, r *resty.Request) error {
+			ignore := []string{rest.AuthCheckAccessToken, rest.AuthCheckRefreshToken, rest.AuthRefreshToken, rest.AuthLogin}
+			for _, s := range ignore {
+				if strings.Contains(r.URL, s) {
+					return nil
+				}
+			}
+			return handleAuth(params, loginResponse)(clx, r)
+		}).
+		AddRetryCondition(func(response *resty.Response, err error) bool {
+			return err != nil || response.StatusCode() == http.StatusUnauthorized
 		})
 
 	return &ApiClient{Reqwest: client}, nil
 }
 
-func loginUser(client *resty.Client, param *RestClientParams) (*LoginResponse, error) {
+func loginUser(client *resty.Client, params *RestClientParams) (*LoginResponse, error) {
 	var response *LoginResponse
-	r, err := client.
-		R().
-		SetBody(map[string]string{"username": param.Username, "password": param.Password}).
+	resp, err := client.R().
+		SetBody(map[string]string{"username": params.Username, "password": params.Password}).
 		SetResult(&response).
 		Post(rest.AuthLogin)
+
 	if err != nil {
 		return nil, err
 	}
-	if r.IsError() {
-		return nil, errors.New(r.String())
+
+	if resp.IsError() {
+		return nil, errors.New(resp.String())
 	}
+
 	return response, nil
 }
 
-func handleAuth(param *RestClientParams, response *LoginResponse) func(client *resty.Client, request *resty.Request) error {
+func handleAuth(params *RestClientParams, loginResponse *LoginResponse) func(client *resty.Client, request *resty.Request) error {
 	return func(client *resty.Client, request *resty.Request) error {
-		var authResp *ReferenceBasedResponse
-		reqAcs := rq.ClientAccessTokenForm{AccessToken: response.Data.AccessToken}
-		acsResp, err := request.SetBody(reqAcs).SetResult(&authResp).Post(rest.AuthCheckAccessToken)
-		if err != nil || acsResp.IsError() {
-			reqRfs := rq.ClientRefreshTokenForm{RefreshToken: response.Data.RefreshToken}
-			rfsResp, err := request.SetBody(reqRfs).SetResult(&authResp).Post(rest.AuthCheckRefreshToken)
-			if err != nil || rfsResp.IsError() {
-				response, err = loginUser(client, param)
+		var authResponse *ReferenceBasedResponse
+		accessTokenForm := rq.ClientAccessTokenForm{AccessToken: loginResponse.Data.AccessToken}
+		acsResp, err := client.R().SetBody(accessTokenForm).SetResult(&authResponse).Post(rest.AuthCheckAccessToken)
+
+		if err != nil || acsResp.IsError() || !authResponse.Status {
+			refreshTokenForm := rq.ClientRefreshTokenForm{RefreshToken: loginResponse.Data.RefreshToken}
+			rfsResp, err := client.R().SetBody(refreshTokenForm).SetResult(&authResponse).Post(rest.AuthCheckRefreshToken)
+
+			if err != nil || rfsResp.IsError() || !authResponse.Status {
+				loginResponse, err = loginUser(client, params)
 				if err != nil {
 					return err
 				}
-				request.SetAuthToken(response.Data.AccessToken)
+				request.SetAuthToken(loginResponse.Data.AccessToken)
+			} else {
+				var refreshResponse *RefreshTokenResponse
+				rfsResp, err = client.R().SetBody(refreshTokenForm).SetResult(&refreshResponse).Post(rest.AuthRefreshToken)
+
+				if err != nil || rfsResp.IsError() || !refreshResponse.Status {
+					loginResponse, err = loginUser(client, params)
+					if err != nil {
+						return err
+					}
+					request.SetAuthToken(loginResponse.Data.AccessToken)
+				} else {
+					request.SetAuthToken(refreshResponse.Data.AccessToken)
+				}
 			}
 		}
 		return nil
