@@ -6,8 +6,8 @@ import (
 
 type CmsInvoiceSales struct {
 	InvoiceId         uint64    `xorm:"pk autoincr unique UNSIGNED BIGINT" json:"invoiceId,omitempty" xml:"invoiceId"`
-	InvoiceCode       string    `xorm:"not null default '' unique VARCHAR(200)" json:"invoiceCode,omitempty" xml:"invoiceCode"`
-	CustCode          string    `xorm:"VARCHAR(20)" json:"custCode,omitempty" xml:"custCode"`
+	InvoiceCode       string    `xorm:"not null index default '' unique VARCHAR(200)" json:"invoiceCode,omitempty" xml:"invoiceCode"`
+	CustCode          string    `xorm:"VARCHAR(20) index" json:"custCode,omitempty" xml:"custCode"`
 	InvoiceDate       time.Time `xorm:"TIMESTAMP" json:"invoiceDate,omitempty" xml:"invoiceDate"`
 	InvoiceDueDate    time.Time `xorm:"TIMESTAMP" json:"invoiceDueDate,omitempty" xml:"invoiceDueDate"`
 	InvoiceAmount     float64   `xorm:"DOUBLE" json:"invoiceAmount,omitempty" xml:"invoiceAmount"`
@@ -19,7 +19,7 @@ type CmsInvoiceSales struct {
 	InvUdf            string    `xorm:"not null JSON" json:"invUdf,omitempty" xml:"invUdf"`
 	Cancelled         string    `xorm:"CHAR(1)" json:"cancelled,omitempty" xml:"cancelled"`
 	UpdatedAt         time.Time `xorm:"not null default CURRENT_TIMESTAMP TIMESTAMP" json:"updatedAt,omitempty" xml:"updatedAt"`
-	RefNo             string    `xorm:"VARCHAR(80)" json:"refNo,omitempty" xml:"refNo"`
+	RefNo             string    `xorm:"VARCHAR(80) index" json:"refNo,omitempty" xml:"refNo"`
 	Termcode          string    `xorm:"VARCHAR(20)" json:"termcode,omitempty" xml:"termcode"`
 }
 

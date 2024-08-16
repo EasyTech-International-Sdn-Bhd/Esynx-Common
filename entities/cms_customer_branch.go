@@ -6,10 +6,10 @@ import (
 
 type CmsCustomerBranch struct {
 	BranchId         uint64    `xorm:"pk autoincr unique UNSIGNED BIGINT" json:"branchId,omitempty" xml:"branchId"`
-	CustId           int       `xorm:"not null INT" json:"custId,omitempty" xml:"custId"`
-	AgentId          int       `xorm:"not null INT" json:"agentId,omitempty" xml:"agentId"`
-	CustCode         string    `xorm:"not null unique(unique_branch) VARCHAR(100)" json:"custCode,omitempty" xml:"custCode"`
-	BranchCode       string    `xorm:"not null unique(unique_branch) VARCHAR(100)" json:"branchCode,omitempty" xml:"branchCode"`
+	CustId           int       `xorm:"not null index INT" json:"custId,omitempty" xml:"custId"`
+	AgentId          int       `xorm:"not null index INT" json:"agentId,omitempty" xml:"agentId"`
+	CustCode         string    `xorm:"not null index unique(unique_branch) VARCHAR(100)" json:"custCode,omitempty" xml:"custCode"`
+	BranchCode       string    `xorm:"not null index unique(unique_branch) VARCHAR(100)" json:"branchCode,omitempty" xml:"branchCode"`
 	BranchName       string    `xorm:"not null VARCHAR(200)" json:"branchName,omitempty" xml:"branchName"`
 	BranchAttn       string    `xorm:"not null VARCHAR(100)" json:"branchAttn,omitempty" xml:"branchAttn"`
 	BranchPhone      string    `xorm:"not null VARCHAR(100)" json:"branchPhone,omitempty" xml:"branchPhone"`

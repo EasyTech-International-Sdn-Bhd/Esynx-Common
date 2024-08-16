@@ -6,8 +6,8 @@ import (
 
 type CmsDo struct {
 	DoId              uint64    `xorm:"pk autoincr unique UNSIGNED BIGINT" json:"doId,omitempty" xml:"doId"`
-	DoCode            string    `xorm:"not null default '' unique VARCHAR(50)" json:"doCode,omitempty" xml:"doCode"`
-	CustCode          string    `xorm:"not null VARCHAR(20)" json:"custCode,omitempty" xml:"custCode"`
+	DoCode            string    `xorm:"not null default '' unique VARCHAR(50) index" json:"doCode,omitempty" xml:"doCode"`
+	CustCode          string    `xorm:"not null VARCHAR(20) index" json:"custCode,omitempty" xml:"custCode"`
 	DoDate            time.Time `xorm:"not null DATETIME" json:"doDate,omitempty" xml:"doDate"`
 	DoAmount          float64   `xorm:"default 0 DOUBLE" json:"doAmount,omitempty" xml:"doAmount"`
 	Cancelled         string    `xorm:"not null default 'F' VARCHAR(2)" json:"cancelled,omitempty" xml:"cancelled"`
@@ -26,7 +26,7 @@ type CmsDo struct {
 	BasketId          string    `xorm:"VARCHAR(100)" json:"basketId,omitempty" xml:"basketId"`
 	OrderFault        int       `xorm:"default 0 INT" json:"orderFault,omitempty" xml:"orderFault"`
 	OrderFaultMessage string    `xorm:"VARCHAR(200)" json:"orderFaultMessage,omitempty" xml:"orderFaultMessage"`
-	RefNo             string    `xorm:"comment('dockey') VARCHAR(200)" json:"refNo,omitempty" xml:"refNo"`
+	RefNo             string    `xorm:"comment('dockey') index VARCHAR(200)" json:"refNo,omitempty" xml:"refNo"`
 	BranchName        string    `xorm:"VARCHAR(200)" json:"branchName,omitempty" xml:"branchName"`
 	UpdatedAt         time.Time `xorm:"not null default CURRENT_TIMESTAMP DATETIME" json:"updatedAt,omitempty" xml:"updatedAt"`
 	ScRemark          string    `xorm:"VARCHAR(200)" json:"scRemark,omitempty" xml:"scRemark"`

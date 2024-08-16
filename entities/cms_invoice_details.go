@@ -17,7 +17,7 @@ type CmsInvoiceDetails struct {
 	ActiveStatus int       `xorm:"default 1 INT" json:"activeStatus,omitempty" xml:"activeStatus"`
 	SequenceNo   int       `xorm:"not null default 0 INT" json:"sequenceNo,omitempty" xml:"sequenceNo"`
 	InvDtlUdf    string    `xorm:"JSON" json:"invDtlUdf,omitempty" xml:"invDtlUdf"`
-	RefNo        string    `xorm:"unique(invoice_code) VARCHAR(200)" json:"refNo,omitempty" xml:"refNo"`
+	RefNo        string    `xorm:"unique(invoice_code) index VARCHAR(200)" json:"refNo,omitempty" xml:"refNo"`
 	UpdatedAt    time.Time `xorm:"not null default CURRENT_TIMESTAMP TIMESTAMP" json:"updatedAt,omitempty" xml:"updatedAt"`
 	SessionId    string    `xorm:"default '' VARCHAR(100)" json:"sessionId,omitempty" xml:"sessionId"`
 }

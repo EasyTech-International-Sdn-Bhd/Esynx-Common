@@ -5,16 +5,16 @@ import (
 )
 
 type CmsPayment struct {
-	PaymentId                   string    `xorm:"unique VARCHAR(50)" json:"paymentId,omitempty" xml:"paymentId"`
+	PaymentId                   string    `xorm:"unique VARCHAR(50) index" json:"paymentId,omitempty" xml:"paymentId"`
 	PaymentDate                 time.Time `xorm:"DATETIME" json:"paymentDate,omitempty" xml:"paymentDate"`
 	PaymentTransferReceivedDate time.Time `xorm:"DATETIME" json:"paymentTransferReceivedDate,omitempty" xml:"paymentTransferReceivedDate"`
-	CustCode                    string    `xorm:"VARCHAR(50)" json:"custCode,omitempty" xml:"custCode"`
+	CustCode                    string    `xorm:"VARCHAR(50) index" json:"custCode,omitempty" xml:"custCode"`
 	Description                 string    `xorm:"VARCHAR(500)" json:"description,omitempty" xml:"description"`
 	PaymentAmount               float64   `xorm:"DOUBLE" json:"paymentAmount,omitempty" xml:"paymentAmount"`
 	PaymentStatus               int       `xorm:"comment('0=in_ipad,1=in_backoffice,2=in_Accounting') INT" json:"paymentStatus,omitempty" xml:"paymentStatus"`
 	CancelStatus                int       `xorm:"INT" json:"cancelStatus,omitempty" xml:"cancelStatus"`
 	PaymentReference            string    `xorm:"VARCHAR(50)" json:"paymentReference,omitempty" xml:"paymentReference"`
-	SalespersonId               int       `xorm:"INT" json:"salespersonId,omitempty" xml:"salespersonId"`
+	SalespersonId               int       `xorm:"INT index" json:"salespersonId,omitempty" xml:"salespersonId"`
 	SalespersonPaymentRemark    string    `xorm:"VARCHAR(500)" json:"salespersonPaymentRemark,omitempty" xml:"salespersonPaymentRemark"`
 	LastPrint                   time.Time `xorm:"DATETIME" json:"lastPrint,omitempty" xml:"lastPrint"`
 	Checked                     int       `xorm:"default 0 INT" json:"checked,omitempty" xml:"checked"`

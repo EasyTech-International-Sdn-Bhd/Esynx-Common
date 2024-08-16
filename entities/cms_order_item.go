@@ -6,7 +6,7 @@ import (
 
 type CmsOrderItem struct {
 	OrderItemId         uint64    `xorm:"pk autoincr unique UNSIGNED BIGINT" json:"orderItemId,omitempty" xml:"orderItemId"`
-	OrderId             string    `xorm:"comment('this reference is unique and link to order table. it cannot use order id because the order are sending from different ipad, the order id which is generated from ipad might be the same when reach to CMS.') unique(unique_key) VARCHAR(20)" json:"orderId,omitempty" xml:"orderId"`
+	OrderId             string    `xorm:"comment('this reference is unique and link to order table. it cannot use order id because the order are sending from different ipad, the order id which is generated from ipad might be the same when reach to CMS.') unique(unique_key) index VARCHAR(20)" json:"orderId,omitempty" xml:"orderId"`
 	IpadItemId          int64     `xorm:"default 0 unique(unique_key) BIGINT" json:"ipadItemId,omitempty" xml:"ipadItemId"`
 	ProductCode         string    `xorm:"VARCHAR(50)" json:"productCode,omitempty" xml:"productCode"`
 	ProductId           int       `xorm:"unique(unique_key) INT" json:"productId,omitempty" xml:"productId"`
