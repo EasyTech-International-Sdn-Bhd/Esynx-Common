@@ -30,6 +30,7 @@ type CmsDebitNoteDetailsForm struct {
 	TotalPrice   float64 `xorm:"default 0 DOUBLE" json:"totalPrice,omitempty" xml:"totalPrice"`
 	Uom          string  `xorm:"VARCHAR(200)" json:"uom,omitempty" xml:"uom" validate:"trim"`
 	Discount     string  `xorm:"comment('0%+10+50%') VARCHAR(100)" json:"discount,omitempty" xml:"discount" validate:"trim"`
+	SequenceNo   int     `xorm:"not null default 0 INT" json:"sequenceNo,omitempty" xml:"sequenceNo"`
 	ActiveStatus int     `xorm:"default 1 comment('0=inactive, 1=active') INT" json:"activeStatus,omitempty" xml:"activeStatus"`
 	RefNo        string  `xorm:"unique VARCHAR(200)" json:"refNo,omitempty" xml:"refNo" validate:"trim"`
 	DnDtlUdf     string  `xorm:"JSON" json:"dnDtlUdf,omitempty" xml:"dnDtlUdf" validate:"trim"`
