@@ -120,37 +120,52 @@ func loginUser(client *resty.Client, params *RestClientParams) (*LoginResponse, 
 func handleAuth(params *RestClientParams, loginResponse *LoginResponse) func(client *resty.Client, request *resty.Request) error {
 	return func(client *resty.Client, request *resty.Request) error {
 		var authResponse *ReferenceBasedResponse
+
+		// Check if access token is still valid
 		accessTokenForm := rq.ClientAccessTokenForm{AccessToken: loginResponse.Data.AccessToken}
-		acsResp, err := client.R().SetBody(accessTokenForm).SetResult(&authResponse).Post(rest.AuthCheckAccessToken)
+		acsResp, err := client.R().
+			SetBody(accessTokenForm).
+			SetResult(&authResponse).
+			Post(rest.AuthCheckAccessToken)
 
-		if err != nil || acsResp.IsError() || !authResponse.Status {
-			refreshTokenForm := rq.ClientRefreshTokenForm{RefreshToken: loginResponse.Data.RefreshToken}
-			rfsResp, err := client.R().SetBody(refreshTokenForm).SetResult(&authResponse).Post(rest.AuthCheckRefreshToken)
+		if err == nil && acsResp.StatusCode() == http.StatusOK && authResponse.Status {
+			// Access token is valid, proceed with the request
+			return nil
+		}
 
-			if err != nil || rfsResp.IsError() || !authResponse.Status {
-				loginResponse, err = loginUser(client, params)
-				if err != nil {
-					return err
-				}
+		// Access token is invalid; try refreshing it
+		refreshTokenForm := rq.ClientRefreshTokenForm{RefreshToken: loginResponse.Data.RefreshToken}
+		rfsResp, err := client.R().
+			SetBody(refreshTokenForm).
+			SetResult(&authResponse).
+			Post(rest.AuthCheckRefreshToken)
+
+		if err == nil && rfsResp.StatusCode() == http.StatusOK && authResponse.Status {
+			var refreshResponse *RefreshTokenResponse
+
+			rfsResp, err = client.R().
+				SetBody(refreshTokenForm).
+				SetResult(&refreshResponse).
+				Post(rest.AuthRefreshToken)
+
+			if err == nil && rfsResp.StatusCode() == http.StatusOK && refreshResponse.Status {
+				// Refresh token succeeded, update the token and proceed with the request
+				loginResponse.Data.AccessToken = refreshResponse.Data.AccessToken
 				request.SetAuthToken(loginResponse.Data.AccessToken)
 				client.SetAuthToken(loginResponse.Data.AccessToken)
-			} else {
-				var refreshResponse *RefreshTokenResponse
-				rfsResp, err = client.R().SetBody(refreshTokenForm).SetResult(&refreshResponse).Post(rest.AuthRefreshToken)
-
-				if err != nil || rfsResp.IsError() || !refreshResponse.Status {
-					loginResponse, err = loginUser(client, params)
-					if err != nil {
-						return err
-					}
-					request.SetAuthToken(loginResponse.Data.AccessToken)
-					client.SetAuthToken(loginResponse.Data.AccessToken)
-				} else {
-					request.SetAuthToken(refreshResponse.Data.AccessToken)
-					client.SetAuthToken(loginResponse.Data.AccessToken)
-				}
+				return nil
 			}
 		}
+
+		// Refresh token also expired, perform login to get new tokens
+		loginResponse, err = loginUser(client, params)
+		if err != nil {
+			return err
+		}
+
+		// Set the new access token for the request
+		request.SetAuthToken(loginResponse.Data.AccessToken)
+		client.SetAuthToken(loginResponse.Data.AccessToken)
 		return nil
 	}
 }
