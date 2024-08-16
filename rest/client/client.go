@@ -58,6 +58,8 @@ func NewApiClient(params *RestClientParams, debug ...bool) (*ApiClient, error) {
 		acceptHeaderValue = "application/json"
 		authSchema        = "Bearer"
 	)
+	ignore := []string{rest.AuthCheckAccessToken, rest.AuthCheckRefreshToken, rest.AuthRefreshToken, rest.AuthLogin}
+
 	client := resty.New().
 		SetBaseURL(params.URL).
 		SetDebug(len(debug) > 0).
@@ -68,6 +70,14 @@ func NewApiClient(params *RestClientParams, debug ...bool) (*ApiClient, error) {
 		EnableTrace().
 		OnError(func(req *resty.Request, err error) {
 			log.Println(err)
+		}).
+		AddRetryCondition(func(response *resty.Response, err error) bool {
+			for _, s := range ignore {
+				if strings.Contains(response.Request.URL, s) {
+					return false
+				}
+			}
+			return err != nil || response.StatusCode() == http.StatusUnauthorized
 		})
 
 	loginResponse, err := loginUser(client, params)
@@ -78,16 +88,12 @@ func NewApiClient(params *RestClientParams, debug ...bool) (*ApiClient, error) {
 	client.SetAuthScheme(authSchema).
 		SetAuthToken(loginResponse.Data.AccessToken).
 		OnBeforeRequest(func(clx *resty.Client, r *resty.Request) error {
-			ignore := []string{rest.AuthCheckAccessToken, rest.AuthCheckRefreshToken, rest.AuthRefreshToken, rest.AuthLogin}
 			for _, s := range ignore {
 				if strings.Contains(r.URL, s) {
 					return nil
 				}
 			}
 			return handleAuth(params, loginResponse)(clx, r)
-		}).
-		AddRetryCondition(func(response *resty.Response, err error) bool {
-			return err != nil || response.StatusCode() == http.StatusUnauthorized
 		})
 
 	return &ApiClient{Reqwest: client}, nil
@@ -127,6 +133,7 @@ func handleAuth(params *RestClientParams, loginResponse *LoginResponse) func(cli
 					return err
 				}
 				request.SetAuthToken(loginResponse.Data.AccessToken)
+				client.SetAuthToken(loginResponse.Data.AccessToken)
 			} else {
 				var refreshResponse *RefreshTokenResponse
 				rfsResp, err = client.R().SetBody(refreshTokenForm).SetResult(&refreshResponse).Post(rest.AuthRefreshToken)
@@ -137,8 +144,10 @@ func handleAuth(params *RestClientParams, loginResponse *LoginResponse) func(cli
 						return err
 					}
 					request.SetAuthToken(loginResponse.Data.AccessToken)
+					client.SetAuthToken(loginResponse.Data.AccessToken)
 				} else {
 					request.SetAuthToken(refreshResponse.Data.AccessToken)
+					client.SetAuthToken(loginResponse.Data.AccessToken)
 				}
 			}
 		}
