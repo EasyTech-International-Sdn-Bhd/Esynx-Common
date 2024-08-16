@@ -4,7 +4,6 @@ import "github.com/easytech-international-sdn-bhd/esynx-common/forms"
 
 type DebitNoteCreateForm struct {
 	Reference string                 `json:"reference" binding:"required,min=3,max=100"`
-	DocType   string                 `json:"docType" binding:"required,min=2"`
 	Data      forms.CmsDebitNoteForm `json:"data"`
 }
 
