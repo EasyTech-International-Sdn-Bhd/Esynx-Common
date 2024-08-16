@@ -12,6 +12,7 @@ type CmsDebitnoteDetails struct {
 	Uom          string    `xorm:"not null VARCHAR(200)" json:"uom,omitempty" xml:"uom"`
 	TotalPrice   float64   `xorm:"default 0 DOUBLE" json:"totalPrice,omitempty" xml:"totalPrice"`
 	Discount     string    `xorm:"default '0' comment('0%+10+50%') VARCHAR(100)" json:"discount,omitempty" xml:"discount"`
+	SequenceNo   int       `xorm:"not null default 0 INT" json:"sequenceNo,omitempty" xml:"sequenceNo"`
 	ActiveStatus int       `xorm:"default 1 INT comment('0=inactive, 1=active')" json:"activeStatus,omitempty" xml:"activeStatus"`
 	UpdatedAt    time.Time `xorm:"not null default CURRENT_TIMESTAMP TIMESTAMP" json:"updatedAt,omitempty" xml:"updatedAt"`
 	RefNo        string    `xorm:"unique(dn_code) index VARCHAR(200)" json:"refNo,omitempty" xml:"refNo"`
