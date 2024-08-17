@@ -7,7 +7,7 @@ type CmsCreditnoteDetails struct {
 	CnCode       string    `xorm:"not null unique(cn_code) VARCHAR(100)" json:"cnCode,omitempty" xml:"cnCode"`
 	ItemCode     string    `xorm:"not null VARCHAR(200)" json:"itemCode,omitempty" xml:"itemCode"`
 	ItemName     string    `xorm:"not null VARCHAR(200)" json:"itemName,omitempty" xml:"itemName"`
-	ItemPrice    string    `xorm:"not null VARCHAR(200)" json:"itemPrice,omitempty" xml:"itemPrice"`
+	ItemPrice    float64   `xorm:"not null VARCHAR(200)" json:"itemPrice,omitempty" xml:"itemPrice"`
 	Quantity     float64   `xorm:"default 0 DOUBLE" json:"quantity,omitempty" xml:"quantity"`
 	Uom          string    `xorm:"not null VARCHAR(200)" json:"uom,omitempty" xml:"uom"`
 	TotalPrice   float64   `xorm:"default 0 DOUBLE" json:"totalPrice,omitempty" xml:"totalPrice"`
