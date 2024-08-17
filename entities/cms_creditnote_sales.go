@@ -24,3 +24,11 @@ type CmsCreditnoteSales struct {
 func (m *CmsCreditnoteSales) TableName() string {
 	return "cms_creditnote_sales"
 }
+
+func (m *CmsCreditnoteSales) BeforeInsert() {
+	m.BeforeUpdate()
+}
+
+func (m *CmsCreditnoteSales) BeforeUpdate() {
+	m.UpdatedAt = time.Now()
+}
