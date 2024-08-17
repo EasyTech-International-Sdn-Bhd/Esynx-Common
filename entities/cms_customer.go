@@ -43,7 +43,6 @@ type CmsCustomer struct {
 	Longitude          float64   `xorm:"DOUBLE" json:"longitude,omitempty" xml:"longitude"`
 	UpdatedAt          time.Time `xorm:"not null default CURRENT_TIMESTAMP TIMESTAMP" json:"updatedAt,omitempty" xml:"updatedAt"`
 	CustUdf            string    `xorm:"JSON" json:"custUdf,omitempty" xml:"custUdf"`
-	SessionId          string    `xorm:"default '' VARCHAR(100)" json:"sessionId,omitempty" xml:"sessionId"`
 	Company            string    `xorm:"default '' VARCHAR(50)" json:"company,omitempty" xml:"company"`
 }
 

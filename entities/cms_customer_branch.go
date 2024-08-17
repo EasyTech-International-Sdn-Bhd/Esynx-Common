@@ -31,7 +31,6 @@ type CmsCustomerBranch struct {
 	BranchArea       string    `xorm:"not null VARCHAR(500)" json:"branchArea,omitempty" xml:"branchArea"`
 	BranchRemark     string    `xorm:"not null VARCHAR(500)" json:"branchRemark,omitempty" xml:"branchRemark"`
 	BranchActive     int       `xorm:"not null default 1 comment('1=active, 0=not active') INT" json:"branchActive,omitempty" xml:"branchActive"`
-	SessionId        string    `xorm:"default '' VARCHAR(100)" json:"sessionId,omitempty" xml:"sessionId"`
 	Company          string    `xorm:"default '' VARCHAR(50)" json:"company,omitempty" xml:"company"`
 	UpdatedAt        time.Time `xorm:"not null default CURRENT_TIMESTAMP TIMESTAMP" json:"updatedAt,omitempty" xml:"updatedAt"`
 }

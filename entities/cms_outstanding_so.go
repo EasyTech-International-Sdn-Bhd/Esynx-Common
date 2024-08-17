@@ -5,21 +5,21 @@ import (
 )
 
 type CmsOutstandingSo struct {
-	Id              uint64    `xorm:"pk autoincr unique UNSIGNED BIGINT" json:"id,omitempty" xml:"id"`
-	SoDocno         string    `xorm:"not null unique(so_docno) index VARCHAR(20)" json:"soDocno,omitempty" xml:"soDocno"`
-	SoDockey        string    `xorm:"not null VARCHAR(30)" json:"soDockey,omitempty" xml:"soDockey"`
-	SoProductCode   string    `xorm:"not null default '' index unique(so_docno) VARCHAR(50)" json:"soProductCode,omitempty" xml:"soProductCode"`
-	SoUnitUom       string    `xorm:"unique(so_docno) VARCHAR(50)" json:"soUnitUom,omitempty" xml:"soUnitUom"`
-	SoOriQty        float64   `xorm:"not null unique(so_docno) DOUBLE" json:"soOriQty,omitempty" xml:"soOriQty"`
-	SoOutQty        float64   `xorm:"not null DOUBLE" json:"soOutQty,omitempty" xml:"soOutQty"`
-	SoTransQty      float64   `xorm:"not null DOUBLE" json:"soTransQty,omitempty" xml:"soTransQty"`
-	SoDocDate       time.Time `xorm:"not null DATETIME" json:"soDocDate,omitempty" xml:"soDocDate"`
-	SoSalespersonId int       `xorm:"not null INT index" json:"soSalespersonId,omitempty" xml:"soSalespersonId"`
-	SoCustCode      string    `xorm:"not null VARCHAR(50) index" json:"soCustCode,omitempty" xml:"soCustCode"`
-	SoBranchCode    string    `xorm:"VARCHAR(100)" json:"soBranchCode,omitempty" xml:"soBranchCode"`
-	UpdatedAt       time.Time `xorm:"default CURRENT_TIMESTAMP DATETIME" json:"updatedAt,omitempty" xml:"updatedAt"`
-	ActiveStatus    int       `xorm:"default 0 INT" json:"activeStatus,omitempty" xml:"activeStatus"`
-	RefNo           string    `xorm:"VARCHAR(100)" json:"refNo,omitempty" xml:"refNo"`
+	Id            uint64    `xorm:"pk autoincr unique UNSIGNED BIGINT" json:"id,omitempty" xml:"id"`
+	DocNo         string    `xorm:"not null unique(docNo) index VARCHAR(20)" json:"docNo,omitempty" xml:"docNo"`
+	DocKey        string    `xorm:"not null VARCHAR(30)" json:"docKey,omitempty" xml:"docKey"`
+	ProductCode   string    `xorm:"not null default '' index unique(docNo) VARCHAR(50)" json:"productCode,omitempty" xml:"productCode"`
+	UnitUom       string    `xorm:"unique(docNo) VARCHAR(50)" json:"unitUom,omitempty" xml:"unitUom"`
+	OriQty        float64   `xorm:"not null unique(docNo) DOUBLE" json:"oriQty,omitempty" xml:"oriQty"`
+	OutQty        float64   `xorm:"not null DOUBLE" json:"outQty,omitempty" xml:"outQty"`
+	TransQty      float64   `xorm:"not null DOUBLE" json:"transQty,omitempty" xml:"transQty"`
+	DocDate       time.Time `xorm:"not null DATETIME" json:"docDate,omitempty" xml:"docDate"`
+	SalespersonId int       `xorm:"not null INT index" json:"salespersonId,omitempty" xml:"salespersonId"`
+	CustCode      string    `xorm:"not null VARCHAR(50) index" json:"custCode,omitempty" xml:"custCode"`
+	BranchCode    string    `xorm:"VARCHAR(100)" json:"branchCode,omitempty" xml:"branchCode"`
+	UpdatedAt     time.Time `xorm:"default CURRENT_TIMESTAMP DATETIME" json:"updatedAt,omitempty" xml:"updatedAt"`
+	ActiveStatus  int       `xorm:"default 0 INT" json:"activeStatus,omitempty" xml:"activeStatus"`
+	RefNo         string    `xorm:"VARCHAR(100)" json:"refNo,omitempty" xml:"refNo"`
 }
 
 func (m *CmsOutstandingSo) TableName() string {

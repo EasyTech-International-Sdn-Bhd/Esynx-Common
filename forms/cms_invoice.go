@@ -34,5 +34,4 @@ type CmsInvoiceDetailsForm struct {
 	SequenceNo   int     `xorm:"not null default 0 INT" json:"sequenceNo,omitempty" xml:"sequenceNo"`
 	InvDtlUdf    string  `xorm:"JSON" json:"invDtlUdf,omitempty" xml:"invDtlUdf" validate:"trim"`
 	RefNo        string  `xorm:"unique(invoice_code) VARCHAR(200)" json:"refNo,omitempty" xml:"refNo" validate:"trim"`
-	SessionId    string  `xorm:"default '' VARCHAR(100)" json:"sessionId,omitempty" xml:"sessionId" validate:"trim"`
 }

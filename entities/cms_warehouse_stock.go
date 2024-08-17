@@ -18,7 +18,6 @@ type CmsWarehouseStock struct {
 	ActiveStatus   int       `xorm:"default 1 INT" json:"activeStatus,omitempty" xml:"activeStatus"`
 	RefNo          string    `xorm:"comment('uniquekey -- wh_code + product_code + uom') VARCHAR(200)" json:"refNo,omitempty" xml:"refNo"`
 	UpdatedAt      time.Time `xorm:"default CURRENT_TIMESTAMP DATETIME" json:"updatedAt,omitempty" xml:"updatedAt"`
-	SessionId      string    `xorm:"default '' VARCHAR(100)" json:"sessionId,omitempty" xml:"sessionId"`
 }
 
 func (m *CmsWarehouseStock) TableName() string {

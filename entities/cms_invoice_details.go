@@ -19,7 +19,6 @@ type CmsInvoiceDetails struct {
 	InvDtlUdf    string    `xorm:"JSON" json:"invDtlUdf,omitempty" xml:"invDtlUdf"`
 	RefNo        string    `xorm:"unique(invoice_code) index VARCHAR(200)" json:"refNo,omitempty" xml:"refNo"`
 	UpdatedAt    time.Time `xorm:"not null default CURRENT_TIMESTAMP TIMESTAMP" json:"updatedAt,omitempty" xml:"updatedAt"`
-	SessionId    string    `xorm:"default '' VARCHAR(100)" json:"sessionId,omitempty" xml:"sessionId"`
 }
 
 func (m *CmsInvoiceDetails) TableName() string {

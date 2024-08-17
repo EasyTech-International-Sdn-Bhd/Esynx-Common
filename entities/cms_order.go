@@ -73,10 +73,10 @@ type CmsOrder struct {
 	OrderApprover             string    `xorm:"VARCHAR(100)" json:"orderApprover,omitempty" xml:"orderApprover"`
 	OrderComment              string    `xorm:"VARCHAR(1000)" json:"orderComment,omitempty" xml:"orderComment"`
 	OrderFrom                 string    `xorm:"default 'S' VARCHAR(20)" json:"orderFrom,omitempty" xml:"orderFrom"`
-	ProjNo                    []byte    `xorm:"BLOB" json:"projNo,omitempty" xml:"projNo"`
 	ConsignType               string    `xorm:"VARCHAR(200)" json:"consignType,omitempty" xml:"consignType"`
-	UnitLength                []byte    `xorm:"BLOB" json:"unitLength,omitempty" xml:"unitLength"`
-	ProjectNo                 []byte    `xorm:"BLOB" json:"projectNo,omitempty" xml:"projectNo"`
+	UnitLength                []byte    `xorm:"JSON" json:"unitLength,omitempty" xml:"unitLength"`
+	ProjectNo                 []byte    `xorm:"JSON" json:"projectNo,omitempty" xml:"projectNo"`
+	CostCentre                []byte    `xorm:"JSON" json:"costCentre,omitempty" xml:"costCentre"`
 	ApproverRemark            []byte    `xorm:"BLOB" json:"approverRemark,omitempty" xml:"approverRemark"`
 	OrderApprovedAt           time.Time `xorm:"DATETIME" json:"orderApprovedAt,omitempty" xml:"orderApprovedAt"`
 	OrderRejectedAt           time.Time `xorm:"DATETIME" json:"orderRejectedAt,omitempty" xml:"orderRejectedAt"`

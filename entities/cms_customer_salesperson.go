@@ -11,7 +11,6 @@ type CmsCustomerSalesperson struct {
 	CustomerId            int       `xorm:"unique(unique_customer) INT" json:"customerId,omitempty" xml:"customerId"`
 	ActiveStatus          int       `xorm:"default 1 INT" json:"activeStatus,omitempty" xml:"activeStatus"`
 	UpdatedAt             time.Time `xorm:"not null default CURRENT_TIMESTAMP TIMESTAMP" json:"updatedAt,omitempty" xml:"updatedAt"`
-	SessionId             string    `xorm:"default '' VARCHAR(100)" json:"sessionId,omitempty" xml:"sessionId"`
 }
 
 func (m *CmsCustomerSalesperson) TableName() string {

@@ -25,7 +25,7 @@ type CmsVisitReport struct {
 	CreateDate            time.Time `xorm:"not null default '1971-01-01 23:01:01' DATETIME" json:"createDate,omitempty" xml:"createDate"`
 	Remark1               []byte    `xorm:"BLOB" json:"remark1,omitempty" xml:"remark1"`
 	Remark2               []byte    `xorm:"BLOB" json:"remark2,omitempty" xml:"remark2"`
-	Remark3               []byte    `xorm:"BLOB" json:"remark3,omitempty" xml:"remark3"`
+	Remark3               []byte    `xorm:"JSON" json:"remark3,omitempty" xml:"remark3"`
 	UpdateBy              string    `xorm:"not null VARCHAR(255)" json:"updateBy,omitempty" xml:"updateBy"`
 	UpdateDate            time.Time `xorm:"not null default '1971-01-01 23:01:01' DATETIME" json:"updateDate,omitempty" xml:"updateDate"`
 	Schedule              string    `xorm:"JSON" json:"schedule,omitempty" xml:"schedule"`

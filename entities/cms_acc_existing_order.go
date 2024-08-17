@@ -71,7 +71,6 @@ type CmsAccExistingOrder struct {
 	OrderFault                int       `xorm:"default 0 comment('0=no error, 1=cust_error, 2=product_error, 3=order_duplicate, 4=cust_limit, 5=detect another company, 6=not enough user') INT" json:"orderFault,omitempty" xml:"orderFault"`
 	OrderFaultMessage         string    `xorm:"VARCHAR(200)" json:"orderFaultMessage,omitempty" xml:"orderFaultMessage"`
 	ZoneName                  string    `xorm:"not null VARCHAR(100)" json:"zoneName,omitempty" xml:"zoneName"`
-	SessionId                 string    `xorm:"default '' VARCHAR(100)" json:"sessionId,omitempty" xml:"sessionId"`
 }
 
 func (m *CmsAccExistingOrder) TableName() string {
