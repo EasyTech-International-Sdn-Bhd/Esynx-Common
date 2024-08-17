@@ -28,7 +28,5 @@ func (m *CmsCreditnoteDetails) BeforeInsert() {
 }
 
 func (m *CmsCreditnoteDetails) BeforeUpdate() {
-	if m.UpdatedAt.IsZero() {
-		m.UpdatedAt = time.Now()
-	}
+	m.UpdatedAt = time.Now()
 }
