@@ -48,7 +48,8 @@ type RestClientParams struct {
 
 // ApiClient holds the REST client
 type ApiClient struct {
-	Reqwest *resty.Client
+	Reqwest  *resty.Client
+	ClientId string
 }
 
 // NewApiClient creates a new API client
@@ -97,7 +98,7 @@ func NewApiClient(params *RestClientParams, debug ...bool) (*ApiClient, error) {
 			return handleAuth(params, loginResponse)(clx, r)
 		})
 
-	return &ApiClient{Reqwest: client}, nil
+	return &ApiClient{Reqwest: client, ClientId: loginResponse.Data.ClientId}, nil
 }
 
 func loginUser(client *resty.Client, params *RestClientParams) (*LoginResponse, error) {
