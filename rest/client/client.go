@@ -16,6 +16,7 @@ type TokenData struct {
 	RefreshToken string   `json:"refreshToken"`
 	Roles        []string `json:"roles"`
 	Permissions  []string `json:"permissions"`
+	ClientId     string   `json:"clientId"`
 }
 
 // RefreshTokenData holds the refresh token details
