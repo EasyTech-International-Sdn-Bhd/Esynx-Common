@@ -40,10 +40,10 @@ type LoginResponse struct {
 
 // RestClientParams holds the parameters for the REST client
 type RestClientParams struct {
-	URL      string
-	AppName  string
-	Username string
-	Password string
+	URL      string `json:"url"`
+	AppName  string `json:"appName"`
+	Username string `json:"username"`
+	Password string `json:"password"`
 }
 
 // ApiClient holds the REST client
