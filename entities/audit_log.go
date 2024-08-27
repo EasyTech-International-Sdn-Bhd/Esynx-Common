@@ -4,7 +4,7 @@ import "time"
 
 type AuditLog struct {
 	AuditId       int64     `xorm:"pk autoincr unique UNSIGNED BIGINT"`
-	OperationType string    `xorm:"ENUM('INSERT', 'UPDATE') not null"`
+	OperationType string    `xorm:"ENUM('INSERT', 'UPDATE', 'DELETE') not null"`
 	RecordTable   string    `xorm:"VARCHAR(100)"`
 	RecordId      string    `xorm:"VARCHAR(80)"`
 	RecordBody    string    `xorm:"JSON"`
