@@ -5,7 +5,6 @@ import (
 	"github.com/easytech-international-sdn-bhd/esynx-common/rest"
 	rq "github.com/easytech-international-sdn-bhd/esynx-common/rest/request"
 	"github.com/go-resty/resty/v2"
-	"log"
 	"net/http"
 	"strings"
 )
@@ -52,15 +51,19 @@ type ApiClient struct {
 	ClientId string
 }
 
-// NewApiClient creates a new API client
-func NewApiClient(params *RestClientParams, debug ...bool) (*ApiClient, error) {
+func NewApiClient(params *RestClientParams) (*ApiClient, error) {
+	return NewApiClientWithLogger(params, nil, false)
+}
+
+// NewApiClientWithLogger creates a new API client
+func NewApiClientWithLogger(params *RestClientParams, logger resty.Logger, debug ...bool) (*ApiClient, error) {
 	const (
 		authHeaderName    = "X-App-Name"
 		acceptHeader      = "Accept"
 		acceptHeaderValue = "application/json"
 		authSchema        = "Bearer"
 	)
-	ignore := []string{rest.AuthCheckAccessToken, rest.AuthCheckRefreshToken, rest.AuthRefreshToken, rest.AuthLogin}
+	ignore := []string{rest.AuthCheckAccessToken, rest.AuthCheckRefreshToken, rest.AuthRefreshToken, rest.AuthLogin, rest.AuthRegistration}
 
 	client := resty.New().
 		SetBaseURL(params.URL).
@@ -71,7 +74,7 @@ func NewApiClient(params *RestClientParams, debug ...bool) (*ApiClient, error) {
 		SetContentLength(true).
 		EnableTrace().
 		OnError(func(req *resty.Request, err error) {
-			log.Println(err)
+			logger.Errorf("error in apiclient - %v %s %q %s %q", err, req.URL, req.PathParams, req.QueryParam.Encode(), req.Body)
 		}).
 		AddRetryCondition(func(response *resty.Response, err error) bool {
 			for _, s := range ignore {
