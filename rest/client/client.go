@@ -52,7 +52,7 @@ type ApiClient struct {
 }
 
 func NewApiClient(params *RestClientParams) (*ApiClient, error) {
-	return NewApiClientWithLogger(params, nil, false)
+	return NewApiClientWithLogger(params, nil)
 }
 
 // NewApiClientWithLogger creates a new API client
