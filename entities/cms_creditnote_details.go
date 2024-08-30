@@ -4,7 +4,7 @@ import "time"
 
 type CmsCreditnoteDetails struct {
 	Id           uint64    `xorm:"pk autoincr unique UNSIGNED BIGINT" json:"id,omitempty" xml:"id"`
-	CnCode       string    `xorm:"not null unique(cn_code) VARCHAR(100)" json:"cnCode,omitempty" xml:"cnCode"`
+	CnCode       string    `xorm:"not null unique(cn_code) VARCHAR(40)" json:"cnCode,omitempty" xml:"cnCode"`
 	ItemCode     string    `xorm:"not null VARCHAR(200)" json:"itemCode,omitempty" xml:"itemCode"`
 	ItemName     string    `xorm:"not null VARCHAR(200)" json:"itemName,omitempty" xml:"itemName"`
 	ItemPrice    float64   `xorm:"default 0 DOUBLE" json:"itemPrice,omitempty" xml:"itemPrice"`

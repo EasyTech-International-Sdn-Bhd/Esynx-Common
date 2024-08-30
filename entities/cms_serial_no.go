@@ -6,7 +6,7 @@ import (
 
 type CmsSerialNo struct {
 	Id           int       `xorm:"not null pk autoincr UNSIGNED BIGINT" json:"id,omitempty" xml:"id"`
-	ProductCode  string    `xorm:"VARCHAR(200)" json:"productCode,omitempty" xml:"productCode"`
+	ProductCode  string    `xorm:"VARCHAR(100) index" json:"productCode,omitempty" xml:"productCode"`
 	WhCode       string    `xorm:"VARCHAR(200)" json:"whCode,omitempty" xml:"whCode"`
 	SerialNo     string    `xorm:"VARCHAR(200)" json:"serialNo,omitempty" xml:"serialNo"`
 	BatchNo      string    `xorm:"VARCHAR(200)" json:"batchNo,omitempty" xml:"batchNo"`

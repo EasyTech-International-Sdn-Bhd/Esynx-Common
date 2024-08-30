@@ -6,8 +6,8 @@ import (
 
 type CmsDebitnote struct {
 	DnId              uint64    `xorm:"pk autoincr unique UNSIGNED BIGINT" json:"dnId,omitempty" xml:"dnId"`
-	DnCode            string    `xorm:"index unique VARCHAR(20)" json:"dnCode,omitempty" xml:"dnCode"`
-	CustCode          string    `xorm:"index VARCHAR(20)" json:"custCode,omitempty" xml:"custCode"`
+	DnCode            string    `xorm:"index unique(unqx) VARCHAR(40)" json:"dnCode,omitempty" xml:"dnCode"`
+	CustCode          string    `xorm:"index VARCHAR(40)" json:"custCode,omitempty" xml:"custCode"`
 	DnDate            time.Time `xorm:"TIMESTAMP" json:"dnDate,omitempty" xml:"dnDate"`
 	DnAmount          float64   `xorm:"DOUBLE" json:"dnAmount,omitempty" xml:"dnAmount"`
 	OutstandingAmount float64   `xorm:"DOUBLE" json:"outstandingAmount,omitempty" xml:"outstandingAmount"`
@@ -18,7 +18,7 @@ type CmsDebitnote struct {
 	ApprovedAt        time.Time `xorm:"DATETIME" json:"approvedAt,omitempty" xml:"approvedAt"`
 	FromDoc           string    `xorm:"default 'SL' ENUM('AR','SL')" json:"fromDoc,omitempty" xml:"fromDoc"`
 	UpdatedAt         time.Time `xorm:"not null default CURRENT_TIMESTAMP TIMESTAMP" json:"updatedAt,omitempty" xml:"updatedAt"`
-	RefNo             string    `xorm:"VARCHAR(80)" json:"refNo,omitempty" xml:"refNo"`
+	RefNo             string    `xorm:"VARCHAR(80) index unique(unqx)" json:"refNo,omitempty" xml:"refNo"`
 	DnUdf             string    `xorm:"JSON" json:"dnUdf,omitempty" xml:"dnUdf"`
 }
 

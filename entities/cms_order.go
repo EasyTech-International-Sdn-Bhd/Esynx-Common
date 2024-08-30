@@ -18,10 +18,10 @@ type CmsOrder struct {
 	GstTaxAmount              float64   `xorm:"DOUBLE" json:"gstTaxAmount,omitempty" xml:"gstTaxAmount"`
 	CustId                    int       `xorm:"comment('note : customer id can be blank as salesperson is allowed to created manual customer via ipad. However, if they select from their customer list, then cust_id should be stored.') INT" json:"custId,omitempty" xml:"custId"`
 	CustCode                  string    `xorm:"VARCHAR(80) index" json:"custCode,omitempty" xml:"custCode"`
-	CustCompanyName           string    `xorm:"VARCHAR(400)" json:"custCompanyName,omitempty" xml:"custCompanyName"`
-	CustInchargePerson        string    `xorm:"VARCHAR(400)" json:"custInchargePerson,omitempty" xml:"custInchargePerson"`
-	CustReference             string    `xorm:"VARCHAR(300)" json:"custReference,omitempty" xml:"custReference"`
-	CustEmail                 string    `xorm:"VARCHAR(300)" json:"custEmail,omitempty" xml:"custEmail"`
+	CustCompanyName           string    `xorm:"VARCHAR(200)" json:"custCompanyName,omitempty" xml:"custCompanyName"`
+	CustInchargePerson        string    `xorm:"VARCHAR(200)" json:"custInchargePerson,omitempty" xml:"custInchargePerson"`
+	CustReference             string    `xorm:"VARCHAR(200)" json:"custReference,omitempty" xml:"custReference"`
+	CustEmail                 string    `xorm:"VARCHAR(200)" json:"custEmail,omitempty" xml:"custEmail"`
 	CustTel                   string    `xorm:"VARCHAR(100)" json:"custTel,omitempty" xml:"custTel"`
 	CustFax                   string    `xorm:"VARCHAR(100)" json:"custFax,omitempty" xml:"custFax"`
 	BillingAddress1           string    `xorm:"VARCHAR(200)" json:"billingAddress1,omitempty" xml:"billingAddress1"`

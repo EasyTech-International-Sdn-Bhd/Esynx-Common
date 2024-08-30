@@ -8,8 +8,8 @@ type CmsOrderItem struct {
 	OrderItemId         uint64    `xorm:"pk autoincr unique UNSIGNED BIGINT" json:"orderItemId,omitempty" xml:"orderItemId"`
 	OrderId             string    `xorm:"unique(unique_key) index VARCHAR(20)" json:"orderId,omitempty" xml:"orderId"`
 	IpadItemId          int64     `xorm:"default 0 unique(unique_key) BIGINT" json:"ipadItemId,omitempty" xml:"ipadItemId"`
-	ProductCode         string    `xorm:"VARCHAR(50)" json:"productCode,omitempty" xml:"productCode"`
-	ProductName         string    `xorm:"VARCHAR(400)" json:"productName,omitempty" xml:"productName"`
+	ProductCode         string    `xorm:"VARCHAR(50) index" json:"productCode,omitempty" xml:"productCode"`
+	ProductName         string    `xorm:"VARCHAR(200)" json:"productName,omitempty" xml:"productName"`
 	SalespersonRemark   []byte    `xorm:"not null BLOB" json:"salespersonRemark,omitempty" xml:"salespersonRemark"`
 	Quantity            float64   `xorm:"DOUBLE" json:"quantity,omitempty" xml:"quantity"`
 	EdittedQuantity     string    `xorm:"VARCHAR(50)" json:"edittedQuantity,omitempty" xml:"edittedQuantity"`

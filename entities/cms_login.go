@@ -2,7 +2,7 @@ package entities
 
 type CmsLogin struct {
 	LoginId     uint64 `xorm:"pk autoincr unique UNSIGNED BIGINT" json:"loginId,omitempty" xml:"loginId"`
-	StaffCode   string `xorm:"unique VARCHAR(20)" json:"staffCode,omitempty" xml:"staffCode"`
+	StaffCode   string `xorm:"unique VARCHAR(20) index" json:"staffCode,omitempty" xml:"staffCode"`
 	Login       string `xorm:"VARCHAR(30)" json:"login,omitempty" xml:"login"`
 	Password    string `xorm:"VARCHAR(30)" json:"password,omitempty" xml:"password"`
 	Name        string `xorm:"VARCHAR(200)" json:"name,omitempty" xml:"name"`

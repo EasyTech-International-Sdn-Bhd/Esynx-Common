@@ -7,8 +7,8 @@ import (
 type CmsCustomerVisitSched struct {
 	Id                  uint64    `xorm:"pk autoincr unique UNSIGNED BIGINT" json:"id,omitempty" xml:"id"`
 	SchedCode           string    `xorm:"VARCHAR(50)" json:"schedCode,omitempty" xml:"schedCode"`
-	CustCode            string    `xorm:"not null unique(cms_customer_visit_sched_unq) VARCHAR(100)" json:"custCode,omitempty" xml:"custCode"`
-	BranchCode          string    `xorm:"default '' VARCHAR(50)" json:"branchCode,omitempty" xml:"branchCode"`
+	CustCode            string    `xorm:"not null unique(cms_customer_visit_sched_unq) VARCHAR(40)" json:"custCode,omitempty" xml:"custCode"`
+	BranchCode          string    `xorm:"default '' VARCHAR(40)" json:"branchCode,omitempty" xml:"branchCode"`
 	PeriodStart         time.Time `xorm:"DATE" json:"periodStart,omitempty" xml:"periodStart"`
 	PeriodEnd           time.Time `xorm:"DATE" json:"periodEnd,omitempty" xml:"periodEnd"`
 	SchedDatetime       time.Time `xorm:"not null unique(cms_customer_visit_sched_unq) DATETIME" json:"schedDatetime,omitempty" xml:"schedDatetime"`

@@ -6,7 +6,7 @@ import (
 
 type CmsCustomerContraLocal struct {
 	CtId              uint64    `xorm:"pk autoincr unique UNSIGNED BIGINT" json:"ctId,omitempty" xml:"ctId"`
-	CtCode            string    `xorm:"index unique VARCHAR(20)" json:"ctCode,omitempty" xml:"ctCode"`
+	CtCode            string    `xorm:"index unique(unqx) VARCHAR(20)" json:"ctCode,omitempty" xml:"ctCode"`
 	CustCode          string    `xorm:"index VARCHAR(20)" json:"custCode,omitempty" xml:"custCode"`
 	CtDate            time.Time `xorm:"TIMESTAMP" json:"ctDate,omitempty" xml:"ctDate"`
 	CtAmount          float64   `xorm:"DOUBLE" json:"ctAmount,omitempty" xml:"ctAmount"`

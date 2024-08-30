@@ -7,12 +7,12 @@ import (
 type CmsCustomer struct {
 	CustId             uint64    `xorm:"pk autoincr unique UNSIGNED BIGINT" json:"custId,omitempty" xml:"custId"`
 	CreatedDate        time.Time `xorm:"default CURRENT_TIMESTAMP TIMESTAMP" json:"createdDate,omitempty" xml:"createdDate"`
-	CustCode           string    `xorm:"unique index VARCHAR(200)" json:"custCode,omitempty" xml:"custCode"`
-	CustCompanyName    string    `xorm:"VARCHAR(400)" json:"custCompanyName,omitempty" xml:"custCompanyName"`
-	CustInchargePerson string    `xorm:"VARCHAR(400)" json:"custInchargePerson,omitempty" xml:"custInchargePerson"`
+	CustCode           string    `xorm:"unique(cust_code) index VARCHAR(40)" json:"custCode,omitempty" xml:"custCode"`
+	CustCompanyName    string    `xorm:"VARCHAR(200)" json:"custCompanyName,omitempty" xml:"custCompanyName"`
+	CustInchargePerson string    `xorm:"VARCHAR(200)" json:"custInchargePerson,omitempty" xml:"custInchargePerson"`
 	CustRemark         string    `xorm:"not null default '' VARCHAR(100)" json:"custRemark,omitempty" xml:"custRemark"`
-	CustReference      string    `xorm:"VARCHAR(300)" json:"custReference,omitempty" xml:"custReference"`
-	CustEmail          string    `xorm:"VARCHAR(300)" json:"custEmail,omitempty" xml:"custEmail"`
+	CustReference      string    `xorm:"VARCHAR(200)" json:"custReference,omitempty" xml:"custReference"`
+	CustEmail          string    `xorm:"VARCHAR(200)" json:"custEmail,omitempty" xml:"custEmail"`
 	CustTel            string    `xorm:"VARCHAR(100)" json:"custTel,omitempty" xml:"custTel"`
 	CustFax            string    `xorm:"VARCHAR(100)" json:"custFax,omitempty" xml:"custFax"`
 	BillingAddress1    string    `xorm:"VARCHAR(200)" json:"billingAddress1,omitempty" xml:"billingAddress1"`

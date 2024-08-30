@@ -6,7 +6,7 @@ import (
 
 type CmsCreditnote struct {
 	CnId             uint64    `xorm:"pk autoincr unique UNSIGNED BIGINT" json:"cnId,omitempty" xml:"cnId"`
-	CnCode           string    `xorm:"index unique VARCHAR(20)" json:"cnCode,omitempty" xml:"cnCode"`
+	CnCode           string    `xorm:"index unique(cn_code) VARCHAR(40)" json:"cnCode,omitempty" xml:"cnCode"`
 	CustCode         string    `xorm:"index VARCHAR(20)" json:"custCode,omitempty" xml:"custCode"`
 	CnDate           time.Time `xorm:"TIMESTAMP" json:"cnDate,omitempty" xml:"cnDate"`
 	CnUdf            string    `xorm:"not null JSON" json:"cnUdf,omitempty" xml:"cnUdf"`
@@ -19,7 +19,7 @@ type CmsCreditnote struct {
 	Approver         string    `xorm:"VARCHAR(200)" json:"approver,omitempty" xml:"approver"`
 	ApprovedAt       time.Time `xorm:"DATETIME" json:"approvedAt,omitempty" xml:"approvedAt"`
 	FromDoc          string    `xorm:"default 'SL' ENUM('AR','SL')" json:"fromDoc,omitempty" xml:"fromDoc"`
-	RefNo            string    `xorm:"VARCHAR(80)" json:"refNo,omitempty" xml:"refNo"`
+	RefNo            string    `xorm:"VARCHAR(80) index unique(cn_code)" json:"refNo,omitempty" xml:"refNo"`
 }
 
 func (m *CmsCreditnote) TableName() string {

@@ -5,7 +5,7 @@ import (
 )
 
 type CmsPayment struct {
-	PaymentId                   string    `xorm:"unique VARCHAR(50) index" json:"paymentId,omitempty" xml:"paymentId"`
+	PaymentId                   string    `xorm:"unique(id) VARCHAR(40) index" json:"paymentId,omitempty" xml:"paymentId"`
 	PaymentDate                 time.Time `xorm:"DATETIME" json:"paymentDate,omitempty" xml:"paymentDate"`
 	PaymentTransferReceivedDate time.Time `xorm:"DATETIME" json:"paymentTransferReceivedDate,omitempty" xml:"paymentTransferReceivedDate"`
 	CustCode                    string    `xorm:"VARCHAR(50) index" json:"custCode,omitempty" xml:"custCode"`
