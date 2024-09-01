@@ -14,7 +14,7 @@ type CmsReceipt struct {
 	ReceiptDesc           []byte    `xorm:"LONGBLOB" json:"receiptDesc,omitempty" xml:"receiptDesc"`
 	ChequeNo              string    `xorm:"VARCHAR(100)" json:"chequeNo,omitempty" xml:"chequeNo"`
 	AgentCode             string    `xorm:"VARCHAR(20)" json:"agentCode,omitempty" xml:"agentCode"`
-	ReceiptUdf            string    `xorm:"not null JSON" json:"receiptUdf,omitempty" xml:"receiptUdf"`
+	ReceiptUdf            string    `xorm:"JSON" json:"receiptUdf,omitempty" xml:"receiptUdf"`
 	Approved              int       `xorm:"default 0 INT" json:"approved,omitempty" xml:"approved"`
 	Approver              string    `xorm:"VARCHAR(200)" json:"approver,omitempty" xml:"approver"`
 	ApprovedAt            time.Time `xorm:"DATETIME" json:"approvedAt,omitempty" xml:"approvedAt"`

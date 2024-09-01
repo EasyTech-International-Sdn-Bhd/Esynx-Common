@@ -23,6 +23,7 @@ type CmsStockCard struct {
 	ReferTo      string    `xorm:"VARCHAR(200)" json:"referTo,omitempty" xml:"referTo"`
 	InputCost    float64   `xorm:"default 0 DOUBLE" json:"inputCost,omitempty" xml:"inputCost"`
 	LastModified time.Time `xorm:"DATETIME" json:"lastModified,omitempty" xml:"lastModified"`
+	CardUdf      string    `xorm:"JSON" json:"cardUdf,omitempty" xml:"cardUdf"`
 	Cancelled    string    `xorm:"default 'F' VARCHAR(10)" json:"cancelled,omitempty" xml:"cancelled"`
 	UpdatedAt    time.Time `xorm:"default CURRENT_TIMESTAMP TIMESTAMP" json:"updatedAt,omitempty" xml:"updatedAt"`
 }

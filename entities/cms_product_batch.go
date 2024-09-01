@@ -16,6 +16,7 @@ type CmsProductBatch struct {
 	Remark1      string    `xorm:"not null VARCHAR(100)" json:"remark1,omitempty" xml:"remark1"`
 	Remark2      string    `xorm:"not null VARCHAR(100)" json:"remark2,omitempty" xml:"remark2"`
 	ActiveStatus int       `xorm:"not null default 1 INT" json:"activeStatus,omitempty" xml:"activeStatus"`
+	BatchUdf     string    `xorm:"JSON" json:"batchUdf,omitempty" xml:"batchUdf"`
 	UpdatedAt    time.Time `xorm:"default CURRENT_TIMESTAMP DATETIME" json:"updatedAt,omitempty" xml:"updatedAt"`
 }
 

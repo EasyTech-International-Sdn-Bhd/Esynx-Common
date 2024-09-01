@@ -11,6 +11,7 @@ type CmsSerialNo struct {
 	SerialNo     string    `xorm:"VARCHAR(200)" json:"serialNo,omitempty" xml:"serialNo"`
 	BatchNo      string    `xorm:"VARCHAR(200)" json:"batchNo,omitempty" xml:"batchNo"`
 	Qty          int       `xorm:"default 0 INT" json:"qty,omitempty" xml:"qty"`
+	SerialUdf    string    `xorm:"JSON" json:"SerialUdf,omitempty" xml:"SerialUdf"`
 	ActiveStatus int       `xorm:"default 1 INT" json:"activeStatus,omitempty" xml:"activeStatus"`
 	UpdatedAt    time.Time `xorm:"not null default CURRENT_TIMESTAMP DATETIME" json:"updatedAt,omitempty" xml:"updatedAt"`
 }

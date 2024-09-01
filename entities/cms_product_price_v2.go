@@ -20,6 +20,7 @@ type CmsProductPriceV2 struct {
 	ActiveStatus   int       `xorm:"default 1 INT" json:"activeStatus,omitempty" xml:"activeStatus"`
 	Quantity       float64   `xorm:"default 1 DOUBLE" json:"quantity,omitempty" xml:"quantity"`
 	UpdatedAt      time.Time `xorm:"not null default CURRENT_TIMESTAMP TIMESTAMP" json:"updatedAt,omitempty" xml:"updatedAt"`
+	PriceUdf       string    `xorm:"JSON" json:"PriceUdf,omitempty" xml:"PriceUdf"`
 	RefNo          string    `xorm:"VARCHAR(100)" json:"refNo,omitempty" xml:"refNo"`
 	MixDisc        string    `xorm:"VARCHAR(100)" json:"mixDisc,omitempty" xml:"mixDisc"`
 }

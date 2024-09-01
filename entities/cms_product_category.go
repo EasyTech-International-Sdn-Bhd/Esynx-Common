@@ -12,6 +12,7 @@ type CmsProductCategory struct {
 	SequenceNo           int       `xorm:"INT" json:"sequenceNo,omitempty" xml:"sequenceNo"`
 	CategoryStatus       int       `xorm:"default 1 comment('1=active, 0=inactive') INT" json:"categoryStatus,omitempty" xml:"categoryStatus"`
 	CategoryImageUrl     string    `xorm:"VARCHAR(300)" json:"categoryImageUrl,omitempty" xml:"categoryImageUrl"`
+	CategoryUdf          string    `xorm:"JSON" json:"categoryUdf,omitempty" xml:"categoryUdf"`
 	UpdatedAt            time.Time `xorm:"not null default CURRENT_TIMESTAMP TIMESTAMP" json:"updatedAt,omitempty" xml:"updatedAt"`
 	Moderator            string    `xorm:"VARCHAR(10)" json:"moderator,omitempty" xml:"moderator"`
 }

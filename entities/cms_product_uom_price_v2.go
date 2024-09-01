@@ -14,6 +14,7 @@ type CmsProductUomPriceV2 struct {
 	ProductDefaultPrice int       `xorm:"default 0 comment('Each product only can select 1 default price, 0=not default, 1=default') INT" json:"productDefaultPrice,omitempty" xml:"productDefaultPrice"`
 	ActiveStatus        int       `xorm:"default 1 INT" json:"activeStatus,omitempty" xml:"activeStatus"`
 	UpdatedAt           time.Time `xorm:"not null default CURRENT_TIMESTAMP TIMESTAMP" json:"updatedAt,omitempty" xml:"updatedAt"`
+	PriceUdf            string    `xorm:"JSON" json:"priceUdf,omitempty" xml:"priceUdf"`
 	QrCode              string    `xorm:"VARCHAR(30)" json:"qrCode,omitempty" xml:"qrCode"`
 	RefNo               string    `xorm:"VARCHAR(200)" json:"refNo,omitempty" xml:"refNo"`
 }

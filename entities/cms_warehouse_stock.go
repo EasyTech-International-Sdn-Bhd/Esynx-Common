@@ -15,6 +15,7 @@ type CmsWarehouseStock struct {
 	CloudQty       float64   `xorm:"default 0 DOUBLE" json:"cloudQty,omitempty" xml:"cloudQty"`
 	UomName        string    `xorm:"not null default '' unique(unq) VARCHAR(200)" json:"uomName,omitempty" xml:"uomName"`
 	ItemLocation   string    `xorm:"default '' VARCHAR(200)" json:"itemLocation,omitempty" xml:"itemLocation"`
+	StockUdf       string    `xorm:"JSON" json:"stockUdf,omitempty" xml:"stockUdf"`
 	ActiveStatus   int       `xorm:"default 1 INT" json:"activeStatus,omitempty" xml:"activeStatus"`
 	RefNo          string    `xorm:"VARCHAR(100) unique(unq)" json:"refNo,omitempty" xml:"refNo"`
 	UpdatedAt      time.Time `xorm:"default CURRENT_TIMESTAMP DATETIME" json:"updatedAt,omitempty" xml:"updatedAt"`
