@@ -98,7 +98,7 @@ func (i *ApiClient) PutDebtor(form request.DebtorCreateOrUpdateForm) (*Reference
 	return &response, nil
 }
 
-func (i *ApiClient) PutBulkDebtor(form request.DebtorBranchCreateOrUpdateBulkForm) (*ReferenceBasedResponse, error) {
+func (i *ApiClient) PutBulkDebtor(form request.DebtorCreateOrUpdateBulkForm) (*ReferenceBasedResponse, error) {
 	var response ReferenceBasedResponse
 	resp, err := i.Reqwest.R().
 		SetBody(form).
@@ -130,7 +130,7 @@ func (i *ApiClient) DeleteDebtor(form request.DebtorDeleteForm) (*ReferenceBased
 	return &response, nil
 }
 
-func (i *ApiClient) DeleteBulkDebtor(form request.DebitNoteBulkDeleteForm) (*ReferenceBasedResponse, error) {
+func (i *ApiClient) DeleteBulkDebtor(form request.DebtorDeleteBulkForm) (*ReferenceBasedResponse, error) {
 	var response ReferenceBasedResponse
 	resp, err := i.Reqwest.R().
 		SetBody(form).
