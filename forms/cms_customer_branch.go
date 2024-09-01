@@ -25,5 +25,6 @@ type CmsCustomerBranchForm struct {
 	BranchArea       string `xorm:"not null VARCHAR(500)" json:"branchArea,omitempty" xml:"branchArea"`
 	BranchRemark     string `xorm:"not null VARCHAR(500)" json:"branchRemark,omitempty" xml:"branchRemark"`
 	BranchActive     int    `xorm:"not null default 1 comment('1=active, 0=not active') INT" json:"branchActive,omitempty" xml:"branchActive"`
+	BranchUdf        string `xorm:"JSON" json:"branchUdf,omitempty" xml:"branchUdf"`
 	Company          string `xorm:"default '' VARCHAR(50)" json:"company,omitempty" xml:"company"`
 }
