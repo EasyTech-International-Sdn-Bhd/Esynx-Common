@@ -18,3 +18,8 @@ type DebtorDeleteForm struct {
 type DebtorDeleteBulkForm struct {
 	Data []DebtorDeleteForm `json:"data"`
 }
+
+type DebtorAssignAgentForm struct {
+	CustCode  string `json:"custCode" binding:"required,min=3,max=100"`
+	AgentCode string `json:"agentCode" binding:"required,min=3,max=100"`
+}
