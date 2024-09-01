@@ -69,9 +69,9 @@ func (i *ApiClient) GetDebtorBranch(branchCode string) (*DebtorBranchResponse, e
 func (i *ApiClient) GetBulkDebtorBranch(branchCodes string) (*DebtorBranchResponse, error) {
 	var response DebtorBranchResponse
 	resp, err := i.Reqwest.R().
-		SetPathParam("branchCodes", branchCodes).
+		SetPathParam("branchCode", branchCodes).
 		SetResult(&response).
-		Get(fmt.Sprintf("%s/{branchCodes}", EndPointDebtorBranchBulk))
+		Get(fmt.Sprintf("%s/{branchCode}", EndPointDebtorBranchBulk))
 
 	if err != nil {
 		return nil, fmt.Errorf("request error: %v", err)
