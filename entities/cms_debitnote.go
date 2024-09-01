@@ -11,7 +11,7 @@ type CmsDebitnote struct {
 	DnDate            time.Time `xorm:"TIMESTAMP" json:"dnDate,omitempty" xml:"dnDate"`
 	DnAmount          float64   `xorm:"DOUBLE" json:"dnAmount,omitempty" xml:"dnAmount"`
 	OutstandingAmount float64   `xorm:"DOUBLE" json:"outstandingAmount,omitempty" xml:"outstandingAmount"`
-	SalespersonId     int       `xorm:"INT" json:"salespersonId,omitempty" xml:"salespersonId"`
+	AgentCode         string    `xorm:"VARCHAR(20)" json:"agentCode,omitempty" xml:"agentCode"`
 	Cancelled         string    `xorm:"CHAR(1)" json:"cancelled,omitempty" xml:"cancelled"`
 	Approved          int       `xorm:"default 0 INT" json:"approved,omitempty" xml:"approved"`
 	Approver          string    `xorm:"VARCHAR(200)" json:"approver,omitempty" xml:"approver"`

@@ -15,7 +15,7 @@ type CmsStockTransfer struct {
 	Note           string    `xorm:"VARCHAR(200)" json:"note,omitempty" xml:"note"`
 	StStatus       int       `xorm:"comment('0 - in app; 1 - confirm; 2 - transferred to ATC') INT" json:"stStatus,omitempty" xml:"stStatus"`
 	CancelStatus   int       `xorm:"default 0 INT" json:"cancelStatus,omitempty" xml:"cancelStatus"`
-	SalespersonId  int       `xorm:"INT" json:"salespersonId,omitempty" xml:"salespersonId"`
+	AgentCode      string    `xorm:"VARCHAR(20)" json:"agentCode,omitempty" xml:"agentCode"`
 	StFault        int       `xorm:"default 0 INT" json:"stFault,omitempty" xml:"stFault"`
 	StFaultMessage string    `xorm:"VARCHAR(200)" json:"stFaultMessage,omitempty" xml:"stFaultMessage"`
 }

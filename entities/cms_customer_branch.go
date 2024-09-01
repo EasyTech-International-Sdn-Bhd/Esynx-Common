@@ -6,7 +6,6 @@ import (
 
 type CmsCustomerBranch struct {
 	BranchId         uint64    `xorm:"pk autoincr unique UNSIGNED BIGINT" json:"branchId,omitempty" xml:"branchId"`
-	CustId           int       `xorm:"not null index INT" json:"custId,omitempty" xml:"custId"`
 	AgentId          int       `xorm:"not null index INT" json:"agentId,omitempty" xml:"agentId"`
 	CustCode         string    `xorm:"not null index unique(unique_branch) VARCHAR(40)" json:"custCode,omitempty" xml:"custCode"`
 	BranchCode       string    `xorm:"not null index unique(unique_branch) VARCHAR(40)" json:"branchCode,omitempty" xml:"branchCode"`

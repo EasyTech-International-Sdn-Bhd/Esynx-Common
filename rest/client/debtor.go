@@ -55,7 +55,7 @@ func (i *ApiClient) GetDebtor(custCode string) (*DebtorResponse, error) {
 	resp, err := i.Reqwest.R().
 		SetPathParam("custCode", custCode).
 		SetResult(&response).
-		Get(fmt.Sprintf("%s/{custId}", EndPointDebtor))
+		Get(fmt.Sprintf("%s/{custCode}", EndPointDebtor))
 
 	if err != nil {
 		return nil, fmt.Errorf("request error: %v", err)

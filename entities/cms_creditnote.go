@@ -11,7 +11,7 @@ type CmsCreditnote struct {
 	CnDate           time.Time `xorm:"TIMESTAMP" json:"cnDate,omitempty" xml:"cnDate"`
 	CnUdf            string    `xorm:"not null JSON" json:"cnUdf,omitempty" xml:"cnUdf"`
 	CnAmount         float64   `xorm:"DOUBLE" json:"cnAmount,omitempty" xml:"cnAmount"`
-	SalespersonId    int       `xorm:"INT" json:"salespersonId,omitempty" xml:"salespersonId"`
+	AgentCode        string    `xorm:"VARCHAR(20)" json:"agentCode,omitempty" xml:"agentCode"`
 	Cancelled        string    `xorm:"CHAR(1)" json:"cancelled,omitempty" xml:"cancelled"`
 	UpdatedAt        time.Time `xorm:"not null default CURRENT_TIMESTAMP TIMESTAMP" json:"updatedAt,omitempty" xml:"updatedAt"`
 	CnKnockoffAmount float64   `xorm:"DOUBLE" json:"cnKnockoffAmount,omitempty" xml:"cnKnockoffAmount"`

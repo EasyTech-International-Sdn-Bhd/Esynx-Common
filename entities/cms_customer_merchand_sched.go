@@ -12,7 +12,7 @@ type CmsCustomerMerchandSched struct {
 	AppmntUdf      string    `xorm:"not null JSON" json:"appmntUdf,omitempty" xml:"appmntUdf"`
 	CustCode       string    `xorm:"not null unique(unq) VARCHAR(50)" json:"custCode,omitempty" xml:"custCode"`
 	BranchCode     string    `xorm:"default '' unique(unq) VARCHAR(50)" json:"branchCode,omitempty" xml:"branchCode"`
-	SalespersonId  int       `xorm:"not null INT" json:"salespersonId,omitempty" xml:"salespersonId"`
+	AgentCode      string    `xorm:"VARCHAR(20)" json:"agentCode,omitempty" xml:"agentCode"`
 	StartDate      time.Time `xorm:"not null DATETIME" json:"startDate,omitempty" xml:"startDate"`
 	EndDate        time.Time `xorm:"not null DATETIME" json:"endDate,omitempty" xml:"endDate"`
 	Repetitive     int       `xorm:"default 0 INT" json:"repetitive,omitempty" xml:"repetitive"`

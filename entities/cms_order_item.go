@@ -10,7 +10,7 @@ type CmsOrderItem struct {
 	IpadItemId          int64     `xorm:"default 0 unique(unique_key) BIGINT" json:"ipadItemId,omitempty" xml:"ipadItemId"`
 	ProductCode         string    `xorm:"VARCHAR(50) index" json:"productCode,omitempty" xml:"productCode"`
 	ProductName         string    `xorm:"VARCHAR(200)" json:"productName,omitempty" xml:"productName"`
-	SalespersonRemark   []byte    `xorm:"not null BLOB" json:"salespersonRemark,omitempty" xml:"salespersonRemark"`
+	AgentRemark         string    `xorm:"not null BLOB" json:"agentRemark,omitempty" xml:"agentRemark"`
 	Quantity            float64   `xorm:"DOUBLE" json:"quantity,omitempty" xml:"quantity"`
 	EdittedQuantity     string    `xorm:"VARCHAR(50)" json:"edittedQuantity,omitempty" xml:"edittedQuantity"`
 	UnitPrice           float64   `xorm:"DOUBLE" json:"unitPrice,omitempty" xml:"unitPrice"`

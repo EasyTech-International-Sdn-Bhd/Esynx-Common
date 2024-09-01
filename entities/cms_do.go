@@ -11,8 +11,7 @@ type CmsDo struct {
 	DoDate            time.Time `xorm:"not null DATETIME" json:"doDate,omitempty" xml:"doDate"`
 	DoAmount          float64   `xorm:"default 0 DOUBLE" json:"doAmount,omitempty" xml:"doAmount"`
 	Cancelled         string    `xorm:"not null default 'F' VARCHAR(2)" json:"cancelled,omitempty" xml:"cancelled"`
-	Salesperson       string    `xorm:"VARCHAR(200)" json:"salesperson,omitempty" xml:"salesperson"`
-	SalespersonId     int       `xorm:"not null INT" json:"salespersonId,omitempty" xml:"salespersonId"`
+	AgentCode         string    `xorm:"VARCHAR(20)" json:"agentCode,omitempty" xml:"agentCode"`
 	Remarks           string    `xorm:"VARCHAR(200)" json:"remarks,omitempty" xml:"remarks"`
 	DoReference       string    `xorm:"VARCHAR(200)" json:"doReference,omitempty" xml:"doReference"`
 	DeliveryLocation  string    `xorm:"VARCHAR(200)" json:"deliveryLocation,omitempty" xml:"deliveryLocation"`

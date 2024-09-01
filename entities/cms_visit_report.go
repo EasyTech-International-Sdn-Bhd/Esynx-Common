@@ -8,7 +8,7 @@ type CmsVisitReport struct {
 	Id                    uint64    `xorm:"pk autoincr unique UNSIGNED BIGINT" json:"id,omitempty" xml:"id"`
 	CustCode              string    `xorm:"unique(unq) index VARCHAR(40)" json:"custCode,omitempty" xml:"custCode"`
 	BranchCode            string    `xorm:"VARCHAR(20)" json:"branchCode,omitempty" xml:"branchCode"`
-	SalespersonId         int       `xorm:"not null INT index" json:"salespersonId,omitempty" xml:"salespersonId"`
+	AgentCode             string    `xorm:"not null VARCHAR(20) index" json:"agentCode,omitempty" xml:"agentCode"`
 	PersonMet             string    `xorm:"not null VARCHAR(255)" json:"personMet,omitempty" xml:"personMet"`
 	MobileCheckinId       string    `xorm:"not null unique(unq) VARCHAR(255)" json:"mobileCheckinId,omitempty" xml:"mobileCheckinId"`
 	CheckinTime           time.Time `xorm:"not null default '1971-01-01 23:01:01' DATETIME" json:"checkinTime,omitempty" xml:"checkinTime"`

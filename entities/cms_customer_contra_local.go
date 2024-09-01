@@ -12,7 +12,7 @@ type CmsCustomerContraLocal struct {
 	CtAmount          float64   `xorm:"DOUBLE" json:"ctAmount,omitempty" xml:"ctAmount"`
 	Cancelled         string    `xorm:"CHAR(1)" json:"cancelled,omitempty" xml:"cancelled"`
 	CtUnappliedAmount float64   `xorm:"DOUBLE" json:"ctUnappliedAmount,omitempty" xml:"ctUnappliedAmount"`
-	SalespersonId     int       `xorm:"INT" json:"salespersonId,omitempty" xml:"salespersonId"`
+	AgentCode         string    `xorm:"VARCHAR(20)" json:"agentCode,omitempty" xml:"agentCode"`
 	UpdatedAt         time.Time `xorm:"not null default CURRENT_TIMESTAMP TIMESTAMP" json:"updatedAt,omitempty" xml:"updatedAt"`
 	RefNo             string    `xorm:"VARCHAR(20)" json:"refNo,omitempty" xml:"refNo"`
 }

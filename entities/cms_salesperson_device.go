@@ -4,7 +4,7 @@ import (
 	"time"
 )
 
-type CmsSalespersonDevice struct {
+type CmsAgentDevice struct {
 	Id           int64     `xorm:"not null pk autoincr UNSIGNED BIGINT" json:"id,omitempty" xml:"id"`
 	Prefix       string    `xorm:"not null pk default 'D' CHAR(30)" json:"prefix,omitempty" xml:"prefix"`
 	DeviceNo     int       `xorm:"default 1 INT" json:"deviceNo,omitempty" xml:"deviceNo"`
@@ -17,6 +17,6 @@ type CmsSalespersonDevice struct {
 	LastLoggedIn time.Time `xorm:"not null default CURRENT_TIMESTAMP DATETIME" json:"lastLoggedIn,omitempty" xml:"lastLoggedIn"`
 }
 
-func (m *CmsSalespersonDevice) TableName() string {
-	return "cms_salesperson_device"
+func (m *CmsAgentDevice) TableName() string {
+	return "cms_agent_device"
 }

@@ -10,7 +10,7 @@ type CmsAccExistingOrderItem struct {
 	IpadItemId          int       `xorm:"default 0 unique(unx) INT" json:"ipadItemId,omitempty" xml:"ipadItemId"`
 	ProductCode         string    `xorm:"unique(unx) index VARCHAR(50)" json:"productCode,omitempty" xml:"productCode"`
 	ProductName         string    `xorm:"VARCHAR(400)" json:"productName,omitempty" xml:"productName"`
-	SalespersonRemark   string    `xorm:"not null default '' VARCHAR(200)" json:"salespersonRemark,omitempty" xml:"salespersonRemark"`
+	AgentRemark         string    `xorm:"not null default '' VARCHAR(200)" json:"agentRemark,omitempty" xml:"agentRemark"`
 	Quantity            float64   `xorm:"DOUBLE" json:"quantity,omitempty" xml:"quantity"`
 	EdittedQuantity     string    `xorm:"VARCHAR(50)" json:"edittedQuantity,omitempty" xml:"edittedQuantity"`
 	UnitPrice           float64   `xorm:"DOUBLE" json:"unitPrice,omitempty" xml:"unitPrice"`

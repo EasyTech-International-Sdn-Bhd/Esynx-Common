@@ -13,7 +13,7 @@ type CmsCustomerVisitSched struct {
 	PeriodEnd           time.Time `xorm:"DATE" json:"periodEnd,omitempty" xml:"periodEnd"`
 	SchedDatetime       time.Time `xorm:"not null unique(cms_customer_visit_sched_unq) DATETIME" json:"schedDatetime,omitempty" xml:"schedDatetime"`
 	SchedNote           string    `xorm:"VARCHAR(200)" json:"schedNote,omitempty" xml:"schedNote"`
-	SalespersonId       int       `xorm:"not null default 0 unique(cms_customer_visit_sched_unq) INT" json:"salespersonId,omitempty" xml:"salespersonId"`
+	AgentCode           string    `xorm:" unique(cms_customer_visit_sched_unq) VARCHAR(20)" json:"agentCode,omitempty" xml:"agentCode"`
 	TechAssignee        int       `xorm:"default 0 INT" json:"techAssignee,omitempty" xml:"techAssignee"`
 	TechAssigned        int       `xorm:"default 0 INT" json:"techAssigned,omitempty" xml:"techAssigned"`
 	SiteInCharge        string    `xorm:"default '' VARCHAR(100)" json:"siteInCharge,omitempty" xml:"siteInCharge"`

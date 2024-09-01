@@ -9,7 +9,7 @@ type CmsStockTake struct {
 	StId            int       `xorm:"not null unique(unq) INT" json:"stId,omitempty" xml:"stId"`
 	CustCode        string    `xorm:"not null VARCHAR(200)" json:"custCode,omitempty" xml:"custCode"`
 	CustCompanyName string    `xorm:"not null VARCHAR(200)" json:"custCompanyName,omitempty" xml:"custCompanyName"`
-	SalespersonId   int       `xorm:"not null unique(unq) INT" json:"salespersonId,omitempty" xml:"salespersonId"`
+	AgentCode       string    `xorm:"not null unique(unq) VARCHAR(20)" json:"agentCode,omitempty" xml:"agentCode"`
 	CreatedDate     time.Time `xorm:"not null DATETIME" json:"createdDate,omitempty" xml:"createdDate"`
 	DocRefId        string    `xorm:"not null VARCHAR(50)" json:"docRefId,omitempty" xml:"docRefId"`
 	SpUpdatedAt     string    `xorm:"not null VARCHAR(50)" json:"spUpdatedAt,omitempty" xml:"spUpdatedAt"`

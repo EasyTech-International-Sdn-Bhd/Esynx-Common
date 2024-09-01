@@ -14,8 +14,8 @@ type CmsPayment struct {
 	PaymentStatus               int       `xorm:"comment('0=in_ipad,1=in_backoffice,2=in_Accounting') INT" json:"paymentStatus,omitempty" xml:"paymentStatus"`
 	CancelStatus                int       `xorm:"INT" json:"cancelStatus,omitempty" xml:"cancelStatus"`
 	PaymentReference            string    `xorm:"VARCHAR(50)" json:"paymentReference,omitempty" xml:"paymentReference"`
-	SalespersonId               int       `xorm:"INT index" json:"salespersonId,omitempty" xml:"salespersonId"`
-	SalespersonPaymentRemark    string    `xorm:"VARCHAR(500)" json:"salespersonPaymentRemark,omitempty" xml:"salespersonPaymentRemark"`
+	AgentCode                   string    `xorm:"VARCHAR(20) index" json:"agentCode,omitempty" xml:"agentCode"`
+	AgentPaymentRemark          string    `xorm:"VARCHAR(500)" json:"agentPaymentRemark,omitempty" xml:"agentPaymentRemark"`
 	LastPrint                   time.Time `xorm:"DATETIME" json:"lastPrint,omitempty" xml:"lastPrint"`
 	Checked                     int       `xorm:"default 0 INT" json:"checked,omitempty" xml:"checked"`
 	PaymentFault                int       `xorm:"default 0 INT" json:"paymentFault,omitempty" xml:"paymentFault"`

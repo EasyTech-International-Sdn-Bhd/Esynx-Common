@@ -6,7 +6,7 @@ type CmsPdfImage struct {
 	PdfFooter          string `xorm:"not null VARCHAR(200)" json:"pdfFooter,omitempty" xml:"pdfFooter"`
 	PdfContent         []byte `xorm:"BLOB" json:"pdfContent,omitempty" xml:"pdfContent"`
 	PdfContentRow      []byte `xorm:"BLOB" json:"pdfContentRow,omitempty" xml:"pdfContentRow"`
-	SalespersonId      int    `xorm:"not null default 0 INT" json:"salespersonId,omitempty" xml:"salespersonId"`
+	AgentCode          string `xorm:"not null VARCHAR(20)" json:"agentCode,omitempty" xml:"agentCode"`
 	CustCode           string `xorm:"not null default '' VARCHAR(50)" json:"custCode,omitempty" xml:"custCode"`
 	DocType            string `xorm:"default 'sales' VARCHAR(100)" json:"docType,omitempty" xml:"docType"`
 	ParentDocType      string `xorm:"default 'sales' VARCHAR(100)" json:"parentDocType,omitempty" xml:"parentDocType"`

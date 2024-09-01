@@ -15,7 +15,7 @@ type CmsInvoice struct {
 	Approved          int       `xorm:"default 0 INT" json:"approved,omitempty" xml:"approved"`
 	Approver          string    `xorm:"VARCHAR(800)" json:"approver,omitempty" xml:"approver"`
 	ApprovedAt        time.Time `xorm:"DATETIME" json:"approvedAt,omitempty" xml:"approvedAt"`
-	SalespersonId     int       `xorm:"default 0 INT" json:"salespersonId,omitempty" xml:"salespersonId"`
+	AgentCode         string    `xorm:"VARCHAR(20)" json:"agentCode,omitempty" xml:"agentCode"`
 	InvUdf            string    `xorm:"JSON" json:"invUdf,omitempty" xml:"invUdf"`
 	RefNo             string    `xorm:"VARCHAR(80) index unique(iv_code)" json:"refNo,omitempty" xml:"refNo"`
 	DocType           string    `xorm:"default 'IV' ENUM('CS','IV')" json:"docType,omitempty" xml:"docType"`

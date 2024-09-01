@@ -17,7 +17,6 @@ type CmsAccExistingOrder struct {
 	GrandTotal                float64   `xorm:"DOUBLE" json:"grandTotal,omitempty" xml:"grandTotal"`
 	GstAmount                 float64   `xorm:"DOUBLE" json:"gstAmount,omitempty" xml:"gstAmount"`
 	GstTaxAmount              float64   `xorm:"DOUBLE" json:"gstTaxAmount,omitempty" xml:"gstTaxAmount"`
-	CustId                    int64     `xorm:"comment('note : customer id can be blank as salesperson is allowed to created manual customer via ipad. However, if they select from their customer list, then cust_id should be stored.') BIGINT" json:"custId,omitempty" xml:"custId"`
 	CustCode                  string    `xorm:"VARCHAR(200)" json:"custCode,omitempty" xml:"custCode"`
 	CustCompanyName           string    `xorm:"VARCHAR(400)" json:"custCompanyName,omitempty" xml:"custCompanyName"`
 	CustInchargePerson        string    `xorm:"VARCHAR(400)" json:"custInchargePerson,omitempty" xml:"custInchargePerson"`
@@ -42,8 +41,8 @@ type CmsAccExistingOrder struct {
 	ShippingZipcode           string    `xorm:"VARCHAR(150)" json:"shippingZipcode,omitempty" xml:"shippingZipcode"`
 	ShippingCountry           string    `xorm:"VARCHAR(150)" json:"shippingCountry,omitempty" xml:"shippingCountry"`
 	Termcode                  string    `xorm:"VARCHAR(20)" json:"termcode,omitempty" xml:"termcode"`
-	SalespersonId             int       `xorm:"comment('0 means no id, it is manual member') INT" json:"salespersonId,omitempty" xml:"salespersonId"`
-	OrderStatus               int       `xorm:"default 1 comment('0=in_ipad,1=in_backoffice,2=in_QNE') INT" json:"orderStatus,omitempty" xml:"orderStatus"`
+	AgentCode                 string    `xorm:"VARCHAR(20)" json:"agentCode,omitempty" xml:"agentCode"`
+	OrderStatus               int       `xorm:"default 1 INT" json:"orderStatus,omitempty" xml:"orderStatus"`
 	OthersOrderStatus         string    `xorm:"VARCHAR(150)" json:"othersOrderStatus,omitempty" xml:"othersOrderStatus"`
 	OrderStatusLastUpdateDate time.Time `xorm:"comment('sales update time') DATETIME" json:"orderStatusLastUpdateDate,omitempty" xml:"orderStatusLastUpdateDate"`
 	OrderStatusLastUpdateBy   string    `xorm:"comment('user name, user who accept the payment') VARCHAR(200)" json:"orderStatusLastUpdateBy,omitempty" xml:"orderStatusLastUpdateBy"`
@@ -53,7 +52,7 @@ type CmsAccExistingOrder struct {
 	OrderReference            string    `xorm:"not null VARCHAR(250)" json:"orderReference,omitempty" xml:"orderReference"`
 	OrderDeliveryNote         string    `xorm:"not null default '' VARCHAR(200)" json:"orderDeliveryNote,omitempty" xml:"orderDeliveryNote"`
 	PickerNote                string    `xorm:"VARCHAR(500)" json:"pickerNote,omitempty" xml:"pickerNote"`
-	OrderFrom                 string    `xorm:"default 'S' comment('S = salesperson C = Customer') VARCHAR(10)" json:"orderFrom,omitempty" xml:"orderFrom"`
+	OrderFrom                 string    `xorm:"default 'S' comment('S = Agent C = Customer') VARCHAR(10)" json:"orderFrom,omitempty" xml:"orderFrom"`
 	CancelStatus              int       `xorm:"default 0 comment('0=not_cancel, 1=cancelled by agent, 2=cancelled by admin') INT" json:"cancelStatus,omitempty" xml:"cancelStatus"`
 	WarehouseCode             string    `xorm:"VARCHAR(100)" json:"warehouseCode,omitempty" xml:"warehouseCode"`
 	PackedBy                  string    `xorm:"VARCHAR(100)" json:"packedBy,omitempty" xml:"packedBy"`

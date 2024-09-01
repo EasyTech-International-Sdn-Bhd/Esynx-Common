@@ -13,7 +13,7 @@ type CmsReceipt struct {
 	ReceiptKnockoffAmount float64   `xorm:"DOUBLE" json:"receiptKnockoffAmount,omitempty" xml:"receiptKnockoffAmount"`
 	ReceiptDesc           []byte    `xorm:"LONGBLOB" json:"receiptDesc,omitempty" xml:"receiptDesc"`
 	ChequeNo              string    `xorm:"VARCHAR(100)" json:"chequeNo,omitempty" xml:"chequeNo"`
-	SalespersonId         int       `xorm:"default 0 INT" json:"salespersonId,omitempty" xml:"salespersonId"`
+	AgentCode             string    `xorm:"VARCHAR(20)" json:"agentCode,omitempty" xml:"agentCode"`
 	ReceiptUdf            string    `xorm:"not null JSON" json:"receiptUdf,omitempty" xml:"receiptUdf"`
 	Approved              int       `xorm:"default 0 INT" json:"approved,omitempty" xml:"approved"`
 	Approver              string    `xorm:"VARCHAR(200)" json:"approver,omitempty" xml:"approver"`

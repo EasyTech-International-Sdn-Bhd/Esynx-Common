@@ -12,8 +12,8 @@ type CmsCustomerRefund struct {
 	CfAmount         float64   `xorm:"DOUBLE" json:"cfAmount,omitempty" xml:"cfAmount"`
 	Cancelled        string    `xorm:"CHAR(1)" json:"cancelled,omitempty" xml:"cancelled"`
 	CfKnockoffAmount float64   `xorm:"DOUBLE" json:"cfKnockoffAmount,omitempty" xml:"cfKnockoffAmount"`
-	SalespersonId    int       `xorm:"INT" json:"salespersonId,omitempty" xml:"salespersonId"`
-	RefNo            int       `xorm:"INT" json:"refNo,omitempty" xml:"refNo"`
+	AgentCode        string    `xorm:"VARCHAR(20)" json:"agentCode,omitempty" xml:"agentCode"`
+	RefNo            string    `xorm:"VARCHAR(50)" json:"refNo,omitempty" xml:"refNo"`
 	UpdatedAt        time.Time `xorm:"not null default CURRENT_TIMESTAMP TIMESTAMP" json:"updatedAt,omitempty" xml:"updatedAt"`
 }
 

@@ -16,7 +16,6 @@ type CmsOrder struct {
 	GrandTotal                float64   `xorm:"DOUBLE" json:"grandTotal,omitempty" xml:"grandTotal"`
 	GstAmount                 float64   `xorm:"DOUBLE" json:"gstAmount,omitempty" xml:"gstAmount"`
 	GstTaxAmount              float64   `xorm:"DOUBLE" json:"gstTaxAmount,omitempty" xml:"gstTaxAmount"`
-	CustId                    int       `xorm:"comment('note : customer id can be blank as salesperson is allowed to created manual customer via ipad. However, if they select from their customer list, then cust_id should be stored.') INT" json:"custId,omitempty" xml:"custId"`
 	CustCode                  string    `xorm:"VARCHAR(80) index" json:"custCode,omitempty" xml:"custCode"`
 	CustCompanyName           string    `xorm:"VARCHAR(200)" json:"custCompanyName,omitempty" xml:"custCompanyName"`
 	CustInchargePerson        string    `xorm:"VARCHAR(200)" json:"custInchargePerson,omitempty" xml:"custInchargePerson"`
@@ -41,7 +40,7 @@ type CmsOrder struct {
 	ShippingZipcode           string    `xorm:"VARCHAR(150)" json:"shippingZipcode,omitempty" xml:"shippingZipcode"`
 	ShippingCountry           string    `xorm:"VARCHAR(150)" json:"shippingCountry,omitempty" xml:"shippingCountry"`
 	Termcode                  string    `xorm:"VARCHAR(20)" json:"termcode,omitempty" xml:"termcode"`
-	SalespersonId             int       `xorm:"comment('0 means no id, it is manual member') INT index" json:"salespersonId,omitempty" xml:"salespersonId"`
+	AgentCode                 string    `xorm:"VARCHAR(20) index" json:"agentCode,omitempty" xml:"agentCode"`
 	OrderStatus               int       `xorm:"default 0 comment('0=in_ipad,1=in_backoffice,2=in_QNE') INT" json:"orderStatus,omitempty" xml:"orderStatus"`
 	OthersOrderStatus         string    `xorm:"VARCHAR(150)" json:"othersOrderStatus,omitempty" xml:"othersOrderStatus"`
 	OrderStatusLastUpdateDate time.Time `xorm:"comment('sales update time') DATETIME" json:"orderStatusLastUpdateDate,omitempty" xml:"orderStatusLastUpdateDate"`

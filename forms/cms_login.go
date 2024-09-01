@@ -12,6 +12,6 @@ type CmsLoginForm struct {
 	DocSuffix   string `xorm:"default 'S' VARCHAR(10)" json:"docSuffix,omitempty" xml:"docSuffix" validate:"trim"`
 	ProjNo      string `xorm:"VARCHAR(100)" json:"projNo,omitempty" xml:"projNo" validate:"trim"`
 	Company     string `xorm:"default '' VARCHAR(50)" json:"company,omitempty" xml:"company" validate:"trim"`
-	RoleId      int    `xorm:"default 2 comment('Officer, Salesperson, Admin') INT" json:"roleId,omitempty" xml:"roleId"`
-	LoginStatus int    `xorm:"default 1 comment('1=active, 0=inactive , please check the disable salesperson is not allowed to send in order.') INT" json:"loginStatus,omitempty" xml:"loginStatus"`
+	RoleId      int    `xorm:"default 2 comment('Officer, Agent, Admin') INT" json:"roleId,omitempty" xml:"roleId"`
+	LoginStatus int    `xorm:"default 1 comment('1=active, 0=inactive , please check the disable Agent is not allowed to send in order.') INT" json:"loginStatus,omitempty" xml:"loginStatus"`
 }
