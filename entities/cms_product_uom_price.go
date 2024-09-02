@@ -4,7 +4,7 @@ import (
 	"time"
 )
 
-type CmsProductUomPriceV2 struct {
+type CmsProductUomPrice struct {
 	ProductUomPriceId   uint64    `xorm:"pk autoincr unique UNSIGNED BIGINT" json:"productUomPriceId,omitempty" xml:"productUomPriceId"`
 	ProductCode         string    `xorm:"unique(unique_uom) VARCHAR(100) index" json:"productCode,omitempty" xml:"productCode"`
 	ProductUom          string    `xorm:"unique(unique_uom) VARCHAR(20)" json:"productUom,omitempty" xml:"productUom"`
@@ -19,14 +19,14 @@ type CmsProductUomPriceV2 struct {
 	RefNo               string    `xorm:"VARCHAR(200)" json:"refNo,omitempty" xml:"refNo"`
 }
 
-func (m *CmsProductUomPriceV2) TableName() string {
-	return "cms_product_uom_price_v2"
+func (m *CmsProductUomPrice) TableName() string {
+	return "cms_product_uom_price"
 }
 
-func (m *CmsProductUomPriceV2) BeforeInsert() {
+func (m *CmsProductUomPrice) BeforeInsert() {
 	m.BeforeUpdate()
 }
 
-func (m *CmsProductUomPriceV2) BeforeUpdate() {
+func (m *CmsProductUomPrice) BeforeUpdate() {
 	m.UpdatedAt = time.Now()
 }

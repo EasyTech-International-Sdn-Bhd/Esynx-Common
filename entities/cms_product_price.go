@@ -4,7 +4,7 @@ import (
 	"time"
 )
 
-type CmsProductPriceV2 struct {
+type CmsProductPrice struct {
 	ProductPriceId uint64    `xorm:"pk autoincr unique UNSIGNED BIGINT" json:"productPriceId,omitempty" xml:"productPriceId"`
 	ProductCode    string    `xorm:"unique(unique) VARCHAR(100) index" json:"productCode,omitempty" xml:"productCode"`
 	PriceCat       string    `xorm:"unique(unique) VARCHAR(50)" json:"priceCat,omitempty" xml:"priceCat"`
@@ -25,15 +25,15 @@ type CmsProductPriceV2 struct {
 	MixDisc        string    `xorm:"VARCHAR(100)" json:"mixDisc,omitempty" xml:"mixDisc"`
 }
 
-func (m *CmsProductPriceV2) TableName() string {
-	return "cms_product_price_v2"
+func (m *CmsProductPrice) TableName() string {
+	return "cms_product_price"
 }
 
-func (m *CmsProductPriceV2) BeforeInsert() {
+func (m *CmsProductPrice) BeforeInsert() {
 	m.BeforeUpdate()
 }
 
-func (m *CmsProductPriceV2) BeforeUpdate() {
+func (m *CmsProductPrice) BeforeUpdate() {
 	m.UpdatedAt = time.Now()
 	if m.DateFrom.IsZero() {
 		m.DateFrom = time.Now().AddDate(-1, 0, 0)
