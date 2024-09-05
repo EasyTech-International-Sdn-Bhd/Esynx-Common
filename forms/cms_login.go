@@ -1,7 +1,7 @@
 package forms
 
 type CmsLoginForm struct {
-	StaffCode   string `xorm:"unique VARCHAR(20)" json:"staffCode,omitempty" xml:"staffCode" validate:"trim"`
+	AgentCode   string `xorm:"unique VARCHAR(20)" json:"agentCode,omitempty" xml:"agentCode" validate:"trim"`
 	Login       string `xorm:"VARCHAR(30)" json:"login,omitempty" xml:"login" validate:"trim"`
 	Password    string `xorm:"VARCHAR(30)" json:"password,omitempty" xml:"password" validate:"trim"`
 	Name        string `xorm:"VARCHAR(200)" json:"name,omitempty" xml:"name" validate:"trim"`
