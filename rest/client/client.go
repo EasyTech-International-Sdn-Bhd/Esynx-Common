@@ -68,7 +68,7 @@ func NewApiClientWithLogger(params *RestClientParams, logger resty.Logger, debug
 	client := resty.New().
 		SetBaseURL(params.URL).
 		SetDebug(len(debug) > 0).
-		SetRetryCount(1).
+		SetRetryCount(2).
 		SetHeader(authHeaderName, params.AppName).
 		SetHeader(acceptHeader, acceptHeaderValue).
 		SetContentLength(true).
@@ -77,6 +77,9 @@ func NewApiClientWithLogger(params *RestClientParams, logger resty.Logger, debug
 			logger.Errorf("error in apiclient - %v %s %q %s %q", err, req.URL, req.PathParams, req.QueryParam.Encode(), req.Body)
 		}).
 		AddRetryCondition(func(response *resty.Response, err error) bool {
+			if strings.Contains(err.Error(), "Bad Gateway") {
+				return true
+			}
 			for _, s := range ignore {
 				if strings.Contains(response.Request.URL, s) {
 					return false
