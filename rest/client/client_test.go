@@ -4,7 +4,7 @@ import "testing"
 
 func TestNewApiClient(t *testing.T) {
 	c, err := NewApiClient(&RestClientParams{
-		URL:      "http://localhost:9090/",
+		URL:      "https://server.easysales.asia",
 		AppName:  "Esynx",
 		Username: "vitsync",
 		Password: "vitsyncprogram",

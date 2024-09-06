@@ -49,6 +49,7 @@ type RestClientParams struct {
 type ApiClient struct {
 	Reqwest  *resty.Client
 	ClientId string
+	logger   resty.Logger
 }
 
 func NewApiClient(params *RestClientParams) (*ApiClient, error) {
@@ -77,7 +78,7 @@ func NewApiClientWithLogger(params *RestClientParams, logger resty.Logger, debug
 			logger.Errorf("error in apiclient - %v %s %q %s %q", err, req.URL, req.PathParams, req.QueryParam.Encode(), req.Body)
 		}).
 		AddRetryCondition(func(response *resty.Response, err error) bool {
-			if strings.Contains(err.Error(), "Bad Gateway") {
+			if err != nil && strings.Contains(err.Error(), "Bad Gateway") {
 				return true
 			}
 			for _, s := range ignore {
@@ -103,8 +104,9 @@ func NewApiClientWithLogger(params *RestClientParams, logger resty.Logger, debug
 			}
 			return handleAuth(params, loginResponse)(clx, r)
 		})
-
-	return &ApiClient{Reqwest: client, ClientId: loginResponse.Data.ClientId}, nil
+	api := &ApiClient{Reqwest: client, ClientId: loginResponse.Data.ClientId}
+	api.logger = logger
+	return api, nil
 }
 
 func loginUser(client *resty.Client, params *RestClientParams) (*LoginResponse, error) {
