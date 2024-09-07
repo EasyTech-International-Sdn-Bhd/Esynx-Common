@@ -3,7 +3,7 @@ package entities
 import "time"
 
 type AuditLog struct {
-	OperationType string    `xorm:"ENUM('INSERT', 'UPDATE') not null"`
+	OperationType string    `xorm:"ENUM('INSERT', 'UPDATE', 'ERROR') not null"`
 	RecordTable   string    `xorm:"VARCHAR(100)"`
 	RecordId      string    `xorm:"VARCHAR(80)"`
 	RecordBody    string    `xorm:"JSON"`
