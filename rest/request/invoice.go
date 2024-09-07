@@ -7,20 +7,20 @@ import (
 type InvoiceCreateForm struct {
 	Reference string               `json:"reference" binding:"required,min=3,max=100"`
 	DocType   string               `json:"docType" binding:"required,min=2"`
-	Data      forms.CmsInvoiceForm `json:"data"`
+	Data      forms.CmsInvoiceForm `json:"data" binding:"required"`
 }
 
 type InvoiceBulkCreateForm struct {
-	Data []InvoiceCreateForm `json:"data"`
+	Data []InvoiceCreateForm `json:"data" binding:"required,v-nonempty"`
 }
 
 type InvoiceUpdateForm struct {
 	Reference string               `json:"reference" binding:"required,min=3,max=100"`
-	Data      forms.CmsInvoiceForm `json:"data"`
+	Data      forms.CmsInvoiceForm `json:"data" binding:"required"`
 }
 
 type InvoiceBulkUpdateForm struct {
-	Data []InvoiceUpdateForm `json:"data"`
+	Data []InvoiceUpdateForm `json:"data" binding:"required,v-nonempty"`
 }
 
 type InvoiceDeleteForm struct {
@@ -28,25 +28,25 @@ type InvoiceDeleteForm struct {
 }
 
 type InvoiceBulkDeleteForm struct {
-	Data []InvoiceDeleteForm `json:"invoiceCodes"`
+	Data []InvoiceDeleteForm `json:"invoiceCodes" binding:"required,v-nonempty"`
 }
 
 type InvoiceDetailsCreateForm struct {
 	Reference string                      `json:"reference" binding:"required,min=3,max=100"`
-	Data      forms.CmsInvoiceDetailsForm `json:"data"`
+	Data      forms.CmsInvoiceDetailsForm `json:"data" binding:"required"`
 }
 
 type InvoiceDetailsBulkCreateForm struct {
-	Data []InvoiceDetailsCreateForm `json:"data"`
+	Data []InvoiceDetailsCreateForm `json:"data" binding:"required,v-nonempty"`
 }
 
 type InvoiceDetailsUpdateForm struct {
 	Reference string                      `json:"reference" binding:"required,min=3,max=100"`
-	Data      forms.CmsInvoiceDetailsForm `json:"data"`
+	Data      forms.CmsInvoiceDetailsForm `json:"data" binding:"required"`
 }
 
 type InvoiceDetailsBulkUpdateForm struct {
-	Data []InvoiceDetailsUpdateForm `json:"data"`
+	Data []InvoiceDetailsUpdateForm `json:"data" binding:"required,v-nonempty"`
 }
 
 type InvoiceDetailsDeleteForm struct {
@@ -54,5 +54,5 @@ type InvoiceDetailsDeleteForm struct {
 }
 
 type InvoiceDetailsBulkDeleteForm struct {
-	Data []InvoiceDetailsDeleteForm `json:"ids"`
+	Data []InvoiceDetailsDeleteForm `json:"ids" binding:"required,v-nonempty"`
 }

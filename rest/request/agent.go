@@ -6,15 +6,15 @@ import (
 
 type AgentCreateForm struct {
 	Reference string             `json:"reference" binding:"required,min=3,max=100"`
-	Data      forms.CmsLoginForm `json:"data"`
+	Data      forms.CmsLoginForm `json:"data" binding:"required"`
 }
 
 type AgentBulkCreateForm struct {
-	Data []AgentCreateForm `json:"data"`
+	Data []AgentCreateForm `json:"data" binding:"required,v-nonempty"`
 }
 
 type AgentBulkUpdateForm struct {
-	Data []AgentCreateForm `json:"data"`
+	Data []AgentCreateForm `json:"data" binding:"required,v-nonempty"`
 }
 
 type AgentDeleteForm struct {
@@ -22,5 +22,5 @@ type AgentDeleteForm struct {
 }
 
 type AgentBulkDeleteForm struct {
-	Data []AgentDeleteForm `json:"data"`
+	Data []AgentDeleteForm `json:"data" binding:"required,v-nonempty"`
 }

@@ -4,11 +4,11 @@ import "github.com/easytech-international-sdn-bhd/esynx-common/forms"
 
 type DebtorCreateOrUpdateForm struct {
 	Reference string                `json:"reference" binding:"required,min=3,max=100"`
-	Data      forms.CmsCustomerForm `json:"data"`
+	Data      forms.CmsCustomerForm `json:"data" binding:"required"`
 }
 
 type DebtorCreateOrUpdateBulkForm struct {
-	Data []DebtorCreateOrUpdateForm `json:"data"`
+	Data []DebtorCreateOrUpdateForm `json:"data" binding:"required,v-nonempty"`
 }
 
 type DebtorDeleteForm struct {
@@ -16,7 +16,7 @@ type DebtorDeleteForm struct {
 }
 
 type DebtorDeleteBulkForm struct {
-	Data []DebtorDeleteForm `json:"data"`
+	Data []DebtorDeleteForm `json:"data" binding:"required,v-nonempty"`
 }
 
 type DebtorAssignAgentForm struct {
