@@ -81,9 +81,11 @@ func NewApiClientWithLogger(params *RestClientParams, logger resty.Logger, debug
 			if err != nil && strings.Contains(err.Error(), "Bad Gateway") {
 				return true
 			}
-			for _, s := range ignore {
-				if strings.Contains(response.Request.URL, s) {
-					return false
+			if response != nil && response.Request != nil {
+				for _, s := range ignore {
+					if strings.Contains(response.Request.URL, s) {
+						return false
+					}
 				}
 			}
 			return err != nil || response.StatusCode() == http.StatusUnauthorized
