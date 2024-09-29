@@ -1,4 +1,4 @@
-package forms
+package request
 
 type DataType string
 

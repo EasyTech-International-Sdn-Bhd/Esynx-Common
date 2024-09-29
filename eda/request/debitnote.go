@@ -1,13 +1,13 @@
-package forms
+package request
 
 import "github.com/easytech-international-sdn-bhd/esynx-common/forms"
 
-type CreditNoteFormEDA struct {
+type DebitNoteFormEDA struct {
 	Head EdaHeader                 `json:"head" binding:"required"`
 	Data []forms.CmsCreditNoteForm `json:"data" binding:"required"`
 }
 
-type CreditNoteDetailsFormEDA struct {
+type DebitNoteDetailsFormEDA struct {
 	Head EdaHeader                        `json:"head" binding:"required"`
 	Data []forms.CmsCreditNoteDetailsForm `json:"data" binding:"required"`
 }

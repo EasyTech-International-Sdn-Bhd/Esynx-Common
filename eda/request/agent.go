@@ -1,4 +1,4 @@
-package forms
+package request
 
 import "github.com/easytech-international-sdn-bhd/esynx-common/forms"
 
