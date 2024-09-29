@@ -4,13 +4,14 @@ import (
 	"cloud.google.com/go/pubsub"
 	"context"
 	"fmt"
+	"github.com/easytech-international-sdn-bhd/esynx-common/eda/events"
 	"strings"
 	"sync"
 	"time"
 )
 
 type SubscriberConfig struct {
-	Name   string
+	Name   events.EDARoutes
 	Filter string
 }
 
@@ -32,8 +33,8 @@ func NewGcpConsumer(ctx context.Context, clientId, projectId string, client *pub
 	}
 }
 
-func (c *GcpConsumer) Create(handlerType HandlerType, subscriberConfig []SubscriberConfig) (map[string]IEventDrivenMessageHandler, error) {
-	handlers := make(map[string]IEventDrivenMessageHandler)
+func (c *GcpConsumer) Create(handlerType HandlerType, subscriberConfig []SubscriberConfig) (map[events.EDARoutes]IEventDrivenMessageHandler, error) {
+	handlers := make(map[events.EDARoutes]IEventDrivenMessageHandler)
 	errChan := make(chan error, len(subscriberConfig))
 	var mu sync.Mutex
 

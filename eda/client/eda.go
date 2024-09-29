@@ -2,6 +2,7 @@ package client
 
 import (
 	"context"
+	"github.com/easytech-international-sdn-bhd/esynx-common/eda/events"
 	"github.com/easytech-international-sdn-bhd/esynx-common/eda/request"
 )
 
@@ -23,7 +24,7 @@ type IEventDrivenMessageProducer interface {
 }
 
 type IEventDrivenMessageConsumer interface {
-	Create(handlerType HandlerType, subscribers []SubscriberConfig) (map[string]IEventDrivenMessageHandler, error)
+	Create(handlerType HandlerType, subscribers []SubscriberConfig) (map[events.EDARoutes]IEventDrivenMessageHandler, error)
 }
 
 type IEventDrivenMessageHandler interface {
