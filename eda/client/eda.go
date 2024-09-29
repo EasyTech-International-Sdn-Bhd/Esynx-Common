@@ -23,7 +23,7 @@ type IEventDrivenMessageProducer interface {
 }
 
 type IEventDrivenMessageConsumer interface {
-	Create(handlerType HandlerType, subscribers []string, filter string) (map[string]IEventDrivenMessageHandler, error)
+	Create(handlerType HandlerType, subscribers []SubscriberConfig) (map[string]IEventDrivenMessageHandler, error)
 }
 
 type IEventDrivenMessageHandler interface {
