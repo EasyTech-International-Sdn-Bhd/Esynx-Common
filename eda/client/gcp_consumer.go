@@ -5,6 +5,7 @@ import (
 	"context"
 	"fmt"
 	"strings"
+	"sync"
 	"time"
 )
 
@@ -28,25 +29,52 @@ func NewGcpConsumer(ctx context.Context, clientId, projectId string, client *pub
 
 func (c *GcpConsumer) Create(handlerType HandlerType, subscribers []string, filter string) (map[string]IEventDrivenMessageHandler, error) {
 	handlers := make(map[string]IEventDrivenMessageHandler)
+	errChan := make(chan error, len(subscribers))
+	var mu sync.Mutex
+
+	var wg sync.WaitGroup
 	for _, subscriber := range subscribers {
-		subId := strings.ToLower(fmt.Sprintf("sub.%s.%s", subscriber, handlerType.String()))
-		subscription := c.client.SubscriptionInProject(subId, c.projectId)
-		exists, err := subscription.Exists(c.ctx)
-		if err != nil {
+		wg.Add(1)
+		go func(subscriber string) {
+			defer wg.Done()
+
+			subId := strings.ToLower(fmt.Sprintf("sub.%s.%s", subscriber, handlerType.String()))
+			subscription := c.client.SubscriptionInProject(subId, c.projectId)
+			exists, err := subscription.Exists(c.ctx)
+			if err != nil {
+				errChan <- err
+				return
+			}
+			if !exists {
+				subscription, err = c.client.CreateSubscription(c.ctx, subId, pubsub.SubscriptionConfig{
+					Topic:                 c.topic,
+					AckDeadline:           10 * time.Minute,
+					EnableMessageOrdering: true,
+					Filter:                filter,
+				})
+				if err != nil {
+					errChan <- err
+					return
+				}
+			}
+
+			mu.Lock()
+			handlers[subscriber] = NewGcpMessageHandler(subscription)
+			mu.Unlock()
+
+			errChan <- nil
+		}(subscriber)
+	}
+
+	wg.Wait()
+
+	close(errChan)
+
+	for i := 0; i < len(subscribers); i++ {
+		if err := <-errChan; err != nil {
 			return nil, err
 		}
-		if !exists {
-			subscription, err = c.client.CreateSubscription(c.ctx, subId, pubsub.SubscriptionConfig{
-				Topic:                 c.topic,
-				AckDeadline:           10 * time.Minute,
-				EnableMessageOrdering: true,
-				Filter:                filter,
-			})
-			if err != nil {
-				return nil, err
-			}
-		}
-		handlers[subscriber] = NewGcpMessageHandler(subscription)
 	}
+
 	return handlers, nil
 }
