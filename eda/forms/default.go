@@ -11,7 +11,7 @@ const (
 	EDADataTypeDebtorBranch DataType = "DebtorBranch"
 )
 
-type DefaultForm struct {
+type EdaHeader struct {
 	DataType   DataType    `json:"source"`
 	TaskID     string      `json:"task_id"`
 	Username   string      `json:"username"`
