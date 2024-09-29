@@ -3,11 +3,14 @@ package events
 type EDARoutes string
 
 const (
-	EDARoute_Invoice    EDARoutes = "Invoice"
-	EDARoute_CreditNote EDARoutes = "CreditNote"
-	EDARoute_DebitNote  EDARoutes = "DebitNote"
-	EDARoute_Debtor     EDARoutes = "Debtor"
-	EDARoute_Agent      EDARoutes = "Agent"
+	EDARoute_Invoice      EDARoutes = "Invoice"
+	EDARoute_CreditNote   EDARoutes = "CreditNote"
+	EDARoute_DebitNote    EDARoutes = "DebitNote"
+	EDARoute_Debtor       EDARoutes = "Debtor"
+	EDARoute_CashSales    EDARoutes = "CashSales"
+	EDARoute_ArInvoice    EDARoutes = "ArInvoice"
+	EDARoute_ArCreditNote EDARoutes = "ArCreditNote"
+	EDARoute_ArDebitNote  EDARoutes = "ArDebitNote"
 )
 
 type EDADataSource string
