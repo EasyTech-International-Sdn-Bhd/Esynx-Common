@@ -35,9 +35,11 @@ func NewGcpBroker(gcpClientOption option.ClientOption, gcpProjectID string) (*Gc
 		return nil, err
 	}
 	return &GcpBroker{
-		ctx:    ctx,
-		client: client,
-		topics: make([]topicPair, 0),
+		ctx:            ctx,
+		client:         client,
+		topics:         make([]topicPair, 0),
+		projectId:      gcpProjectID,
+		projectOptions: gcpClientOption,
 	}, nil
 }
 
