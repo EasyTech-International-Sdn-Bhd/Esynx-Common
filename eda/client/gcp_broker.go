@@ -68,17 +68,9 @@ func (b *GcpBroker) Produce(ht HandlerType, req request.EdaHeader, data interfac
 
 func (b *GcpBroker) GetConsumer(clientId string, ht HandlerType) (IEventDrivenMessageConsumer, error) {
 	topicId := strings.ToLower(fmt.Sprintf("%s.%s", ht.String(), clientId))
-	var topic *pubsub.Topic
-	b.mu.Lock()
-	for _, t := range b.topics {
-		if t.ClientId == clientId && t.TopicId == topicId {
-			topic = t.Topic
-			break
-		}
-	}
-	b.mu.Unlock()
-	if topic == nil {
-		return nil, fmt.Errorf("topic not found")
+	topic, err := b.getOrCreateTopic(clientId, topicId, ht)
+	if err != nil {
+		return nil, err
 	}
 	return NewGcpConsumer(b.ctx, clientId, b.projectId, b.client, topic), nil
 }
