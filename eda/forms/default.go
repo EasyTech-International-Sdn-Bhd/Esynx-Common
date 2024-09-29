@@ -13,6 +13,7 @@ const (
 
 type DefaultForm struct {
 	DataType   DataType    `json:"source"`
+	TaskID     string      `json:"task_id"`
 	Username   string      `json:"username"`
 	ClientID   string      `json:"client_id"`
 	AppName    string      `json:"app_name"`
