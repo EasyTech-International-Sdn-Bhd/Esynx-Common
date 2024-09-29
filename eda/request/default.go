@@ -20,4 +20,5 @@ type EdaHeader struct {
 	ActionType string      `json:"action_type"`
 	ActionTime string      `json:"action_time"`
 	Metadata   interface{} `json:"metadata"`
+	Data       interface{} `json:"data"`
 }

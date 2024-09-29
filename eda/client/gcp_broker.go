@@ -47,7 +47,8 @@ func (b *GcpBroker) Produce(ht HandlerType, req request.EdaHeader, data interfac
 	if err != nil {
 		return err
 	}
-	dt, err := json.Marshal(data)
+	req.Data = data
+	dt, err := json.Marshal(req)
 	if err != nil {
 		return err
 	}
