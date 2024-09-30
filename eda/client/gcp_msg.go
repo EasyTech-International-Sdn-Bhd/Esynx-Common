@@ -22,12 +22,15 @@ func NewGcpMessageHandler(sub *pubsub.Subscription) *GcpMessageHandler {
 
 func (m *GcpMessageHandler) Consume(ctx context.Context, cb func(context.Context, *MessageEDA)) error {
 	return m.sub.Receive(ctx, func(ctx context.Context, msg *pubsub.Message) {
-		msg.Ack()
 		newMsg := &MessageEDA{
 			Data:       msg.Data,
 			Attributes: msg.Attributes,
-			Ack:        msg.Ack,
-			Nack:       msg.Nack,
+			Ack: func() {
+				msg.Ack()
+			},
+			Nack: func() {
+				msg.Nack()
+			},
 		}
 		cb(ctx, newMsg)
 	})
