@@ -16,14 +16,22 @@ const (
 	EDADataTypeDebtorBranch      DataType = "DebtorBranch"
 )
 
+type EdaActionType string
+
+const (
+	EDAActionTypeCreate EdaActionType = "Save"
+	EDAActionTypeUpdate EdaActionType = "Update"
+	EDAActionTypeDelete EdaActionType = "Delete"
+)
+
 type EdaHeader struct {
-	DataType   DataType    `json:"source"`
-	TaskID     string      `json:"task_id"`
-	Username   string      `json:"username"`
-	ClientID   string      `json:"client_id"`
-	AppName    string      `json:"app_name"`
-	ActionType string      `json:"action_type"`
-	ActionTime string      `json:"action_time"`
-	Metadata   interface{} `json:"metadata"`
-	Data       interface{} `json:"data"`
+	DataType   DataType      `json:"source"`
+	TaskID     string        `json:"task_id"`
+	Username   string        `json:"username"`
+	ClientID   string        `json:"client_id"`
+	AppName    string        `json:"app_name"`
+	ActionType EdaActionType `json:"action_type"`
+	ActionTime int64         `json:"action_time"`
+	Metadata   interface{}   `json:"metadata"`
+	Data       interface{}   `json:"data"`
 }
