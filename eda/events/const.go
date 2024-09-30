@@ -3,6 +3,7 @@ package events
 type EDARoutes string
 
 const (
+	EDARoute_Agent        EDARoutes = "Agent"
 	EDARoute_Invoice      EDARoutes = "Invoice"
 	EDARoute_CreditNote   EDARoutes = "CreditNote"
 	EDARoute_DebitNote    EDARoutes = "DebitNote"
