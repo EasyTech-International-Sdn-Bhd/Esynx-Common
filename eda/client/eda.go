@@ -18,7 +18,7 @@ const (
 )
 
 type IEventDrivenMessageProducer interface {
-	Produce(HandlerType, request.EdaHeader, interface{}, map[string]string, string) error
+	Produce(HandlerType, request.EdaHeader, map[string]string, string) error
 	GetConsumer(string, HandlerType) (IEventDrivenMessageConsumer, error)
 	Close() error
 }

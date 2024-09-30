@@ -43,13 +43,13 @@ func NewGcpBroker(gcpClientOption option.ClientOption, gcpProjectID string) (*Gc
 	}, nil
 }
 
-func (b *GcpBroker) Produce(ht HandlerType, req request.EdaHeader, data interface{}, attr map[string]string, orderBy string) error {
+func (b *GcpBroker) Produce(ht HandlerType, req request.EdaHeader, attr map[string]string, orderBy string) error {
 	topicId := strings.ToLower(fmt.Sprintf("%s.%s", ht.String(), req.ClientID))
 	topic, err := b.getOrCreateTopic(req.ClientID, topicId, ht)
 	if err != nil {
 		return err
 	}
-	req.Data = data
+
 	dt, err := json.Marshal(req)
 	if err != nil {
 		return err
