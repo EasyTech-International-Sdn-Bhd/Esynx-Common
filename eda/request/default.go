@@ -19,7 +19,9 @@ const (
 type EdaActionType string
 
 const (
-	EDAActionTypeCreate EdaActionType = "Save"
+	// EDAActionTypeSave represents the action type for saving an entity from accounting software.
+	EDAActionTypeSave   EdaActionType = "Save"
+	EDAActionTypeCreate EdaActionType = "Create"
 	EDAActionTypeUpdate EdaActionType = "Update"
 	EDAActionTypeDelete EdaActionType = "Delete"
 )
