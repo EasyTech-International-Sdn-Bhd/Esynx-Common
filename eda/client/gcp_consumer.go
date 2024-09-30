@@ -6,7 +6,6 @@ import (
 	"fmt"
 	"github.com/easytech-international-sdn-bhd/esynx-common/eda/events"
 	"strings"
-	"sync"
 	"time"
 )
 
@@ -35,52 +34,28 @@ func NewGcpConsumer(ctx context.Context, clientId, projectId string, client *pub
 
 func (c *GcpConsumer) Create(handlerType HandlerType, subscriberConfig []SubscriberConfig) (map[events.EDARoutes]IEventDrivenMessageHandler, error) {
 	handlers := make(map[events.EDARoutes]IEventDrivenMessageHandler)
-	errChan := make(chan error, len(subscriberConfig))
-	var mu sync.Mutex
 
-	var wg sync.WaitGroup
 	for _, subscriber := range subscriberConfig {
-		wg.Add(1)
-		go func(subscriber SubscriberConfig) {
-			defer wg.Done()
-
-			subId := strings.ToLower(fmt.Sprintf("sub.%s.%s.%s", c.clientId, subscriber.Name, handlerType.String()))
-			subscription := c.client.SubscriptionInProject(subId, c.projectId)
-			exists, err := subscription.Exists(c.ctx)
-			if err != nil {
-				errChan <- err
-				return
-			}
-			if !exists {
-				subscription, err = c.client.CreateSubscription(c.ctx, subId, pubsub.SubscriptionConfig{
-					Topic:                     c.topic,
-					AckDeadline:               10 * time.Minute,
-					EnableMessageOrdering:     true,
-					EnableExactlyOnceDelivery: true,
-					Filter:                    subscriber.Filter,
-				})
-				if err != nil {
-					errChan <- err
-					return
-				}
-			}
-
-			mu.Lock()
-			handlers[subscriber.Name] = NewGcpMessageHandler(subscription)
-			mu.Unlock()
-
-			errChan <- nil
-		}(subscriber)
-	}
-
-	wg.Wait()
-
-	close(errChan)
-
-	for i := 0; i < len(subscriberConfig); i++ {
-		if err := <-errChan; err != nil {
+		subId := strings.ToLower(fmt.Sprintf("sub.%s.%s.%s", c.clientId, subscriber.Name, handlerType.String()))
+		subscription := c.client.SubscriptionInProject(subId, c.projectId)
+		exists, err := subscription.Exists(c.ctx)
+		if err != nil {
 			return nil, err
 		}
+		if !exists {
+			subscription, err = c.client.CreateSubscription(c.ctx, subId, pubsub.SubscriptionConfig{
+				Topic:                     c.topic,
+				AckDeadline:               10 * time.Minute,
+				EnableMessageOrdering:     true,
+				EnableExactlyOnceDelivery: true,
+				Filter:                    subscriber.Filter,
+			})
+			if err != nil {
+				return nil, err
+			}
+		}
+
+		handlers[subscriber.Name] = NewGcpMessageHandler(subscription)
 	}
 
 	return handlers, nil
