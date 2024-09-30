@@ -44,7 +44,7 @@ func (c *GcpConsumer) Create(handlerType HandlerType, subscriberConfig []Subscri
 		go func(subscriber SubscriberConfig) {
 			defer wg.Done()
 
-			subId := strings.ToLower(fmt.Sprintf("sub.%s.%s", subscriber.Name, handlerType.String()))
+			subId := strings.ToLower(fmt.Sprintf("sub.%s.%s.%s", c.clientId, subscriber.Name, handlerType.String()))
 			subscription := c.client.SubscriptionInProject(subId, c.projectId)
 			exists, err := subscription.Exists(c.ctx)
 			if err != nil {
