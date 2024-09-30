@@ -26,10 +26,10 @@ func (m *GcpMessageHandler) Consume(ctx context.Context, cb func(context.Context
 			Data:       msg.Data,
 			Attributes: msg.Attributes,
 			Ack: func() {
-				msg.Ack()
+				msg.AckWithResult()
 			},
 			Nack: func() {
-				msg.Nack()
+				msg.NackWithResult()
 			},
 		}
 		cb(ctx, newMsg)
