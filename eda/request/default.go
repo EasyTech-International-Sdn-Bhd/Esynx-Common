@@ -1,19 +1,19 @@
 package request
 
-type DataType string
+type EdaDataType string
 
 const (
-	EDADataTypeAgent             DataType = "Agent"
-	EDADataTypeCreditNote        DataType = "CreditNote"
-	EDADataTypeCreditNoteDetails DataType = "CreditNoteDetails"
-	EDADataTypeInvoice           DataType = "Invoice"
-	EDADataTypeInvoiceDetails    DataType = "InvoiceDetails"
-	EDADataTypeDebitNote         DataType = "DebitNote"
-	EDADataTypeDebitNoteDetails  DataType = "DebitNoteDetails"
-	EDADataTypeCashSales         DataType = "CashSales"
-	EDADataTypeCashSalesDetails  DataType = "CashSalesDetails"
-	EDADataTypeDebtor            DataType = "Debtor"
-	EDADataTypeDebtorBranch      DataType = "DebtorBranch"
+	EDADataTypeAgent             EdaDataType = "Agent"
+	EDADataTypeCreditNote        EdaDataType = "CreditNote"
+	EDADataTypeCreditNoteDetails EdaDataType = "CreditNoteDetails"
+	EDADataTypeInvoice           EdaDataType = "Invoice"
+	EDADataTypeInvoiceDetails    EdaDataType = "InvoiceDetails"
+	EDADataTypeDebitNote         EdaDataType = "DebitNote"
+	EDADataTypeDebitNoteDetails  EdaDataType = "DebitNoteDetails"
+	EDADataTypeCashSales         EdaDataType = "CashSales"
+	EDADataTypeCashSalesDetails  EdaDataType = "CashSalesDetails"
+	EDADataTypeDebtor            EdaDataType = "Debtor"
+	EDADataTypeDebtorBranch      EdaDataType = "DebtorBranch"
 )
 
 type EdaActionType string
@@ -27,7 +27,7 @@ const (
 )
 
 type EdaHeader struct {
-	DataType   DataType      `json:"source"`
+	DataType   EdaDataType   `json:"source"`
 	TaskID     string        `json:"task_id"`
 	Username   string        `json:"username"`
 	ClientID   string        `json:"client_id"`
