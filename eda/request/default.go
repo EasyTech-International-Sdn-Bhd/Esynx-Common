@@ -3,12 +3,17 @@ package request
 type DataType string
 
 const (
-	EDADataTypeAgent        DataType = "Agent"
-	EDADataTypeCreditNote   DataType = "CreditNote"
-	EDADataTypeInvoice      DataType = "Invoice"
-	EDADataTypeDebitNote    DataType = "DebitNote"
-	EDADataTypeDebtor       DataType = "Debtor"
-	EDADataTypeDebtorBranch DataType = "DebtorBranch"
+	EDADataTypeAgent             DataType = "Agent"
+	EDADataTypeCreditNote        DataType = "CreditNote"
+	EDADataTypeCreditNoteDetails DataType = "CreditNoteDetails"
+	EDADataTypeInvoice           DataType = "Invoice"
+	EDADataTypeInvoiceDetails    DataType = "InvoiceDetails"
+	EDADataTypeDebitNote         DataType = "DebitNote"
+	EDADataTypeDebitNoteDetails  DataType = "DebitNoteDetails"
+	EDADataTypeCashSales         DataType = "CashSales"
+	EDADataTypeCashSalesDetails  DataType = "CashSalesDetails"
+	EDADataTypeDebtor            DataType = "Debtor"
+	EDADataTypeDebtorBranch      DataType = "DebtorBranch"
 )
 
 type EdaHeader struct {
