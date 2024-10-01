@@ -5,7 +5,7 @@ import (
 )
 
 type CmsStockTransfer struct {
-	Id             uint64    `xorm:"pk autoincr UNSIGNED BIGINT" json:"id,omitempty" xml:"id"`
+	Id             uint64    `xorm:"pk autoincr unique UNSIGNED BIGINT" json:"id,omitempty" xml:"id"`
 	StCode         string    `xorm:"not null unique VARCHAR(200)" json:"stCode,omitempty" xml:"stCode"`
 	StDate         time.Time `xorm:"not null DATETIME" json:"stDate,omitempty" xml:"stDate"`
 	CustCode       string    `xorm:"comment('can be empty') VARCHAR(200)" json:"custCode,omitempty" xml:"custCode"`

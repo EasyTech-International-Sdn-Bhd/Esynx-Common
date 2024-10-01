@@ -5,7 +5,7 @@ import (
 )
 
 type CmsCustomerMerchandSchedDtl struct {
-	Id             uint64    `xorm:"pk autoincr UNSIGNED BIGINT" json:"id,omitempty" xml:"id"`
+	Id             uint64    `xorm:"pk autoincr unique UNSIGNED BIGINT" json:"id,omitempty" xml:"id"`
 	AppmntId       int       `xorm:"unique(unq) INT" json:"appmntId,omitempty" xml:"appmntId"`
 	AppmntCode     string    `xorm:"not null unique(unq) VARCHAR(55)" json:"appmntCode,omitempty" xml:"appmntCode"`
 	AppmntDate     time.Time `xorm:"unique(unq) DATE" json:"appmntDate,omitempty" xml:"appmntDate"`

@@ -5,7 +5,7 @@ import (
 )
 
 type CmsStockCard struct {
-	Id           uint64    `xorm:"pk autoincr UNSIGNED BIGINT" json:"id,omitempty" xml:"id"`
+	Id           uint64    `xorm:"pk autoincr unique UNSIGNED BIGINT" json:"id,omitempty" xml:"id"`
 	StockDtlKey  string    `xorm:"not null unique(unique) VARCHAR(25)" json:"stockDtlKey,omitempty" xml:"stockDtlKey"`
 	ProductCode  string    `xorm:"not null VARCHAR(50) index" json:"productCode,omitempty" xml:"productCode"`
 	Location     string    `xorm:"VARCHAR(60) index" json:"location,omitempty" xml:"location"`

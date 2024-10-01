@@ -5,7 +5,7 @@ import (
 )
 
 type CmsSalesOrderItems struct {
-	OrderItemId         uint64    `xorm:"pk autoincr UNSIGNED BIGINT" json:"orderItemId,omitempty" xml:"orderItemId"`
+	OrderItemId         uint64    `xorm:"pk autoincr unique UNSIGNED BIGINT" json:"orderItemId,omitempty" xml:"orderItemId"`
 	OrderId             string    `xorm:"index unique(unx) VARCHAR(20)" json:"orderId,omitempty" xml:"orderId"`
 	IpadItemId          int       `xorm:"default 0 unique(unx) INT" json:"ipadItemId,omitempty" xml:"ipadItemId"`
 	ProductCode         string    `xorm:"unique(unx) index VARCHAR(50)" json:"productCode,omitempty" xml:"productCode"`

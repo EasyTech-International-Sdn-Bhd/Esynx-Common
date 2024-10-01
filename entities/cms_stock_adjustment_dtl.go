@@ -5,7 +5,7 @@ import (
 )
 
 type CmsStockAdjustmentDtl struct {
-	Id            uint64    `xorm:"pk autoincr UNSIGNED BIGINT" json:"id,omitempty" xml:"id"`
+	Id            uint64    `xorm:"pk autoincr unique UNSIGNED BIGINT" json:"id,omitempty" xml:"id"`
 	AdjId         string    `xorm:"not null unique(unq) VARCHAR(25)" json:"adjId,omitempty" xml:"adjId"`
 	DeviceItemId  int64     `xorm:"default 0 unique(unq) BIGINT" json:"deviceItemId,omitempty" xml:"deviceItemId"`
 	ProductCode   string    `xorm:"VARCHAR(25)" json:"productCode,omitempty" xml:"productCode"`

@@ -5,7 +5,7 @@ import (
 )
 
 type CmsProduct struct {
-	ProductId                uint64    `xorm:"pk autoincr UNSIGNED BIGINT" json:"productId,omitempty" xml:"productId"`
+	ProductId                uint64    `xorm:"pk autoincr unique UNSIGNED BIGINT" json:"productId,omitempty" xml:"productId"`
 	CategoryId               int       `xorm:"default 0 comment('0 means roof.') index INT" json:"categoryId,omitempty" xml:"categoryId"`
 	Productidentifierid      string    `xorm:"not null default '' VARCHAR(20)" json:"productidentifierid,omitempty" xml:"productidentifierid"`
 	ProductCode              string    `xorm:"unique(id) VARCHAR(100) index" json:"productCode,omitempty" xml:"productCode"`

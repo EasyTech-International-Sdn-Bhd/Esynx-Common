@@ -5,7 +5,7 @@ import (
 )
 
 type CmsDoJob struct {
-	RunningId        uint64    `xorm:"pk autoincr UNSIGNED BIGINT" json:"runningId,omitempty" xml:"runningId"`
+	RunningId        uint64    `xorm:"pk autoincr unique UNSIGNED BIGINT" json:"runningId,omitempty" xml:"runningId"`
 	JobId            int       `xorm:"not null unique INT" json:"jobId,omitempty" xml:"jobId"`
 	DoCode           string    `xorm:"not null default '' VARCHAR(40)" json:"doCode,omitempty" xml:"doCode"`
 	StartTime        time.Time `xorm:"DATETIME" json:"startTime,omitempty" xml:"startTime"`

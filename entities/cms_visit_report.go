@@ -5,7 +5,7 @@ import (
 )
 
 type CmsVisitReport struct {
-	Id                    uint64    `xorm:"pk autoincr UNSIGNED BIGINT" json:"id,omitempty" xml:"id"`
+	Id                    uint64    `xorm:"pk autoincr unique UNSIGNED BIGINT" json:"id,omitempty" xml:"id"`
 	CustCode              string    `xorm:"unique(unq) index VARCHAR(40)" json:"custCode,omitempty" xml:"custCode"`
 	BranchCode            string    `xorm:"VARCHAR(20)" json:"branchCode,omitempty" xml:"branchCode"`
 	AgentCode             string    `xorm:"not null VARCHAR(20) index" json:"agentCode,omitempty" xml:"agentCode"`

@@ -5,7 +5,7 @@ import (
 )
 
 type CmsReceipt struct {
-	ReceiptId             uint64    `xorm:"pk autoincr UNSIGNED BIGINT" json:"receiptId,omitempty" xml:"receiptId"`
+	ReceiptId             uint64    `xorm:"pk autoincr unique UNSIGNED BIGINT" json:"receiptId,omitempty" xml:"receiptId"`
 	ReceiptCode           string    `xorm:"index unique VARCHAR(20) index" json:"receiptCode,omitempty" xml:"receiptCode"`
 	CustCode              string    `xorm:"index VARCHAR(20)" json:"custCode,omitempty" xml:"custCode"`
 	ReceiptDate           time.Time `xorm:"TIMESTAMP" json:"receiptDate,omitempty" xml:"receiptDate"`
