@@ -5,8 +5,8 @@ import (
 )
 
 type CmsAppAnnouncement struct {
-	Id           uint64    `xorm:"pk autoincr unique UNSIGNED BIGINT" json:"id,omitempty" xml:"id"`
-	AlertName    string    `xorm:"not null unique VARCHAR(200)" json:"alertName,omitempty" xml:"alertName"`
+	Id           uint64    `xorm:"pk autoincr unique(alertName) UNSIGNED BIGINT" json:"id,omitempty" xml:"id"`
+	AlertName    string    `xorm:"not null unique(alertName) VARCHAR(200)" json:"alertName,omitempty" xml:"alertName"`
 	AlertContent []byte    `xorm:"not null BLOB" json:"alertContent,omitempty" xml:"alertContent"`
 	AlertImage   string    `xorm:"not null VARCHAR(255)" json:"alertImage,omitempty" xml:"alertImage"`
 	AlertAction  []byte    `xorm:"not null BLOB" json:"alertAction,omitempty" xml:"alertAction"`

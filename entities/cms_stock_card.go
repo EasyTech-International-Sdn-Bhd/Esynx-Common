@@ -5,16 +5,16 @@ import (
 )
 
 type CmsStockCard struct {
-	Id           uint64    `xorm:"pk autoincr unique UNSIGNED BIGINT" json:"id,omitempty" xml:"id"`
-	StockDtlKey  string    `xorm:"not null unique(unique) VARCHAR(25)" json:"stockDtlKey,omitempty" xml:"stockDtlKey"`
+	Id           uint64    `xorm:"pk autoincr unique(uniquex) UNSIGNED BIGINT" json:"id,omitempty" xml:"id"`
+	StockDtlKey  string    `xorm:"not null unique(uniquex) VARCHAR(25)" json:"stockDtlKey,omitempty" xml:"stockDtlKey"`
 	ProductCode  string    `xorm:"not null VARCHAR(50) index" json:"productCode,omitempty" xml:"productCode"`
 	Location     string    `xorm:"VARCHAR(60) index" json:"location,omitempty" xml:"location"`
 	BatchNo      string    `xorm:"VARCHAR(200)" json:"batchNo,omitempty" xml:"batchNo"`
 	UnitUom      string    `xorm:"VARCHAR(200)" json:"unitUom,omitempty" xml:"unitUom"`
 	DocDate      time.Time `xorm:"DATETIME" json:"docDate,omitempty" xml:"docDate"`
-	DocType      string    `xorm:"unique(unique) VARCHAR(10) index" json:"docType,omitempty" xml:"docType"`
+	DocType      string    `xorm:"unique(uniquex) VARCHAR(10) index" json:"docType,omitempty" xml:"docType"`
 	DocNo        string    `xorm:"VARCHAR(25)" json:"docNo,omitempty" xml:"docNo"`
-	DocKey       string    `xorm:"unique(unique) VARCHAR(100)" json:"docKey,omitempty" xml:"docKey"`
+	DocKey       string    `xorm:"unique(uniquex) VARCHAR(100)" json:"docKey,omitempty" xml:"docKey"`
 	DtlKey       string    `xorm:"VARCHAR(200)" json:"dtlKey,omitempty" xml:"dtlKey"`
 	Quantity     int       `xorm:"INT" json:"quantity,omitempty" xml:"quantity"`
 	UnitPrice    float64   `xorm:"DOUBLE" json:"unitPrice,omitempty" xml:"unitPrice"`

@@ -5,7 +5,7 @@ import (
 )
 
 type CmsOutstandingSo struct {
-	Id           uint64    `xorm:"pk autoincr unique UNSIGNED BIGINT" json:"id,omitempty" xml:"id"`
+	Id           uint64    `xorm:"pk autoincr unique(docNo) UNSIGNED BIGINT" json:"id,omitempty" xml:"id"`
 	DocNo        string    `xorm:"not null unique(docNo) index VARCHAR(20)" json:"docNo,omitempty" xml:"docNo"`
 	DocKey       string    `xorm:"not null VARCHAR(30)" json:"docKey,omitempty" xml:"docKey"`
 	ProductCode  string    `xorm:"not null default '' index unique(docNo) VARCHAR(50)" json:"productCode,omitempty" xml:"productCode"`

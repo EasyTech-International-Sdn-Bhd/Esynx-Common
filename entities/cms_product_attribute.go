@@ -5,7 +5,7 @@ import (
 )
 
 type CmsProductAttribute struct {
-	ProductAttributeId uint64    `xorm:"pk autoincr unique UNSIGNED BIGINT" json:"productAttributeId,omitempty" xml:"productAttributeId"`
+	ProductAttributeId uint64    `xorm:"pk autoincr unique(unq_key) UNSIGNED BIGINT" json:"productAttributeId,omitempty" xml:"productAttributeId"`
 	ProductCode        string    `xorm:"unique(unq_key) VARCHAR(100)" json:"productCode,omitempty" xml:"productCode"`
 	AttributeName      string    `xorm:"comment('the name can be repeat here (e.g Color)') unique(unq_key) VARCHAR(50)" json:"attributeName,omitempty" xml:"attributeName"`
 	AttributeValue     string    `xorm:"comment('the value should not be repeat,for example, if the attribute name is Color, the value of color is Red, Brown, Blue, Black and etc. please refer to data sample in this table') unique(unq_key) VARCHAR(50)" json:"attributeValue,omitempty" xml:"attributeValue"`

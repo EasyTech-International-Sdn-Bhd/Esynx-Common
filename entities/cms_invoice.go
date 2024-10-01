@@ -5,7 +5,7 @@ import (
 )
 
 type CmsInvoice struct {
-	InvoiceId         uint64    `xorm:"pk autoincr unique UNSIGNED BIGINT" json:"invoiceId,omitempty" xml:"invoiceId"`
+	InvoiceId         uint64    `xorm:"pk autoincr unique(iv_code) UNSIGNED BIGINT" json:"invoiceId,omitempty" xml:"invoiceId"`
 	InvoiceCode       string    `xorm:"not null default '' unique(iv_code) index VARCHAR(40)" json:"invoiceCode,omitempty" xml:"invoiceCode"`
 	CustCode          string    `xorm:"VARCHAR(40) index" json:"custCode,omitempty" xml:"custCode"`
 	InvoiceDate       time.Time `xorm:"TIMESTAMP" json:"invoiceDate,omitempty" xml:"invoiceDate"`

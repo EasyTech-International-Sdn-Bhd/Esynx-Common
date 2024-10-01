@@ -5,8 +5,8 @@ import (
 )
 
 type CmsProductCategory struct {
-	CategoryId           uint64    `xorm:"pk autoincr unique UNSIGNED BIGINT" json:"categoryId,omitempty" xml:"categoryId"`
-	Categoryidentifierid string    `xorm:"not null unique VARCHAR(20)" json:"categoryidentifierid,omitempty" xml:"categoryidentifierid"`
+	CategoryId           uint64    `xorm:"pk autoincr unique(cCode) UNSIGNED BIGINT" json:"categoryId,omitempty" xml:"categoryId"`
+	Categoryidentifierid string    `xorm:"not null unique(cCode) VARCHAR(20)" json:"categoryidentifierid,omitempty" xml:"categoryidentifierid"`
 	CategoryName         string    `xorm:"VARCHAR(200)" json:"categoryName,omitempty" xml:"categoryName"`
 	ParentCategoryId     int       `xorm:"default 0 INT" json:"parentCategoryId,omitempty" xml:"parentCategoryId"`
 	SequenceNo           int       `xorm:"INT" json:"sequenceNo,omitempty" xml:"sequenceNo"`

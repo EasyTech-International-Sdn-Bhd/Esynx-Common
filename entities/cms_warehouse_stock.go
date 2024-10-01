@@ -5,7 +5,7 @@ import (
 )
 
 type CmsWarehouseStock struct {
-	Id             uint64    `xorm:"pk autoincr unique UNSIGNED BIGINT" json:"id,omitempty" xml:"id"`
+	Id             uint64    `xorm:"pk autoincr unique(unq) UNSIGNED BIGINT" json:"id,omitempty" xml:"id"`
 	ProductCode    string    `xorm:"not null unique(unq) VARCHAR(100) index" json:"productCode,omitempty" xml:"productCode"`
 	WhCode         string    `xorm:"not null unique(unq) VARCHAR(50) index" json:"whCode,omitempty" xml:"whCode"`
 	ReadyStQty     float64   `xorm:"default 0 DOUBLE" json:"readyStQty,omitempty" xml:"readyStQty"`

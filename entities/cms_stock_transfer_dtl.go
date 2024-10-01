@@ -1,7 +1,7 @@
 package entities
 
 type CmsStockTransferDtl struct {
-	Id           uint64  `xorm:"pk autoincr unique UNSIGNED BIGINT" json:"id,omitempty" xml:"id"`
+	Id           uint64  `xorm:"pk autoincr unique(unq) UNSIGNED BIGINT" json:"id,omitempty" xml:"id"`
 	StCode       string  `xorm:"not null unique(unq) VARCHAR(200)" json:"stCode,omitempty" xml:"stCode"`
 	ProductCode  string  `xorm:"not null VARCHAR(200)" json:"productCode,omitempty" xml:"productCode"`
 	ProductName  string  `xorm:"VARCHAR(200)" json:"productName,omitempty" xml:"productName"`

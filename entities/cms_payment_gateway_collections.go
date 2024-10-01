@@ -5,7 +5,7 @@ import (
 )
 
 type CmsPaymentGatewayCollections struct {
-	Id               uint64    `xorm:"pk autoincr unique UNSIGNED BIGINT" json:"id,omitempty" xml:"id"`
+	Id               uint64    `xorm:"pk autoincr unique(gateway_col_unq) UNSIGNED BIGINT" json:"id,omitempty" xml:"id"`
 	Agent            string    `xorm:"unique(gateway_col_unq) VARCHAR(50)" json:"agent,omitempty" xml:"agent"`
 	CollectionName   string    `xorm:"VARCHAR(50)" json:"collectionName,omitempty" xml:"collectionName"`
 	CollectionId     string    `xorm:"unique(gateway_col_unq) VARCHAR(50)" json:"collectionId,omitempty" xml:"collectionId"`

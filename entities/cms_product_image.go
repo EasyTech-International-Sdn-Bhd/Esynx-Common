@@ -5,7 +5,7 @@ import (
 )
 
 type CmsProductImage struct {
-	ProductImageId          uint64    `xorm:"pk autoincr unique UNSIGNED BIGINT" json:"productImageId,omitempty" xml:"productImageId"`
+	ProductImageId          uint64    `xorm:"pk autoincr unique(unique_key) UNSIGNED BIGINT" json:"productImageId,omitempty" xml:"productImageId"`
 	ProductId               int       `xorm:"unique(unique_key) INT" json:"productId,omitempty" xml:"productId"`
 	ImageUrl                string    `xorm:"unique(unique_key) VARCHAR(400)" json:"imageUrl,omitempty" xml:"imageUrl"`
 	SequenceNo              int       `xorm:"INT" json:"sequenceNo,omitempty" xml:"sequenceNo"`
