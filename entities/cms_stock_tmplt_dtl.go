@@ -5,12 +5,12 @@ import (
 )
 
 type CmsStockTmpltDtl struct {
-	Id           uint64    `xorm:"pk autoincr unique(unq) UNSIGNED BIGINT" json:"id,omitempty" xml:"id"`
-	TmpltId      int       `xorm:"not null unique(unq) unique(unq_key) INT" json:"tmpltId,omitempty" xml:"tmpltId"`
-	DtlCode      string    `xorm:"unique(unq) unique(unq_key) VARCHAR(50)" json:"dtlCode,omitempty" xml:"dtlCode"`
+	Id           uint64    `xorm:"pk autoincr UNSIGNED BIGINT" json:"id,omitempty" xml:"id"`
+	TmpltId      int       `xorm:"not null  unique(unq_key) INT" json:"tmpltId,omitempty" xml:"tmpltId"`
+	DtlCode      string    `xorm:" unique(unq_key) VARCHAR(50)" json:"dtlCode,omitempty" xml:"dtlCode"`
 	DtlName      string    `xorm:"VARCHAR(150)" json:"dtlName,omitempty" xml:"dtlName"`
-	DtlType      string    `xorm:"comment('PACKAGE/ITEM/CATEGORY') unique(unq) unique(unq_key) VARCHAR(50)" json:"dtlType,omitempty" xml:"dtlType"`
-	ActiveStatus int       `xorm:"default 1 unique(unq) unique(unq_key) INT" json:"activeStatus,omitempty" xml:"activeStatus"`
+	DtlType      string    `xorm:"comment('PACKAGE/ITEM/CATEGORY')  unique(unq_key) VARCHAR(50)" json:"dtlType,omitempty" xml:"dtlType"`
+	ActiveStatus int       `xorm:"default 1  unique(unq_key) INT" json:"activeStatus,omitempty" xml:"activeStatus"`
 	UpdatedBy    string    `xorm:"VARCHAR(50)" json:"updatedBy,omitempty" xml:"updatedBy"`
 	UpdatedAt    time.Time `xorm:"default CURRENT_TIMESTAMP DATETIME" json:"updatedAt,omitempty" xml:"updatedAt"`
 }

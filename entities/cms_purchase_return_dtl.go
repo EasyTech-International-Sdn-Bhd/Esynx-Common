@@ -5,7 +5,7 @@ import (
 )
 
 type CmsPurchaseReturnDtl struct {
-	Id                  uint64    `xorm:"pk autoincr unique(unique_key) UNSIGNED BIGINT" json:"id,omitempty" xml:"id"`
+	Id                  uint64    `xorm:"pk autoincr UNSIGNED BIGINT" json:"id,omitempty" xml:"id"`
 	PrId                string    `xorm:"comment('this reference is unique and link to order table. it cannot use order id because the order are sending from different ipad, the order id which is generated from ipad might be the same when reach to CMS.') unique(unique_key) VARCHAR(20)" json:"prId,omitempty" xml:"prId"`
 	DeviceItemId        int       `xorm:"default 0 unique(unique_key) INT" json:"deviceItemId,omitempty" xml:"deviceItemId"`
 	ProductCode         string    `xorm:"unique(unique_key) VARCHAR(50)" json:"productCode,omitempty" xml:"productCode"`

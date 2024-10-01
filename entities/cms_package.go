@@ -5,8 +5,8 @@ import (
 )
 
 type CmsPackage struct {
-	PkgId            uint64    `xorm:"pk autoincr unique(idx) UNSIGNED BIGINT" json:"pkgId,omitempty" xml:"pkgId"`
-	PkgCode          string    `xorm:"not null default '' index unique(idx) VARCHAR(80)" json:"pkgCode,omitempty" xml:"pkgCode"`
+	PkgId            uint64    `xorm:"pk autoincr UNSIGNED BIGINT" json:"pkgId,omitempty" xml:"pkgId"`
+	PkgCode          string    `xorm:"not null default '' index unique 'idx' VARCHAR(80)" json:"pkgCode,omitempty" xml:"pkgCode"`
 	PkgName          string    `xorm:"default '' VARCHAR(100)" json:"pkgName,omitempty" xml:"pkgName"`
 	PkgDesc          string    `xorm:"default '' VARCHAR(200)" json:"pkgDesc,omitempty" xml:"pkgDesc"`
 	PkgExpiryDate    time.Time `xorm:"DATETIME" json:"pkgExpiryDate,omitempty" xml:"pkgExpiryDate"`

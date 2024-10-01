@@ -5,7 +5,7 @@ import (
 )
 
 type CmsCustomerAgent struct {
-	Id           uint64    `xorm:"pk autoincr unique(unique_customer) UNSIGNED BIGINT" json:"id,omitempty" xml:"id"`
+	Id           uint64    `xorm:"pk autoincr UNSIGNED BIGINT" json:"id,omitempty" xml:"id"`
 	AgentCode    string    `xorm:"unique(unique_customer) VARCHAR(20)" json:"agentCode,omitempty" xml:"agentCode"`
 	CustCode     string    `xorm:"unique(unique_customer) VARCHAR(40)" json:"custCode,omitempty" xml:"custCode"`
 	ActiveStatus int       `xorm:"default 1 INT" json:"activeStatus,omitempty" xml:"activeStatus"`

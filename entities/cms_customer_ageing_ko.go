@@ -5,7 +5,7 @@ import (
 )
 
 type CmsCustomerAgeingKo struct {
-	Id           uint64    `xorm:"pk autoincr unique(unq) UNSIGNED BIGINT" json:"id,omitempty" xml:"id"`
+	Id           uint64    `xorm:"pk autoincr UNSIGNED BIGINT" json:"id,omitempty" xml:"id"`
 	DocDate      time.Time `xorm:"DATETIME" json:"docDate,omitempty" xml:"docDate"`
 	DocCode      string    `xorm:"not null unique(unq) index VARCHAR(100)" json:"docCode,omitempty" xml:"docCode"`
 	DocKoRef     string    `xorm:"not null unique(unq) index VARCHAR(100)" json:"docKoRef,omitempty" xml:"docKoRef"`

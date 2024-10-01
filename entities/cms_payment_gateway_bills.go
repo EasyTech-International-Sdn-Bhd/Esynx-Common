@@ -5,7 +5,7 @@ import (
 )
 
 type CmsPaymentGatewayBills struct {
-	Id              uint64    `xorm:"pk autoincr unique(cms_payment_gateway_bills_unq) UNSIGNED BIGINT" json:"id,omitempty" xml:"id"`
+	Id              uint64    `xorm:"pk autoincr UNSIGNED BIGINT" json:"id,omitempty" xml:"id"`
 	CollectionId    string    `xorm:"unique(cms_payment_gateway_bills_unq) VARCHAR(50)" json:"collectionId,omitempty" xml:"collectionId"`
 	BillId          string    `xorm:"unique(cms_payment_gateway_bills_unq) VARCHAR(50)" json:"billId,omitempty" xml:"billId"`
 	BillTempRef     string    `xorm:"unique(cms_payment_gateway_bills_unq) VARCHAR(50)" json:"billTempRef,omitempty" xml:"billTempRef"`

@@ -5,9 +5,9 @@ import (
 )
 
 type CmsProductPrice struct {
-	ProductPriceId uint64    `xorm:"pk autoincr unique(unique) UNSIGNED BIGINT" json:"productPriceId,omitempty" xml:"productPriceId"`
-	ProductCode    string    `xorm:"unique(unique) VARCHAR(100) index" json:"productCode,omitempty" xml:"productCode"`
-	PriceCat       string    `xorm:"unique(unique) VARCHAR(50)" json:"priceCat,omitempty" xml:"priceCat"`
+	ProductPriceId uint64    `xorm:"pk autoincr UNSIGNED BIGINT" json:"productPriceId,omitempty" xml:"productPriceId"`
+	ProductCode    string    `xorm:"unique(xunique) VARCHAR(100) index" json:"productCode,omitempty" xml:"productCode"`
+	PriceCat       string    `xorm:"unique(xunique) VARCHAR(50)" json:"priceCat,omitempty" xml:"priceCat"`
 	CustCode       string    `xorm:"VARCHAR(30) index" json:"custCode,omitempty" xml:"custCode"`
 	ProductPrice   float64   `xorm:"default 0 DOUBLE" json:"productPrice,omitempty" xml:"productPrice"`
 	Disc1          float64   `xorm:"default 0 DOUBLE" json:"disc1,omitempty" xml:"disc1"`
