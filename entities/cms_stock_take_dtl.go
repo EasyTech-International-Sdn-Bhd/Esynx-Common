@@ -1,7 +1,7 @@
 package entities
 
 type CmsStockTakeDtl struct {
-	Id                uint64  `xorm:"pk autoincr unique UNSIGNED BIGINT" json:"id,omitempty" xml:"id"`
+	Id                uint64  `xorm:"pk autoincr UNSIGNED BIGINT" json:"id,omitempty" xml:"id"`
 	StId              int     `xorm:"not null unique(unq) INT" json:"stId,omitempty" xml:"stId"`
 	ProductCode       string  `xorm:"not null unique(unq) VARCHAR(200)" json:"productCode,omitempty" xml:"productCode"`
 	ProductName       string  `xorm:"not null VARCHAR(200)" json:"productName,omitempty" xml:"productName"`

@@ -5,7 +5,7 @@ import (
 )
 
 type CmsCustomer struct {
-	CustId             uint64    `xorm:"pk autoincr unique UNSIGNED BIGINT" json:"custId,omitempty" xml:"custId"`
+	CustId             uint64    `xorm:"pk autoincr UNSIGNED BIGINT" json:"custId,omitempty" xml:"custId"`
 	CreatedDate        time.Time `xorm:"default CURRENT_TIMESTAMP TIMESTAMP" json:"createdDate,omitempty" xml:"createdDate"`
 	CustCode           string    `xorm:"unique(cust_code) index VARCHAR(40)" json:"custCode,omitempty" xml:"custCode"`
 	CustCompanyName    string    `xorm:"VARCHAR(200)" json:"custCompanyName,omitempty" xml:"custCompanyName"`

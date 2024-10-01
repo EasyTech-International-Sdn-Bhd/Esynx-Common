@@ -5,7 +5,7 @@ import (
 )
 
 type CmsDo struct {
-	DoId              uint64    `xorm:"pk autoincr unique UNSIGNED BIGINT" json:"doId,omitempty" xml:"doId"`
+	DoId              uint64    `xorm:"pk autoincr UNSIGNED BIGINT" json:"doId,omitempty" xml:"doId"`
 	DoCode            string    `xorm:"not null default '' unique(do_code) VARCHAR(40) index" json:"doCode,omitempty" xml:"doCode"`
 	CustCode          string    `xorm:"not null VARCHAR(20) index" json:"custCode,omitempty" xml:"custCode"`
 	DoDate            time.Time `xorm:"not null DATETIME" json:"doDate,omitempty" xml:"doDate"`

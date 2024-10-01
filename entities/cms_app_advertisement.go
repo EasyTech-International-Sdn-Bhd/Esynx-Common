@@ -5,7 +5,7 @@ import (
 )
 
 type CmsAppAdvertisement struct {
-	Id           uint64    `xorm:"pk autoincr unique UNSIGNED BIGINT" json:"id,omitempty" xml:"id"`
+	Id           uint64    `xorm:"pk autoincr UNSIGNED BIGINT" json:"id,omitempty" xml:"id"`
 	AdverCode    string    `xorm:"default '' unique VARCHAR(50)" json:"adverCode,omitempty" xml:"adverCode"`
 	AdverName    string    `xorm:"not null VARCHAR(50)" json:"adverName,omitempty" xml:"adverName"`
 	AdverLink    string    `xorm:"not null VARCHAR(255)" json:"adverLink,omitempty" xml:"adverLink"`

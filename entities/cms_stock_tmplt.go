@@ -5,7 +5,7 @@ import (
 )
 
 type CmsStockTmplt struct {
-	Id           uint64    `xorm:"pk autoincr unique UNSIGNED BIGINT" json:"id,omitempty" xml:"id"`
+	Id           uint64    `xorm:"pk autoincr UNSIGNED BIGINT" json:"id,omitempty" xml:"id"`
 	TmpltName    string    `xorm:"VARCHAR(200)" json:"tmpltName,omitempty" xml:"tmpltName"`
 	ActiveStatus int       `xorm:"default 1 INT" json:"activeStatus,omitempty" xml:"activeStatus"`
 	CreatedAt    time.Time `xorm:"DATETIME" json:"createdAt,omitempty" xml:"createdAt"`

@@ -5,7 +5,7 @@ import (
 )
 
 type CmsStockTmpltBind struct {
-	Id           uint64    `xorm:"pk autoincr unique UNSIGNED BIGINT" json:"id,omitempty" xml:"id"`
+	Id           uint64    `xorm:"pk autoincr UNSIGNED BIGINT" json:"id,omitempty" xml:"id"`
 	TmpltId      int       `xorm:"not null unique(unq_key) INT" json:"tmpltId,omitempty" xml:"tmpltId"`
 	CustCode     string    `xorm:"not null unique(unq_key) VARCHAR(50)" json:"custCode,omitempty" xml:"custCode"`
 	AgentCode    string    `xorm:"default 0 unique(unq_key) VARCHAR(20)" json:"agentCode,omitempty" xml:"agentCode"`

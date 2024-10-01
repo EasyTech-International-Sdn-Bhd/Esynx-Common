@@ -5,7 +5,7 @@ import (
 )
 
 type CmsPackageDtl struct {
-	DtlId            uint64    `xorm:"pk autoincr unique UNSIGNED BIGINT" json:"dtlId,omitempty" xml:"dtlId"`
+	DtlId            uint64    `xorm:"pk autoincr UNSIGNED BIGINT" json:"dtlId,omitempty" xml:"dtlId"`
 	DtlParent        string    `xorm:"not null default '' index(dtl_idx) unique(dtl_unique) VARCHAR(100)" json:"dtlParent,omitempty" xml:"dtlParent"`
 	DtlCode          string    `xorm:"not null default '' index(dtl_idx) unique(dtl_unique) VARCHAR(100)" json:"dtlCode,omitempty" xml:"dtlCode"`
 	DtlName          string    `xorm:"default '' VARCHAR(100)" json:"dtlName,omitempty" xml:"dtlName"`

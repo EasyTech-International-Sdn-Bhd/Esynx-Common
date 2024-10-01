@@ -5,7 +5,7 @@ import (
 )
 
 type CmsStockTmpltDtl struct {
-	Id           uint64    `xorm:"pk autoincr unique UNSIGNED BIGINT" json:"id,omitempty" xml:"id"`
+	Id           uint64    `xorm:"pk autoincr UNSIGNED BIGINT" json:"id,omitempty" xml:"id"`
 	TmpltId      int       `xorm:"not null unique(unq) unique(unq_key) INT" json:"tmpltId,omitempty" xml:"tmpltId"`
 	DtlCode      string    `xorm:"unique(unq) unique(unq_key) VARCHAR(50)" json:"dtlCode,omitempty" xml:"dtlCode"`
 	DtlName      string    `xorm:"VARCHAR(150)" json:"dtlName,omitempty" xml:"dtlName"`

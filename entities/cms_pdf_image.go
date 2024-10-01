@@ -1,7 +1,7 @@
 package entities
 
 type CmsPdfImage struct {
-	Id                 uint64 `xorm:"pk autoincr unique UNSIGNED BIGINT" json:"id,omitempty" xml:"id"`
+	Id                 uint64 `xorm:"pk autoincr UNSIGNED BIGINT" json:"id,omitempty" xml:"id"`
 	PdfHeader          string `xorm:"not null VARCHAR(200)" json:"pdfHeader,omitempty" xml:"pdfHeader"`
 	PdfFooter          string `xorm:"not null VARCHAR(200)" json:"pdfFooter,omitempty" xml:"pdfFooter"`
 	PdfContent         []byte `xorm:"BLOB" json:"pdfContent,omitempty" xml:"pdfContent"`
