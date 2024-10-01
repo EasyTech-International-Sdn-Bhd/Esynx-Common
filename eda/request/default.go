@@ -10,8 +10,6 @@ const (
 	EDADataTypeInvoiceDetails    EdaDataType = "InvoiceDetails"
 	EDADataTypeDebitNote         EdaDataType = "DebitNote"
 	EDADataTypeDebitNoteDetails  EdaDataType = "DebitNoteDetails"
-	EDADataTypeCashSales         EdaDataType = "CashSales"
-	EDADataTypeCashSalesDetails  EdaDataType = "CashSalesDetails"
 	EDADataTypeDebtor            EdaDataType = "Debtor"
 	EDADataTypeDebtorBranch      EdaDataType = "DebtorBranch"
 )
