@@ -36,7 +36,6 @@ func NewGcpConsumer(ctx context.Context, clientId, projectId string, handlerType
 
 func (c *GcpConsumer) Create(subscriberConfig []SubscriberConfig) (map[events.EDARoutes]IEventDrivenMessageHandler, error) {
 	handlers := make(map[events.EDARoutes]IEventDrivenMessageHandler)
-
 	for _, subscriber := range subscriberConfig {
 		subId := strings.ToLower(fmt.Sprintf("sub.%s.%s.%s", c.clientId, subscriber.Name, c.handlerType.String()))
 		subscription := c.client.SubscriptionInProject(subId, c.projectId)

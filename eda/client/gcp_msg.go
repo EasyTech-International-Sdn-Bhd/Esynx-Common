@@ -21,6 +21,8 @@ func NewGcpMessageHandler(sub *pubsub.Subscription) *GcpMessageHandler {
 }
 
 func (m *GcpMessageHandler) Consume(c context.Context, ch chan<- *MessageEDA) error {
+	m.sub.ReceiveSettings.MaxOutstandingMessages = -1
+	m.sub.ReceiveSettings.MaxOutstandingBytes = -1
 	return m.sub.Receive(c, func(ctx context.Context, msg *pubsub.Message) {
 		newMsg := &MessageEDA{
 			Data:       msg.Data,
