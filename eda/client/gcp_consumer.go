@@ -15,28 +15,30 @@ type SubscriberConfig struct {
 }
 
 type GcpConsumer struct {
-	ctx       context.Context
-	client    *pubsub.Client
-	clientId  string
-	projectId string
-	topic     *pubsub.Topic
+	ctx         context.Context
+	handlerType HandlerType
+	client      *pubsub.Client
+	clientId    string
+	projectId   string
+	topic       *pubsub.Topic
 }
 
-func NewGcpConsumer(ctx context.Context, clientId, projectId string, client *pubsub.Client, topic *pubsub.Topic) *GcpConsumer {
+func NewGcpConsumer(ctx context.Context, clientId, projectId string, handlerType HandlerType, client *pubsub.Client, topic *pubsub.Topic) *GcpConsumer {
 	return &GcpConsumer{
-		ctx:       ctx,
-		client:    client,
-		clientId:  clientId,
-		projectId: projectId,
-		topic:     topic,
+		ctx:         ctx,
+		client:      client,
+		clientId:    clientId,
+		projectId:   projectId,
+		topic:       topic,
+		handlerType: handlerType,
 	}
 }
 
-func (c *GcpConsumer) Create(handlerType HandlerType, subscriberConfig []SubscriberConfig) (map[events.EDARoutes]IEventDrivenMessageHandler, error) {
+func (c *GcpConsumer) Create(subscriberConfig []SubscriberConfig) (map[events.EDARoutes]IEventDrivenMessageHandler, error) {
 	handlers := make(map[events.EDARoutes]IEventDrivenMessageHandler)
 
 	for _, subscriber := range subscriberConfig {
-		subId := strings.ToLower(fmt.Sprintf("sub.%s.%s.%s", c.clientId, subscriber.Name, handlerType.String()))
+		subId := strings.ToLower(fmt.Sprintf("sub.%s.%s.%s", c.clientId, subscriber.Name, c.handlerType.String()))
 		subscription := c.client.SubscriptionInProject(subId, c.projectId)
 		exists, err := subscription.Exists(c.ctx)
 		if err != nil {

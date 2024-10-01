@@ -24,7 +24,7 @@ type IEventDrivenMessageProducer interface {
 }
 
 type IEventDrivenMessageConsumer interface {
-	Create(handlerType HandlerType, subscribers []SubscriberConfig) (map[events.EDARoutes]IEventDrivenMessageHandler, error)
+	Create(subscribers []SubscriberConfig) (map[events.EDARoutes]IEventDrivenMessageHandler, error)
 }
 
 type IEventDrivenMessageHandler interface {

@@ -72,7 +72,7 @@ func (b *GcpBroker) GetConsumer(clientId string, ht HandlerType) (IEventDrivenMe
 	if err != nil {
 		return nil, err
 	}
-	return NewGcpConsumer(b.ctx, clientId, b.projectId, b.client, topic), nil
+	return NewGcpConsumer(b.ctx, clientId, b.projectId, ht, b.client, topic), nil
 }
 
 func (b *GcpBroker) getOrCreateTopic(clientId, topicId string, ht HandlerType) (*pubsub.Topic, error) {
