@@ -3,6 +3,7 @@ package client
 import (
 	"cloud.google.com/go/pubsub"
 	"context"
+	"time"
 )
 
 type MessageEDA struct {
@@ -23,6 +24,7 @@ func NewGcpMessageHandler(sub *pubsub.Subscription) *GcpMessageHandler {
 func (m *GcpMessageHandler) Consume(c context.Context, ch chan<- *MessageEDA) error {
 	m.sub.ReceiveSettings.MaxOutstandingMessages = -1
 	m.sub.ReceiveSettings.MaxOutstandingBytes = -1
+	m.sub.ReceiveSettings.MaxExtensionPeriod = time.Second * 10
 	return m.sub.Receive(c, func(ctx context.Context, msg *pubsub.Message) {
 		newMsg := &MessageEDA{
 			Data:       msg.Data,
