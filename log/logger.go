@@ -17,6 +17,6 @@ type IServerSideLogStorage interface {
 	LogTaskConsumed(taskId, consumer string)
 	LogTaskFinished(taskId, result, consumer string)
 	LogServerLog(serverId, payload, level string)
-	LogFailedPayload(clientId, recordType, serviceName, dataType, recordBody, userCode, appName string)
+	LogFailedPayload(clientId, operationType, serviceName, dataType, recordBody, userCode, appName string)
 	CloseLogStorage()
 }

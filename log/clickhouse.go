@@ -173,19 +173,19 @@ func (s *ClickHouseLogStorage) LogServerLog(serverId, payload, level string) {
 	}
 }
 
-func (s *ClickHouseLogStorage) LogFailedPayload(clientId, recordType, serviceName, dataType, recordBody, userCode, appName string) {
+func (s *ClickHouseLogStorage) LogFailedPayload(clientId, operationType, serviceName, dataType, recordBody, userCode, appName string) {
 	if s.isConnected() != nil {
 		return
 	}
 
-	insert := "INSERT INTO failed_payload (ClientId, RecordType, ServiceName, DataType, RecordBody, UserCode, AppName) VALUES (?,?,?,?,?,?,?)"
+	insert := "INSERT INTO failed_payload (ClientId, OperationType, ServiceName, DataType, RecordBody, UserCode, AppName) VALUES (?,?,?,?,?,?,?)"
 	stmt, err := s.conn.Prepare(insert)
 	if err != nil {
 		fmt.Printf("error preparing statement %s\n", err.Error())
 		return
 	}
 	defer stmt.Close()
-	_, err = stmt.Exec(clientId, recordType, serviceName, dataType, recordBody, userCode, appName)
+	_, err = stmt.Exec(clientId, operationType, serviceName, dataType, recordBody, userCode, appName)
 	if err != nil {
 		fmt.Printf("clickhouse error failed payload %s\n", err)
 	}
