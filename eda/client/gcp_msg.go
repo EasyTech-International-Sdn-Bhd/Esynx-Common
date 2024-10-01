@@ -20,8 +20,8 @@ func NewGcpMessageHandler(sub *pubsub.Subscription) *GcpMessageHandler {
 	return &GcpMessageHandler{sub: sub}
 }
 
-func (m *GcpMessageHandler) Consume(ctx context.Context, cb func(context.Context, *MessageEDA)) error {
-	return m.sub.Receive(ctx, func(ctx context.Context, msg *pubsub.Message) {
+func (m *GcpMessageHandler) Consume(c context.Context, ch chan<- *MessageEDA) error {
+	return m.sub.Receive(c, func(ctx context.Context, msg *pubsub.Message) {
 		newMsg := &MessageEDA{
 			Data:       msg.Data,
 			Attributes: msg.Attributes,
@@ -32,7 +32,7 @@ func (m *GcpMessageHandler) Consume(ctx context.Context, cb func(context.Context
 				msg.Nack()
 			},
 		}
-		cb(ctx, newMsg)
+		ch <- newMsg
 	})
 }
 
