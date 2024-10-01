@@ -6,7 +6,7 @@ import (
 
 type CmsPaymentDetail struct {
 	PaymentDetailId     uint64    `xorm:"pk autoincr UNSIGNED BIGINT" json:"paymentDetailId,omitempty" xml:"paymentDetailId"`
-	PaymentId           string    `xorm:"unique 'id' VARCHAR(50) index" json:"paymentId,omitempty" xml:"paymentId"`
+	PaymentId           string    `xorm:"unique VARCHAR(50) index" json:"paymentId,omitempty" xml:"paymentId"`
 	MobileDetailId      int       `xorm:"INT" json:"mobileDetailId,omitempty" xml:"mobileDetailId"`
 	PaymentMethod       string    `xorm:"VARCHAR(50)" json:"paymentMethod,omitempty" xml:"paymentMethod"`
 	PaymentBy           string    `xorm:"VARCHAR(50)" json:"paymentBy,omitempty" xml:"paymentBy"`

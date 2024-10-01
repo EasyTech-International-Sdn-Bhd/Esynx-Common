@@ -6,7 +6,7 @@ import (
 
 type CmsProductGroup struct {
 	Id           uint64    `xorm:"pk autoincr UNSIGNED BIGINT" json:"id,omitempty" xml:"id"`
-	Name         string    `xorm:"unique 'grp' VARCHAR(100)" json:"name,omitempty" xml:"name"`
+	Name         string    `xorm:"unique VARCHAR(100)" json:"name,omitempty" xml:"name"`
 	Description  string    `xorm:"BLOB" json:"description,omitempty" xml:"description"`
 	ProductCode  string    `xorm:"VARCHAR(250)" json:"productCode,omitempty" xml:"productCode"`
 	DateCreated  time.Time `xorm:"default CURRENT_TIMESTAMP TIMESTAMP" json:"dateCreated,omitempty" xml:"dateCreated"`

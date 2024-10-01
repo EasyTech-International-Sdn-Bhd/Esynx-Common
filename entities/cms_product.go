@@ -8,7 +8,7 @@ type CmsProduct struct {
 	ProductId                uint64    `xorm:"pk autoincr UNSIGNED BIGINT" json:"productId,omitempty" xml:"productId"`
 	CategoryId               int       `xorm:"default 0 comment('0 means roof.') index INT" json:"categoryId,omitempty" xml:"categoryId"`
 	Productidentifierid      string    `xorm:"not null default '' VARCHAR(20)" json:"productidentifierid,omitempty" xml:"productidentifierid"`
-	ProductCode              string    `xorm:"unique 'id' VARCHAR(100) index" json:"productCode,omitempty" xml:"productCode"`
+	ProductCode              string    `xorm:"unique VARCHAR(100) index" json:"productCode,omitempty" xml:"productCode"`
 	QrCode                   string    `xorm:"VARCHAR(100)" json:"qrCode,omitempty" xml:"qrCode"`
 	ProductName              string    `xorm:"VARCHAR(200)" json:"productName,omitempty" xml:"productName"`
 	ProductDesc              string    `xorm:"comment('the product desc is the THML tag format') BLOB" json:"productDesc,omitempty" xml:"productDesc"`

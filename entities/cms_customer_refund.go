@@ -6,7 +6,7 @@ import (
 
 type CmsCustomerRefund struct {
 	CfId             uint64    `xorm:"pk autoincr UNSIGNED BIGINT" json:"cfId,omitempty" xml:"cfId"`
-	CfCode           string    `xorm:"index unique 'cfCode' VARCHAR(20)" json:"cfCode,omitempty" xml:"cfCode"`
+	CfCode           string    `xorm:"index unique VARCHAR(20)" json:"cfCode,omitempty" xml:"cfCode"`
 	CustCode         string    `xorm:"index VARCHAR(20)" json:"custCode,omitempty" xml:"custCode"`
 	CfDate           time.Time `xorm:"TIMESTAMP" json:"cfDate,omitempty" xml:"cfDate"`
 	CfAmount         float64   `xorm:"DOUBLE" json:"cfAmount,omitempty" xml:"cfAmount"`

@@ -6,7 +6,7 @@ import (
 
 type CmsUserUploads struct {
 	Id         uint64    `xorm:"pk autoincr UNSIGNED BIGINT" json:"id,omitempty" xml:"id"`
-	Image      string    `xorm:"not null unique 'unx' VARCHAR(200)" json:"image,omitempty" xml:"image"`
+	Image      string    `xorm:"not null unique VARCHAR(150)" json:"image,omitempty" xml:"image"`
 	TypeName   string    `xorm:"not null comment('module name from cms_module_camera') VARCHAR(200)" json:"typeName,omitempty" xml:"typeName"`
 	Remark     string    `xorm:"VARCHAR(200)" json:"uploadRemark,omitempty" xml:"uploadRemark"`
 	Status     int       `xorm:"not null default 1 comment('1 - not deleted 0 - deleted') INT" json:"status,omitempty" xml:"status"`

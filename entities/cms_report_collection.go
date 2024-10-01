@@ -6,7 +6,7 @@ import (
 
 type CmsReportCollection struct {
 	Id           uint64    `xorm:"pk autoincr UNSIGNED BIGINT" json:"id,omitempty" xml:"id"`
-	UniqueId     string    `xorm:"not null unique 'unx' VARCHAR(30)" json:"uniqueId,omitempty" xml:"uniqueId"`
+	UniqueId     string    `xorm:"not null unique VARCHAR(30)" json:"uniqueId,omitempty" xml:"uniqueId"`
 	Data         string    `xorm:"JSON" json:"data,omitempty" xml:"data"`
 	ActiveStatus int       `xorm:"not null default 1 INT" json:"activeStatus,omitempty" xml:"activeStatus"`
 	UpdatedAt    time.Time `xorm:"default CURRENT_TIMESTAMP DATETIME" json:"updatedAt,omitempty" xml:"updatedAt"`

@@ -6,7 +6,7 @@ import (
 
 type CmsStockAdjustment struct {
 	Id                   uint64    `xorm:"pk autoincr UNSIGNED BIGINT" json:"id,omitempty" xml:"id"`
-	AdjId                string    `xorm:"not null unique 'unx' VARCHAR(25)" json:"adjId,omitempty" xml:"adjId"`
+	AdjId                string    `xorm:"not null unique VARCHAR(25)" json:"adjId,omitempty" xml:"adjId"`
 	AdjDate              time.Time `xorm:"DATE" json:"adjDate,omitempty" xml:"adjDate"`
 	AdjDescription       string    `xorm:"VARCHAR(255)" json:"adjDescription,omitempty" xml:"adjDescription"`
 	AdjNote              []byte    `xorm:"BLOB" json:"adjNote,omitempty" xml:"adjNote"`

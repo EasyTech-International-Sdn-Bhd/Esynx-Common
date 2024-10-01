@@ -6,7 +6,7 @@ import (
 
 type CmsProductBrand struct {
 	BrandId       uint64    `xorm:"pk autoincr UNSIGNED BIGINT" json:"brandId,omitempty" xml:"brandId"`
-	BrandCode     string    `xorm:"not null unique 'pbrand' VARCHAR(20)" json:"brandCode,omitempty" xml:"brandCode"`
+	BrandCode     string    `xorm:"not null unique VARCHAR(20)" json:"brandCode,omitempty" xml:"brandCode"`
 	BrandName     string    `xorm:"VARCHAR(400)" json:"brandName,omitempty" xml:"brandName"`
 	ParentBrandId int       `xorm:"default 0 INT" json:"parentBrandId,omitempty" xml:"parentBrandId"`
 	SequenceNo    int       `xorm:"INT" json:"sequenceNo,omitempty" xml:"sequenceNo"`
