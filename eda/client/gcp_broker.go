@@ -123,7 +123,7 @@ func (b *GcpBroker) getOrCreateTopic(clientId, topicId string, ht HandlerType) (
 	if !exists {
 		_, err = b.client.CreateSubscription(b.ctx, subId, pubsub.SubscriptionConfig{
 			Topic:                 topic,
-			AckDeadline:           600 * time.Second,
+			AckDeadline:           60 * time.Second,
 			EnableMessageOrdering: true,
 		})
 		if err != nil {
