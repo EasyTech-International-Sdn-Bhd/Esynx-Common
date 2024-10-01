@@ -46,11 +46,10 @@ func (c *GcpConsumer) Create(subscriberConfig []SubscriberConfig) (map[events.ED
 		}
 		if !exists {
 			subscription, err = c.client.CreateSubscription(c.ctx, subId, pubsub.SubscriptionConfig{
-				Topic:                     c.topic,
-				AckDeadline:               10 * time.Minute,
-				EnableMessageOrdering:     true,
-				EnableExactlyOnceDelivery: true,
-				Filter:                    subscriber.Filter,
+				Topic:                 c.topic,
+				AckDeadline:           10 * time.Minute,
+				EnableMessageOrdering: true,
+				Filter:                subscriber.Filter,
 			})
 			if err != nil {
 				return nil, err
