@@ -29,4 +29,5 @@ type IEventDrivenMessageConsumer interface {
 
 type IEventDrivenMessageHandler interface {
 	Consume(context.Context, func(context.Context, *MessageEDA)) error
+	UnderlyingEngine() interface{}
 }

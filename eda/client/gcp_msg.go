@@ -35,3 +35,7 @@ func (m *GcpMessageHandler) Consume(ctx context.Context, cb func(context.Context
 		cb(ctx, newMsg)
 	})
 }
+
+func (m *GcpMessageHandler) UnderlyingEngine() interface{} {
+	return m.sub
+}
