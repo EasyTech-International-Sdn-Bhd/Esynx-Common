@@ -23,8 +23,8 @@ type CmsDebitNoteForm struct {
 
 type CmsDebitNoteDetailsForm struct {
 	DnCode       string  `xorm:"VARCHAR(100)" json:"dnCode,omitempty" xml:"dnCode" validate:"trim"`
-	ItemCode     string  `xorm:"VARCHAR(200)" json:"itemCode,omitempty" xml:"itemCode" validate:"trim"`
-	ItemName     string  `xorm:"VARCHAR(200)" json:"itemName,omitempty" xml:"itemName" validate:"trim"`
+	ItemCode     string  `xorm:"VARCHAR(80)" json:"itemCode,omitempty" xml:"itemCode" validate:"trim"`
+	ItemName     string  `xorm:"VARCHAR(250)" json:"itemName,omitempty" xml:"itemName" validate:"trim"`
 	ItemPrice    float64 `xorm:"default 0 DOUBLE" json:"itemPrice,omitempty" xml:"itemPrice"`
 	Quantity     float64 `xorm:"default 0 DOUBLE" json:"quantity,omitempty" xml:"quantity"`
 	TotalPrice   float64 `xorm:"default 0 DOUBLE" json:"totalPrice,omitempty" xml:"totalPrice"`

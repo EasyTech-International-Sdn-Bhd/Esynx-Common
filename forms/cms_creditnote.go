@@ -23,8 +23,8 @@ type CmsCreditNoteForm struct {
 
 type CmsCreditNoteDetailsForm struct {
 	CnCode       string  `xorm:"unique(cn_code) VARCHAR(100)" json:"cnCode,omitempty" xml:"cnCode" validate:"trim"`
-	ItemCode     string  `xorm:"unique(cn_code) VARCHAR(200)" json:"itemCode,omitempty" xml:"itemCode" validate:"trim"`
-	ItemName     string  `xorm:"VARCHAR(200)" json:"itemName,omitempty" xml:"itemName" validate:"trim"`
+	ItemCode     string  `xorm:"unique(cn_code) VARCHAR(80)" json:"itemCode,omitempty" xml:"itemCode" validate:"trim"`
+	ItemName     string  `xorm:"VARCHAR(250)" json:"itemName,omitempty" xml:"itemName" validate:"trim"`
 	ItemPrice    float64 `xorm:"VARCHAR(200)" json:"itemPrice,omitempty" xml:"itemPrice" validate:"trim"`
 	Quantity     float64 `xorm:"default 0 DOUBLE" json:"quantity,omitempty" xml:"quantity"`
 	Uom          string  `xorm:"VARCHAR(200)" json:"uom,omitempty" xml:"uom" validate:"trim"`

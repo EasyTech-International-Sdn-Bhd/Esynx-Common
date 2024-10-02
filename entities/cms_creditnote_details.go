@@ -5,8 +5,8 @@ import "time"
 type CmsCreditnoteDetails struct {
 	Id           uint64    `xorm:"pk autoincr UNSIGNED BIGINT" json:"id,omitempty" xml:"id"`
 	CnCode       string    `xorm:"not null unique(cn_code) VARCHAR(40)" json:"cnCode,omitempty" xml:"cnCode"`
-	ItemCode     string    `xorm:"not null VARCHAR(200)" json:"itemCode,omitempty" xml:"itemCode"`
-	ItemName     string    `xorm:"not null VARCHAR(200)" json:"itemName,omitempty" xml:"itemName"`
+	ItemCode     string    `xorm:"not null VARCHAR(80)" json:"itemCode,omitempty" xml:"itemCode"`
+	ItemName     string    `xorm:"not null VARCHAR(250)" json:"itemName,omitempty" xml:"itemName"`
 	ItemPrice    float64   `xorm:"default 0 DOUBLE" json:"itemPrice,omitempty" xml:"itemPrice"`
 	Quantity     float64   `xorm:"default 0 DOUBLE" json:"quantity,omitempty" xml:"quantity"`
 	Uom          string    `xorm:"not null VARCHAR(200)" json:"uom,omitempty" xml:"uom"`

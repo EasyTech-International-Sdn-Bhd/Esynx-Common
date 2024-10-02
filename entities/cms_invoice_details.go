@@ -7,8 +7,8 @@ import (
 type CmsInvoiceDetails struct {
 	Id           uint64    `xorm:"pk autoincr UNSIGNED BIGINT" json:"id,omitempty" xml:"id"`
 	InvoiceCode  string    `xorm:"not null unique(invoice_code) VARCHAR(40)" json:"invoiceCode,omitempty" xml:"invoiceCode"`
-	ItemCode     string    `xorm:"not null VARCHAR(40) index" json:"itemCode,omitempty" xml:"itemCode"`
-	ItemName     string    `xorm:"not null VARCHAR(200)" json:"itemName,omitempty" xml:"itemName"`
+	ItemCode     string    `xorm:"not null VARCHAR(80) index" json:"itemCode,omitempty" xml:"itemCode"`
+	ItemName     string    `xorm:"not null VARCHAR(250)" json:"itemName,omitempty" xml:"itemName"`
 	ItemPrice    float64   `xorm:"default 0 DOUBLE" json:"itemPrice,omitempty" xml:"itemPrice"`
 	Quantity     float64   `xorm:"default 0 DOUBLE" json:"quantity,omitempty" xml:"quantity"`
 	TotalPrice   float64   `xorm:"default 0 DOUBLE" json:"totalPrice,omitempty" xml:"totalPrice"`

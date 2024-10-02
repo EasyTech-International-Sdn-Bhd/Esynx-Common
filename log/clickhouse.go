@@ -38,7 +38,7 @@ func initConnection(storageCnf *LogStorageConn) (*sql.DB, error) {
 	}
 	conn.SetMaxOpenConns(10)
 	conn.SetMaxIdleConns(3)
-	conn.SetConnMaxLifetime(time.Minute * 2)
+	conn.SetConnMaxLifetime(time.Minute * 1)
 	if err = conn.Ping(); err != nil {
 		fmt.Printf("error ping clickhouse %s", err.Error())
 		return nil, err

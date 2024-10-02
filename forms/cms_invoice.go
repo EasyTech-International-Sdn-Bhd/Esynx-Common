@@ -23,8 +23,8 @@ type CmsInvoiceForm struct {
 
 type CmsInvoiceDetailsForm struct {
 	InvoiceCode  string  `xorm:"not null unique(invoice_code) VARCHAR(50)" json:"invoiceCode,omitempty" xml:"invoiceCode" validate:"trim"`
-	ItemCode     string  `xorm:"not null VARCHAR(50)" json:"itemCode,omitempty" xml:"itemCode" validate:"trim"`
-	ItemName     string  `xorm:"not null VARCHAR(200)" json:"itemName,omitempty" xml:"itemName" validate:"trim"`
+	ItemCode     string  `xorm:"not null VARCHAR(80)" json:"itemCode,omitempty" xml:"itemCode" validate:"trim"`
+	ItemName     string  `xorm:"not null VARCHAR(250)" json:"itemName,omitempty" xml:"itemName" validate:"trim"`
 	ItemPrice    float64 `xorm:"default 0 DOUBLE" json:"itemPrice,omitempty" xml:"itemPrice"`
 	Quantity     float64 `xorm:"default 0 DOUBLE" json:"quantity,omitempty" xml:"quantity"`
 	TotalPrice   float64 `xorm:"default 0 DOUBLE" json:"totalPrice,omitempty" xml:"totalPrice"`

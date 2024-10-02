@@ -7,8 +7,8 @@ import (
 type CmsDoDetails struct {
 	Id                  uint64    `xorm:"pk autoincr UNSIGNED BIGINT" json:"id,omitempty" xml:"id"`
 	DoCode              string    `xorm:"not null default '' unique(do_code) index VARCHAR(40)" json:"doCode,omitempty" xml:"doCode"`
-	ItemCode            string    `xorm:"not null VARCHAR(20) index" json:"itemCode,omitempty" xml:"itemCode"`
-	ItemName            string    `xorm:"not null VARCHAR(200)" json:"itemName,omitempty" xml:"itemName"`
+	ItemCode            string    `xorm:"not null VARCHAR(80) index" json:"itemCode,omitempty" xml:"itemCode"`
+	ItemName            string    `xorm:"not null VARCHAR(250)" json:"itemName,omitempty" xml:"itemName"`
 	ItemPrice           float64   `xorm:"default 0 DOUBLE" json:"itemPrice,omitempty" xml:"itemPrice"`
 	Quantity            float64   `xorm:"default 0 DOUBLE" json:"quantity,omitempty" xml:"quantity"`
 	TotalPrice          float64   `xorm:"default 0 DOUBLE" json:"totalPrice,omitempty" xml:"totalPrice"`
