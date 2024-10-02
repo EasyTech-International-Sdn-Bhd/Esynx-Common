@@ -5,6 +5,8 @@ import (
 	"fmt"
 	"github.com/easytech-international-sdn-bhd/esynx-common/entities"
 	_ "github.com/mailru/go-clickhouse/v2"
+	"sync"
+	"time"
 )
 
 type ClickHouseLogStorage struct {
@@ -34,6 +36,9 @@ func initConnection(storageCnf *LogStorageConn) (*sql.DB, error) {
 	if err != nil {
 		return nil, err
 	}
+	conn.SetMaxOpenConns(30)
+	conn.SetMaxIdleConns(10)
+	conn.SetConnMaxLifetime(time.Minute * 3)
 	if err = conn.Ping(); err != nil {
 		fmt.Printf("error ping clickhouse %s", err.Error())
 		return nil, err
@@ -64,29 +69,59 @@ func (s *ClickHouseLogStorage) LogAudit(clientId string, data []*entities.AuditL
 	if s.isConnected() != nil {
 		return
 	}
-	insert := "INSERT INTO audit_log (ClientId,OperationType,RecordTable,RecordId,RecordBody,UserCode,AppName) VALUES (?,?,?,?,?,?,?)"
-	stmt, err := s.conn.Prepare(insert)
-	if err != nil {
-		fmt.Printf("error preparing statement %s\n", err.Error())
-		return
-	}
-	defer stmt.Close()
 
-	for _, payload := range data {
-		_, err := stmt.Exec(clientId, payload.OperationType, payload.RecordTable, payload.RecordId, payload.RecordBody, payload.UserCode, payload.AppName)
-		if err != nil {
-			fmt.Printf("clickhouse error inserting audit %s\n", err)
-			return
+	var wg sync.WaitGroup
+	batchSize := 10
+	for i := 0; i < len(data); i += batchSize {
+		end := i + batchSize
+		if end > len(data) {
+			end = len(data)
 		}
+		batch := data[i:end]
+
+		wg.Add(1)
+		go func(batch []*entities.AuditLog) {
+			defer wg.Done()
+			insert := "INSERT INTO audit_log (ClientId,OperationType,RecordTable,RecordId,RecordBody,UserCode,AppName) VALUES (?,?,?,?,?,?,?)"
+			tx, err := s.conn.Begin()
+			if err != nil {
+				fmt.Printf("error beginning transaction %s\n", err.Error())
+				return
+			}
+			stmt, err := tx.Prepare(insert)
+			if err != nil {
+				fmt.Printf("error preparing statement %s\n", err.Error())
+				return
+			}
+			defer stmt.Close()
+
+			for _, payload := range batch {
+				_, err := stmt.Exec(clientId, payload.OperationType, payload.RecordTable, payload.RecordId, payload.RecordBody, payload.UserCode, payload.AppName)
+				if err != nil {
+					fmt.Printf("clickhouse error inserting audit %s\n", err)
+				}
+			}
+			if err := tx.Commit(); err != nil {
+				fmt.Printf("error committing transaction %s\n", err.Error())
+			}
+		}(batch)
 	}
+
+	wg.Wait()
 }
 
 func (s *ClickHouseLogStorage) LogHttpPayload(serverId, clientId, endpoint, payload string) {
 	if s.isConnected() != nil {
 		return
 	}
+
 	insert := "INSERT INTO http_log (ServerId, ClientId, Endpoint, Payload) VALUES (?,?,?,?)"
-	stmt, err := s.conn.Prepare(insert)
+	tx, err := s.conn.Begin()
+	if err != nil {
+		fmt.Printf("error beginning transaction %s\n", err.Error())
+		return
+	}
+	stmt, err := tx.Prepare(insert)
 	if err != nil {
 		fmt.Printf("error preparing statement %s\n", err.Error())
 		return
@@ -96,7 +131,10 @@ func (s *ClickHouseLogStorage) LogHttpPayload(serverId, clientId, endpoint, payl
 	_, err = stmt.Exec(serverId, clientId, endpoint, payload)
 	if err != nil {
 		fmt.Printf("clickhouse error http log %s\n", err)
-		return
+	}
+
+	if err := tx.Commit(); err != nil {
+		fmt.Printf("error committing transaction %s\n", err.Error())
 	}
 }
 
