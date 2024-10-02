@@ -42,9 +42,18 @@ func initConnection(storageCnf *LogStorageConn) (*sql.DB, error) {
 }
 
 func (s *ClickHouseLogStorage) isConnected() error {
+	if s.conn == nil {
+		var err error
+		s.conn, err = initConnection(s.storageCnf)
+		if err != nil {
+			return err
+		}
+		return nil
+	}
 	if err := s.conn.Ping(); err != nil {
 		s.conn, err = initConnection(s.storageCnf)
 		if err != nil {
+			s.conn = nil
 			return err
 		}
 	}
