@@ -18,7 +18,7 @@ type CmsDebitnote struct {
 	ApprovedAt        time.Time `xorm:"DATETIME" json:"approvedAt,omitempty" xml:"approvedAt"`
 	FromDoc           string    `xorm:"default 'SL' ENUM('AR','SL')" json:"fromDoc,omitempty" xml:"fromDoc"`
 	UpdatedAt         time.Time `xorm:"not null default CURRENT_TIMESTAMP TIMESTAMP" json:"updatedAt,omitempty" xml:"updatedAt"`
-	RefNo             string    `xorm:"VARCHAR(80) index unique(unqx)" json:"refNo,omitempty" xml:"refNo"`
+	RefNo             string    `xorm:"VARCHAR(80) index unique" json:"refNo,omitempty" xml:"refNo"`
 	DnUdf             string    `xorm:"JSON" json:"dnUdf,omitempty" xml:"dnUdf"`
 }
 
