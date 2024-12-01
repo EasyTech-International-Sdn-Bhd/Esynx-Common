@@ -146,6 +146,22 @@ func (i *ApiClient) DeleteBulkInvoice(form request.InvoiceBulkDeleteForm) (*Refe
 	return &response, nil
 }
 
+func (i *ApiClient) DeleteInvoiceByQuery(query interface{}) (*ReferenceBasedResponse, error) {
+	var response ReferenceBasedResponse
+	resp, err := i.Reqwest.R().
+		SetBody(query).
+		SetResult(&response).
+		Delete(EndPointInvoiceQuery)
+
+	if err != nil {
+		return nil, fmt.Errorf("request error: %v", err)
+	}
+	if resp.IsError() {
+		return nil, fmt.Errorf("error: %s", resp.Status())
+	}
+	return &response, nil
+}
+
 func (i *ApiClient) QueryInvoice(query interface{}) (*InvoiceResponse, error) {
 	var response InvoiceResponse
 	resp, err := i.Reqwest.R().

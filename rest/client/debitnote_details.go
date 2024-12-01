@@ -146,6 +146,22 @@ func (i *ApiClient) DeleteBulkDebitNoteDetails(form request.DebitNoteDetailsBulk
 	return &response, nil
 }
 
+func (i *ApiClient) DeleteDebitNoteDetailsByQuery(query interface{}) (*ReferenceBasedResponse, error) {
+	var response ReferenceBasedResponse
+	resp, err := i.Reqwest.R().
+		SetBody(query).
+		SetResult(&response).
+		Delete(EndPointDebitNoteDetailsQuery)
+
+	if err != nil {
+		return nil, fmt.Errorf("request error: %v", err)
+	}
+	if resp.IsError() {
+		return nil, fmt.Errorf("error: %s", resp.Status())
+	}
+	return &response, nil
+}
+
 func (i *ApiClient) QueryDebitNoteDetails(query interface{}) (*DebitNoteDetailsResponse, error) {
 	var response DebitNoteDetailsResponse
 	resp, err := i.Reqwest.R().

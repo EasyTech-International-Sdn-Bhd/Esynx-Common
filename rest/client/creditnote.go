@@ -146,6 +146,22 @@ func (i *ApiClient) DeleteBulkCreditNote(form request.CreditNoteBulkDeleteForm) 
 	return &response, nil
 }
 
+func (i *ApiClient) DeleteCreditNoteByQuery(query interface{}) (*ReferenceBasedResponse, error) {
+	var response ReferenceBasedResponse
+	resp, err := i.Reqwest.R().
+		SetBody(query).
+		SetResult(&response).
+		Delete(EndPointCreditNoteQuery)
+
+	if err != nil {
+		return nil, fmt.Errorf("request error: %v", err)
+	}
+	if resp.IsError() {
+		return nil, fmt.Errorf("error: %s", resp.Status())
+	}
+	return &response, nil
+}
+
 func (i *ApiClient) QueryCreditNote(query interface{}) (*CreditNoteResponse, error) {
 	var response CreditNoteResponse
 	resp, err := i.Reqwest.R().

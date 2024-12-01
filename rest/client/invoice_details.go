@@ -146,6 +146,22 @@ func (i *ApiClient) DeleteBulkInvoiceDetails(form request.InvoiceDetailsBulkDele
 	return &response, nil
 }
 
+func (i *ApiClient) DeleteInvoiceDetailsByQuery(query interface{}) (*ReferenceBasedResponse, error) {
+	var response ReferenceBasedResponse
+	resp, err := i.Reqwest.R().
+		SetBody(query).
+		SetResult(&response).
+		Delete(EndPointInvoiceDetailsQuery)
+
+	if err != nil {
+		return nil, fmt.Errorf("request error: %v", err)
+	}
+	if resp.IsError() {
+		return nil, fmt.Errorf("error: %s", resp.Status())
+	}
+	return &response, nil
+}
+
 func (i *ApiClient) QueryInvoiceDetails(query interface{}) (*InvoiceDetailsResponse, error) {
 	var response InvoiceDetailsResponse
 	resp, err := i.Reqwest.R().
